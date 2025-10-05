@@ -1,0 +1,235 @@
+<div class="container-fluid page-modern py-3">
+  <!-- Toolbar -->
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Hasil Seleksi Calon Pegawai</h4>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-outline-success btn-sm"><i class="bi bi-download me-1"></i> Export Excel</button>
+      <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-printer me-1"></i> Cetak</button>
+    </div>
+  </div>
+
+  <!-- Filter pill -->
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form id="filterHasilSeleksi" class="row g-2 align-items-end">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Status Akhir</label>
+          <select class="form-select">
+            <option value="">Semua</option>
+            <option>Diterima</option>
+            <option>Ditolak</option>
+            <option>Cadangan</option>
+          </select>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Posisi</label>
+          <div class="input-icon">
+            <i class="bi bi-briefcase"></i>
+            <input class="form-control" placeholder="Frontend, Backend, ...">
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Periode</label>
+          <div class="d-flex gap-2">
+            <input type="date" class="form-control">
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="col-12 col-lg-2 d-grid">
+          <button class="btn btn-dark" type="submit"><i class="bi bi-search me-1"></i> Tampilkan</button>
+        </div>
+      </form>
+      <!-- Chip hasil filter (opsional) -->
+      <div class="filter-chips mt-2 d-flex flex-wrap gap-2">
+        <!-- contoh chip, hapus jika tidak perlu
+        <span class="chip">Status: Diterima <button class="btn-close btn-close-white ms-1" style="transform:scale(.6)"></button></span>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI ringkas -->
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi">
+        <div class="mini-kpi__label">Total Kandidat</div>
+        <div class="mini-kpi__value">200</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi">
+        <div class="mini-kpi__label">Diterima</div>
+        <div class="mini-kpi__value text-success">48</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi">
+        <div class="mini-kpi__label">Ditolak</div>
+        <div class="mini-kpi__value text-danger">112</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi">
+        <div class="mini-kpi__label">Cadangan</div>
+        <div class="mini-kpi__value text-warning">40</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabel / responsive cards -->
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th class="d-none d-lg-table-cell">Posisi</th>
+            <th>Tahap Terakhir</th>
+            <th class="text-center">Skor</th>
+            <th>Status Akhir</th>
+            <th class="d-none d-md-table-cell">Catatan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Nama">Contoh Pelamar</td>
+            <td data-label="Posisi" class="d-none d-lg-table-cell">Frontend Engineer</td>
+            <td data-label="Tahap Terakhir"><span class="badge stage-badge">Interview User</span></td>
+            <td data-label="Skor" class="text-center"><span class="score-pill score-good">86</span></td>
+            <td data-label="Status Akhir"><span class="badge status-badge status-accept">Diterima</span></td>
+            <td data-label="Catatan" class="d-none d-md-table-cell">Performance baik, siap onboarding</td>
+          </tr>
+          <!-- baris dinamis -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{
+    --brand:#2DA85C; --brand-2:#6EE7B7;
+  }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+    --chip: #0f172a;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+    --chip: #e5e7eb;
+  }
+
+  /* Header vibe dashboard */
+  .page-modern .page-head .head-blob{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Glassy cards */
+  .card-glass, .card-filter{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  .card-filter .card-body{ padding:.9rem .9rem; }
+  .card-filter{
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Input icon */
+  .input-icon{ position:relative; }
+  .input-icon > i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    pointer-events:none; opacity:.7;
+  }
+  .input-icon > .form-control{ padding-left:2rem; }
+
+  /* Filter chips */
+  .chip{
+    display:inline-flex; align-items:center; gap:.25rem;
+    padding:.25rem .5rem; border-radius:999px; font-size:.8rem;
+    background:var(--hover); color:var(--chip); border:1px solid var(--glass-bd);
+  }
+
+  /* KPI mini */
+  .mini-kpi{
+    background:var(--glass-bg); border:1px solid var(--glass-bd);
+    border-radius:12px; padding:.6rem .75rem; box-shadow: var(--shadow);
+  }
+  .mini-kpi__label{ font-size:.8rem; color:var(--muted); }
+  .mini-kpi__value{ font-size:1.2rem; font-weight:800; }
+
+  /* Table modern */
+  .table-modern thead th{
+    background: var(--thead);
+    border-bottom: 1px solid var(--glass-bd);
+    position: sticky; top: 0; z-index: 1;
+  }
+  .table-modern tbody tr{ transition: background .12s ease; }
+  .table-modern tbody tr:hover{ background: var(--hover); }
+  .table-modern td, .table-modern th{ vertical-align: middle; }
+
+  /* Stage & status badges */
+  .stage-badge{
+    background: color-mix(in oklab, var(--brand) 16%, transparent);
+    color: color-mix(in oklab, var(--brand) 70%, #0f1117);
+    font-weight:600;
+  }
+  .status-badge{ font-weight:700; }
+  .status-accept{
+    background: color-mix(in oklab, #22c55e 16%, transparent);
+    color: #15803d;
+  }
+  .status-reject{
+    background: color-mix(in oklab, #ef4444 16%, transparent);
+    color: #991b1b;
+  }
+  .status-wait{
+    background: color-mix(in oklab, #f59e0b 16%, transparent);
+    color: #92400e;
+  }
+
+  /* Score pill */
+  .score-pill{
+    display:inline-block; min-width:40px; padding:.15rem .5rem; text-align:center;
+    border-radius:999px; border:1px solid var(--glass-bd);
+    font-weight:700; background:var(--glass-bg);
+  }
+  .score-good{ color:#166534; }
+  .score-avg{ color:#92400e; }
+  .score-bad{ color:#991b1b; }
+
+  /* Mobile: table -> cards */
+  @media (max-width: 768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+  }
+</style>

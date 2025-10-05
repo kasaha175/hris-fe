@@ -1,255 +1,438 @@
-<div class="container-fluid">
-  <!-- KPI Cards -->
-  <div class="row g-3">
+<!-- DASHBOARD -->
+<section class="dash container-fluid">
+
+  <!-- ===== KPI / At-a-glance ===== -->
+  <div class="row g-3 g-md-4">
     <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <div class="kpi">
-            <span class="title">Pegawai Aktif</span>
-            <span class="value" id="kpiActive">124</span>
-            <span class="trend text-secondary">+4 bulan ini</span>
-          </div>
+      <div class="kpi-card">
+        <div class="kpi-icon"><i class="bi bi-people-fill"></i></div>
+        <div class="kpi-meta">
+          <span class="kpi-title">Pegawai Aktif</span>
+          <div class="kpi-value" id="kpiActive">124</div>
+          <span class="kpi-trend">+4 bulan ini</span>
         </div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <div class="kpi">
-            <span class="title">Pelamar Baru</span>
-            <span class="value" id="kpiApplicants">38</span>
-            <span class="trend text-secondary">+12 minggu ini</span>
-          </div>
+      <div class="kpi-card">
+        <div class="kpi-icon"><i class="bi bi-person-plus-fill"></i></div>
+        <div class="kpi-meta">
+          <span class="kpi-title">Pelamar Baru</span>
+          <div class="kpi-value" id="kpiApplicants">38</div>
+          <span class="kpi-trend">+12 minggu ini</span>
         </div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <div class="kpi">
-            <span class="title">Cuti Menunggu</span>
-            <span class="value" id="kpiPendingLeave">3</span>
-            <span class="trend text-secondary">SLA 3 hari</span>
-          </div>
+      <div class="kpi-card">
+        <div class="kpi-icon"><i class="bi bi-calendar-event-fill"></i></div>
+        <div class="kpi-meta">
+          <span class="kpi-title">Cuti Menunggu</span>
+          <div class="kpi-value" id="kpiPendingLeave">3</div>
+          <span class="kpi-trend">SLA 3 hari</span>
         </div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <div class="kpi">
-            <span class="title">Masa Probation</span>
-            <span class="value" id="kpiProbation">7</span>
-            <span class="trend text-secondary">Reminder otomatis</span>
-          </div>
+      <div class="kpi-card">
+        <div class="kpi-icon"><i class="bi bi-flag-fill"></i></div>
+        <div class="kpi-meta">
+          <span class="kpi-title">Masa Probation</span>
+          <div class="kpi-value" id="kpiProbation">7</div>
+          <span class="kpi-trend">Reminder otomatis</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Tabel Pelamar & Aksi Cepat -->
-  <div class="row g-3 mt-1">
-    <!-- Pelamar Terbaru -->
+  <!-- ===== Applicants + Quick Actions ===== -->
+  <div class="row g-3 g-md-4 mt-1">
+    <!-- Applicants -->
     <div class="col-12 col-lg-8">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <ul class="nav nav-tabs mb-3">
-            <li class="nav-item">
-              <span class="nav-link active">Pelamar Terbaru</span>
-            </li>
-          </ul>
-
-          <div class="table-responsive">
-            <table class="table table-hover align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th>Tgl Reg</th><th>No Reg</th><th>Nama</th><th>Pendidikan</th>
-                  <th>Posisi</th><th>Kota</th><th>Status</th><th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody id="tblApplicants">
-                <tr>
-                  <td>09-05-2016</td><td>97928</td><td>USTMAN</td><td>S1</td>
-                  <td>Sales Staff</td><td>Jakarta</td>
-                  <td><span class="badge text-bg-success">Terverifikasi</span></td>
-                  <td>
-                    <button class="btn btn-outline-primary btn-sm" data-open="modalPsikotest">
-                      Tes &amp; Persetujuan
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>09-05-2016</td><td>7660</td><td>GHALIB</td><td>S1</td>
-                  <td>Sales Staff</td><td>Jakarta</td>
-                  <td><span class="badge text-bg-warning">Menunggu</span></td>
-                  <td>
-                    <button class="btn btn-outline-primary btn-sm" data-open="modalPsikotest">
-                      Tes &amp; Persetujuan
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      <div class="glass-card">
+        <div class="section-head">
+          <div>
+            <h6 class="title">Pelamar Terbaru</h6>
+            <small class="muted">Update terakhir beberapa menit lalu</small>
           </div>
-
+          <a href="#/recruitment" class="btn btn-ghost btn-sm"><i class="bi bi-arrow-right-short"></i> Lihat semua</a>
         </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle dash-table">
+            <thead>
+              <tr>
+                <th>Tgl Reg</th><th>No Reg</th><th>Nama</th><th>Pendidikan</th>
+                <th>Posisi</th><th>Kota</th><th>Status</th><th class="text-end">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tblApplicants">
+              <tr>
+                <td>09-05-2016</td><td>97928</td><td>USTMAN</td><td>S1</td>
+                <td>Sales Staff</td><td>Jakarta</td>
+                <td><span class="chip chip-success">Terverifikasi</span></td>
+                <td class="text-end">
+                  <button class="btn btn-soft-primary btn-sm" data-open="modalPsikotest">
+                    <i class="bi bi-clipboard-check me-1"></i> Tes & Persetujuan
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>09-05-2016</td><td>7660</td><td>GHALIB</td><td>S1</td>
+                <td>Sales Staff</td><td>Jakarta</td>
+                <td><span class="chip chip-warning">Menunggu</span></td>
+                <td class="text-end">
+                  <button class="btn btn-soft-primary btn-sm" data-open="modalPsikotest">
+                    <i class="bi bi-clipboard-check me-1"></i> Tes & Persetujuan
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </div>
 
-    <!-- Aksi Cepat -->
+    <!-- Quick Actions -->
     <div class="col-12 col-lg-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <ul class="nav nav-tabs mb-3">
-            <li class="nav-item"><span class="nav-link active">Aksi Cepat</span></li>
-          </ul>
-
-          <div class="row g-2">
-            <div class="col-6">
-              <a class="btn btn-success w-100" href="#/recruitment">+ Posisi Baru</a>
-            </div>
-            <div class="col-6">
-              <a class="btn btn-outline-secondary w-100" href="#/employee">Import Pegawai</a>
-            </div>
-            <div class="col-6">
-              <a class="btn btn-outline-primary w-100" href="#/leave-request">Ajukan Cuti</a>
-            </div>
-            <div class="col-6">
-              <a class="btn btn-outline-dark w-100" href="#/reports">Lihat Absensi</a>
-            </div>
-          </div>
-
-          <p class="text-secondary small mt-3 mb-0">
-            Approval via email. Autorelay ke Head Company bila &gt; 3 hari.
-          </p>
+      <div class="glass-card">
+        <div class="section-head">
+          <h6 class="title mb-0">Aksi Cepat</h6>
         </div>
+
+        <div class="quick-grid">
+          <a class="quick-btn primary" href="#/recruitment">
+            <i class="bi bi-plus-circle"></i>
+            <span>Posisi Baru</span>
+          </a>
+          <a class="quick-btn" href="#/employee">
+            <i class="bi bi-upload"></i>
+            <span>Import Pegawai</span>
+          </a>
+          <a class="quick-btn" href="#/leave-request">
+            <i class="bi bi-calendar-plus"></i>
+            <span>Ajukan Cuti</span>
+          </a>
+          <a class="quick-btn" href="#/reports">
+            <i class="bi bi-clipboard-data"></i>
+            <span>Lihat Absensi</span>
+          </a>
+        </div>
+
+        <p class="muted small mt-3 mb-0">
+          Approval via email. Autorelay ke Head Company bila &gt; 3 hari.
+        </p>
       </div>
     </div>
   </div>
 
-  <!-- Form Permohonan Cuti -->
-  <div class="card shadow-sm mt-3">
-    <div class="card-body">
-      <ul class="nav nav-tabs mb-3">
-        <li class="nav-item"><span class="nav-link active">Form Permohonan Cuti</span></li>
-      </ul>
-
-      <form id="formCuti">
-        <div class="row g-3">
-          <div class="col-12 col-md-4">
-            <label class="form-label">Tanggal Permohonan</label>
-            <input class="form-control" type="date" value="2025-10-05" />
-          </div>
-          <div class="col-12 col-md-4">
-            <label class="form-label">Nama Lengkap</label>
-            <input class="form-control" type="text" placeholder="Nama pegawai" value="HERIAWAN B" />
-          </div>
-          <div class="col-12 col-md-4">
-            <label class="form-label">Divisi</label>
-            <select class="form-select">
-              <option>Microvision Indonesia</option>
-              <option>Giantleap Studio</option>
-            </select>
-          </div>
-
-          <div class="col-12 col-md-4">
-            <label class="form-label">Jenis Cuti</label>
-            <select class="form-select">
-              <option>Cuti Tahunan</option>
-              <option>Cuti Melahirkan</option>
-              <option>Cuti Keagamaan</option>
-            </select>
-          </div>
-          <div class="col-12 col-md-4">
-            <label class="form-label">Periode Cuti</label>
-            <input class="form-control" type="text" placeholder="YYYY-MM-DD s/d YYYY-MM-DD" value="2025-10-10 s/d 2025-10-12" />
-          </div>
-          <div class="col-12 col-md-4">
-            <label class="form-label">Keperluan</label>
-            <input class="form-control" type="text" placeholder="Keperluan cuti" />
-          </div>
-
-          <div class="col-12">
-            <label class="form-label">Keterangan Tambahan</label>
-            <textarea class="form-control" placeholder="Opsional"></textarea>
-          </div>
-        </div>
-
-        <div class="d-flex gap-2 justify-content-end mt-3">
-          <button type="button" class="btn btn-outline-secondary" id="btnDraft">Simpan Draft</button>
-          <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
-        </div>
-      </form>
+  <!-- ===== Leave Request Form ===== -->
+  <div class="glass-card mt-3">
+    <div class="section-head">
+      <h6 class="title mb-0">Form Permohonan Cuti</h6>
     </div>
-  </div>
 
-  <!-- Persetujuan Cuti (Manager) -->
-  <div class="card shadow-sm mt-3">
-    <div class="card-body">
-      <ul class="nav nav-tabs mb-3">
-        <li class="nav-item"><span class="nav-link active">Persetujuan Cuti</span></li>
-      </ul>
-
-      <div class="table-responsive">
-        <table class="table table-hover align-middle">
-          <thead class="table-light">
-            <tr>
-              <th>Tanggal</th><th>Nama</th><th>Divisi</th><th>Jenis</th>
-              <th>Periode</th><th>Status</th><th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>12-05-2016</td><td>GERALD ANDY</td><td>Giantleap Studio</td>
-              <td>Tahunan</td><td>2016-05-24</td>
-              <td><span class="badge text-bg-warning">Menunggu</span></td>
-              <td class="text-nowrap">
-                <button class="btn btn-outline-success btn-sm" data-approve>Approve</button>
-                <button class="btn btn-outline-danger btn-sm" data-reject>Reject</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- Modal Psikotest / Seleksi Pelamar (FE-only modal, bukan Bootstrap modal) -->
-<div class="modal" id="modalPsikotest">
-  <div class="dialog">
-    <div class="head">
-      <strong>Hasil Psikotest</strong>
-      <button class="btn btn-sm btn-outline-secondary" data-close>✕</button>
-    </div>
-    <div class="body">
+    <form id="formCuti">
       <div class="row g-3">
-        <div class="col-12 col-md-6">
-          <label class="form-label">DISC</label>
-          <textarea class="form-control" placeholder="Contoh: Ramah, sosial, enjoy challenges"></textarea>
+        <div class="col-12 col-md-4">
+          <label class="form-label">Tanggal Permohonan</label>
+          <input class="form-control" type="date" value="2025-10-05" />
         </div>
-        <div class="col-12 col-md-6">
-          <label class="form-label">CAT</label>
-          <textarea class="form-control" placeholder="Catatan kemampuan analitis"></textarea>
+        <div class="col-12 col-md-4">
+          <label class="form-label">Nama Lengkap</label>
+          <input class="form-control" type="text" placeholder="Nama pegawai" value="HERIAWAN B" />
         </div>
-        <div class="col-12">
-          <label class="form-label">Kesimpulan</label>
-          <textarea class="form-control" placeholder="Ringkas & obyektif"></textarea>
-        </div>
-        <div class="col-12 col-md-6">
-          <label class="form-label">Posisi Alternatif</label>
+        <div class="col-12 col-md-4">
+          <label class="form-label">Divisi</label>
           <select class="form-select">
-            <option>Marketing Communication</option>
-            <option>Account Manager</option>
-            <option>Business Executive</option>
+            <option>Microvision Indonesia</option>
+            <option>Giantleap Studio</option>
           </select>
         </div>
+
+        <div class="col-12 col-md-4">
+          <label class="form-label">Jenis Cuti</label>
+          <select class="form-select">
+            <option>Cuti Tahunan</option>
+            <option>Cuti Melahirkan</option>
+            <option>Cuti Keagamaan</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label">Periode Cuti</label>
+          <input class="form-control" type="text" placeholder="YYYY-MM-DD s/d YYYY-MM-DD" value="2025-10-10 s/d 2025-10-12" />
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label">Keperluan</label>
+          <input class="form-control" type="text" placeholder="Keperluan cuti" />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Keterangan Tambahan</label>
+          <textarea class="form-control" placeholder="Opsional"></textarea>
+        </div>
       </div>
+
       <div class="d-flex gap-2 justify-content-end mt-3">
-        <button class="btn btn-outline-primary" data-shortlist>Shortlist</button>
-        <button class="btn btn-primary" data-save>Save</button>
+        <button type="button" class="btn btn-ghost" id="btnDraft">Simpan Draft</button>
+        <button type="submit" class="btn btn-primary brand-btn"><i class="bi bi-send me-1"></i> Kirim Pengajuan</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ===== Manager Approvals ===== -->
+  <div class="glass-card mt-3">
+    <div class="section-head">
+      <h6 class="title mb-0">Persetujuan Cuti</h6>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table align-middle dash-table">
+        <thead>
+          <tr>
+            <th>Tanggal</th><th>Nama</th><th>Divisi</th><th>Jenis</th>
+            <th>Periode</th><th>Status</th><th class="text-end">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>12-05-2016</td><td>GERALD ANDY</td><td>Giantleap Studio</td>
+            <td>Tahunan</td><td>2016-05-24</td>
+            <td><span class="chip chip-warning">Menunggu</span></td>
+            <td class="text-end text-nowrap">
+              <button class="btn btn-soft-success btn-sm" data-approve><i class="bi bi-check-circle me-1"></i>Approve</button>
+              <button class="btn btn-soft-danger btn-sm" data-reject><i class="bi bi-x-circle me-1"></i>Reject</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== FE-only Modal (tetap kompatibel) ===== -->
+  <div class="modal" id="modalPsikotest">
+    <div class="dialog">
+      <div class="head">
+        <strong>Hasil Psikotest</strong>
+        <button class="btn btn-sm btn-ghost" data-close>✕</button>
+      </div>
+      <div class="body">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label">DISC</label>
+            <textarea class="form-control" placeholder="Contoh: Ramah, sosial, enjoy challenges"></textarea>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">CAT</label>
+            <textarea class="form-control" placeholder="Catatan kemampuan analitis"></textarea>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Kesimpulan</label>
+            <textarea class="form-control" placeholder="Ringkas & obyektif"></textarea>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Posisi Alternatif</label>
+            <select class="form-select">
+              <option>Marketing Communication</option>
+              <option>Account Manager</option>
+              <option>Business Executive</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-flex gap-2 justify-content-end mt-3">
+          <button class="btn btn-soft-primary" data-shortlist>Shortlist</button>
+          <button class="btn btn-primary brand-btn" data-save><i class="bi bi-save me-1"></i>Save</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- ===== Dashboard Styles (scoped) ===== -->
+<style>
+/* ===== Brand base (tetap) */
+:root{
+  --brand:#2DA85C; --brand-2:#6EE7B7;
+
+  --success:#16A34A; --warning:#F59E0B; --danger:#DC2626; --info:#2563EB;
+
+  --radius:16px;
+  --shadow-1:0 8px 24px rgba(15,23,42,.07);
+  --shadow-2:0 14px 36px rgba(15,23,42,.10);
+}
+
+/* ===== THEME TOKENS: ikut html[data-bs-theme] ===== */
+html[data-bs-theme="light"]{
+  --bg:#F6F8FB;
+  --surface:#FFFFFF;
+  --surface-2:#FAFBFE;
+  --text:#0F172A;
+  --muted:#667085;
+  --border:#E5EAF1;
+  --ring:rgba(45,168,92,.16);
+  --hover:rgba(45,168,92,.06);
+
+  /* chip text */
+  --chip-success-ink:#166534;
+  --chip-warning-ink:#92400e;
+}
+html[data-bs-theme="dark"]{
+  --bg:#0B0F14;
+  --surface:#0F1520;
+  --surface-2:#161B26;
+  --text:#E6E8EC;
+  --muted:#9CA3AF;
+  --border:rgba(255,255,255,.08);
+  --ring:rgba(110,231,183,.18);
+  --hover:rgba(110,231,183,.10);
+
+  --shadow-1:0 8px 24px rgba(0,0,0,.35);
+  --shadow-2:0 14px 36px rgba(0,0,0,.45);
+
+  --chip-success-ink:#86EFAC;   /* emerald-300 */
+  --chip-warning-ink:#FCD34D;   /* amber-300 */
+}
+
+/* ===== Optional background polish (aman untuk dashboard saja) */
+body{
+  background:
+    radial-gradient(1200px 600px at -10% -20%, rgba(45,168,92,.18), transparent 60%),
+    radial-gradient(1000px 600px at 110% 120%, rgba(110,231,183,.14), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.dash .muted{ color:var(--muted); }
+
+/* ===== Card / Section */
+.dash .glass-card{
+  background: var(--surface);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: 1rem;
+}
+.dash .section-head{
+  display:flex; align-items:center; justify-content:space-between; gap:.75rem; margin-bottom:.25rem;
+}
+.dash .section-head .title{ font-weight:700; }
+
+/* ===== KPI */
+.dash .kpi-card{
+  display:flex; align-items:center; gap:.9rem;
+  border-radius: var(--radius);
+  padding:1rem;
+  /* campur dengan surface supaya adaptif dark/light */
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--brand) 12%, var(--surface)),
+    color-mix(in oklab, var(--brand-2) 12%, var(--surface))
+  );
+  border:1px solid color-mix(in oklab, var(--brand) 28%, var(--border));
+  box-shadow: var(--shadow-1);
+}
+.dash .kpi-icon{
+  width:52px; height:52px; border-radius:14px; flex:none;
+  display:grid; place-items:center; color:#0f1117;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  box-shadow: 0 10px 22px rgba(45,168,92,.35);
+}
+.dash .kpi-title{ font-size:.9rem; color:var(--muted); }
+.dash .kpi-value{ font-size:1.7rem; font-weight:800; line-height:1.1 }
+.dash .kpi-trend{ font-size:.85rem; color:var(--muted); }
+
+/* ===== Table */
+.dash .table.dash-table thead th{
+  background: var(--surface-2);
+  border-bottom:1px solid var(--border);
+  font-weight:600;
+}
+.dash .table.dash-table tbody tr:hover{ background: var(--hover); }
+
+/* ===== Chips (status) – adaptif surface */
+.dash .chip{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.28rem .6rem; border-radius:999px; font-weight:700; font-size:.8rem;
+  border:1px solid transparent;
+}
+.dash .chip-success{
+  background: color-mix(in oklab, var(--success) 18%, var(--surface));
+  border-color: color-mix(in oklab, var(--success) 35%, var(--surface));
+  color: var(--chip-success-ink);
+}
+.dash .chip-warning{
+  background: color-mix(in oklab, var(--warning) 18%, var(--surface));
+  border-color: color-mix(in oklab, var(--warning) 35%, var(--surface));
+  color: var(--chip-warning-ink);
+}
+
+/* ===== Quick Actions */
+.dash .quick-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:.7rem; }
+.dash .quick-btn{
+  display:flex; align-items:center; justify-content:center; gap:.6rem;
+  padding:.85rem .9rem; text-decoration:none; color:inherit;
+  background: var(--surface); border:1px solid var(--border); border-radius:14px;
+  transition: transform .05s ease, background .15s ease, border-color .15s ease;
+}
+.dash .quick-btn:hover{
+  background: var(--hover);
+  border-color: color-mix(in oklab, var(--brand) 30%, var(--border));
+}
+.dash .quick-btn.primary{
+  color:#0f1117; border-color:transparent;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  box-shadow: var(--shadow-2);
+}
+
+/* ===== Buttons util */
+.dash .btn-ghost{
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--border);
+  --bs-btn-hover-bg: var(--hover);
+  --bs-btn-hover-border-color: color-mix(in oklab, var(--brand) 20%, var(--border));
+}
+.dash .brand-btn{
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  color:#0f1117; border:0; font-weight:700; box-shadow: var(--shadow-2);
+}
+
+/* Soft buttons (approve/reject/tes) */
+.dash .btn-soft-primary,
+.dash .btn-soft-success,
+.dash .btn-soft-danger{
+  border:1px solid transparent; border-radius:.65rem; padding:.45rem .7rem;
+  font-weight:600;
+}
+.dash .btn-soft-primary{
+  background: color-mix(in oklab, var(--info) 12%, var(--surface));
+  border-color: color-mix(in oklab, var(--info) 32%, var(--surface));
+  color: color-mix(in oklab, var(--info) 65%, var(--text));
+}
+.dash .btn-soft-success{
+  background: color-mix(in oklab, var(--success) 12%, var(--surface));
+  border-color: color-mix(in oklab, var(--success) 32%, var(--surface));
+  color: color-mix(in oklab, var(--success) 65%, var(--text));
+}
+.dash .btn-soft-danger{
+  background: color-mix(in oklab, var(--danger) 12%, var(--surface));
+  border-color: color-mix(in oklab, var(--danger) 32%, var(--surface));
+  color: color-mix(in oklab, var(--danger) 65%, var(--text));
+}
+.dash .btn-soft-primary:hover,
+.dash .btn-soft-success:hover,
+.dash .btn-soft-danger:hover{ filter: brightness(1.05); }
+
+/* ===== Inputs focus */
+.dash .form-control:focus,
+.dash .form-select:focus,
+.dash .btn:focus{
+  box-shadow: 0 0 0 .22rem var(--ring);
+  border-color: color-mix(in oklab, var(--brand) 30%, var(--border));
+  outline:0;
+}
+
+/* ===== FE-only modal tetap ikut tema via surface/border global */
+</style>

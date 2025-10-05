@@ -1,23 +1,195 @@
-<header class="topbar bg-body px-3 py-2 border-bottom">
-  <div class="d-flex align-items-center gap-2 w-100">
-    <!-- toggle sidebar (mobile) -->
-    <button class="btn btn-outline-secondary btn-sm" id="btnSidebar" title="Toggle sidebar" type="button">
-      <i class="bi bi-list"></i>
+<!-- Topbar / Navbar -->
+<header class="topbar-glass">
+  <!-- Left: Sidebar toggle (mobile) -->
+  <button id="btnSidebar" class="icon-btn d-lg-none" type="button" aria-label="Buka sidebar">
+    <i class="bi bi-list"></i>
+  </button>
+
+  <!-- Brand (selalu tampil di mobile, subtle di desktop) -->
+  <a href="#/dashboard" class="brand-mini text-decoration-none">
+    <span class="brand-badge">HR</span>
+    <strong class="d-none d-sm-inline ms-1">HRIS</strong>
+  </a>
+
+  <!-- Search (penuh di ≥md, compact di <md) -->
+  <div class="top-search flex-grow-1 d-none d-md-flex">
+    <i class="bi bi-search"></i>
+    <input id="globalSearch" type="search" placeholder="Cari karyawan, dokumen, atau menu…" aria-label="Cari" />
+    <kbd class="hint d-none d-lg-inline">/</kbd>
+  </div>
+
+  <!-- Right actions -->
+  <div class="top-actions">
+    <!-- Compact search on mobile -->
+    <button class="icon-btn d-md-none" type="button" aria-label="Cari" data-bs-toggle="collapse" data-bs-target="#mSearch">
+      <i class="bi bi-search"></i>
     </button>
 
-    <!-- search -->
-    <form class="search d-none d-md-flex align-items-center flex-grow-1" role="search">
-      <i class="bi bi-search me-2"></i>
-      <input class="form-control border-0 bg-transparent p-0" type="search"
-             placeholder="Cari modul, employee, atau nomor loker..." aria-label="Search" />
-    </form>
-
-    <!-- theme -->
-    <button class="btn btn-outline-secondary btn-sm" id="btnTheme" type="button" title="Toggle theme">
+    <!-- Theme toggle -->
+    <button id="btnTheme" class="icon-btn" type="button" aria-label="Toggle tema">
       <i class="bi bi-moon-stars"></i>
     </button>
 
-    <!-- AUTH AREA -->
-    <div id="authArea" class="ms-1"></div>
+    <!-- Notifications -->
+    <div class="dropdown">
+      <button class="icon-btn position-relative" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifikasi">
+        <i class="bi bi-bell"></i>
+        <span class="dot-badge">3</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-end notif-menu">
+        <div class="menu-head">
+          <strong>Notifikasi</strong>
+          <a href="#/reports" class="small text-decoration-none">Lihat semua</a>
+        </div>
+        <div class="menu-list">
+          <div class="item"><i class="bi bi-check2-circle"></i> Pengajuan cuti disetujui.</div>
+          <div class="item"><i class="bi bi-exclamation-circle"></i> Dokumen kontrak perlu ditinjau.</div>
+          <div class="item"><i class="bi bi-calendar-event"></i> Rapat HR 15:00 hari ini.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auth area (diisi oleh renderAuthUI) -->
+    <div id="authArea"></div>
   </div>
 </header>
+
+<!-- Mobile collapsible search -->
+<div id="mSearch" class="collapse d-md-none px-3 pb-2">
+  <div class="top-search">
+    <i class="bi bi-search"></i>
+    <input type="search" placeholder="Cari…" aria-label="Cari" />
+  </div>
+</div>
+
+<style>
+  :root{
+    --brand:#2da85c; --brand-2:#6ee7b7;
+    --tb-h:64px;
+  }
+
+  /* ========= THEME TOKENS (pakai data-bs-theme, sinkron dg toggle) ========= */
+  html[data-bs-theme="light"]{
+    --tb-bg:        rgba(255,255,255,.86);
+    --tb-border:    #E5EAF1;
+
+    --search-bg:    #fff;
+    --search-bd:    #E5EAF1;
+    --search-kbd:   #667085;
+
+    --icon-bd:      #E5EAF1;
+    --hover-bg:     rgba(45,168,92,.06);
+
+    --menu-bg:      #fff;
+    --menu-bd:      #E5EAF1;
+    --menu-head-bg: #FAFBFE;
+
+    --dot-outline:  #fff;
+  }
+  html[data-bs-theme="dark"]{
+    --tb-bg:        rgba(13,17,23,.55);
+    --tb-border:    rgba(255,255,255,.08);
+
+    --search-bg:    rgba(15,21,32,.88);
+    --search-bd:    rgba(255,255,255,.12);
+    --search-kbd:   #9CA3AF;
+
+    --icon-bd:      rgba(255,255,255,.12);
+    --hover-bg:     rgba(110,231,183,.10);
+
+    --menu-bg:      #0F1520;
+    --menu-bd:      rgba(255,255,255,.10);
+    --menu-head-bg: #161B26;
+
+    --dot-outline:  #0F1520;
+  }
+
+  /* ========= Topbar glassy ========= */
+  .topbar-glass{
+    position: sticky; top:0; z-index:1030;
+    height: var(--tb-h);
+    display:flex; align-items:center; gap:.75rem;
+    padding:.5rem 1rem;
+
+    /* light dapat aksen subtle hijau agar tidak “flat BO5” */
+    background:
+      radial-gradient(800px 160px at -6% -60%, rgba(45,168,92,.08), transparent 60%),
+      linear-gradient(180deg, var(--tb-bg) 0%, color-mix(in oklab, var(--tb-bg) 80%, transparent) 100%);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom:1px solid var(--tb-border);
+  }
+
+  /* Brand mini */
+  .brand-mini{ display:flex; align-items:center; gap:.35rem; color:inherit; }
+  .brand-badge{
+    width:34px; height:34px; border-radius:.7rem;
+    display:grid; place-items:center; font-weight:800; color:#0f1117;
+    background: linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow: 0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Icon button */
+  .icon-btn{
+    --size:40px;
+    width:var(--size); height:var(--size); border-radius:.7rem;
+    display:grid; place-items:center;
+    border:1px solid var(--icon-bd);
+    background: transparent; color: inherit;
+    transition: background .15s ease, border-color .15s ease, transform .05s ease;
+  }
+  .icon-btn:hover{ background: var(--hover-bg); }
+  .icon-btn:active{ transform: translateY(1px); }
+  .icon-btn:focus-visible{ outline: none; box-shadow: 0 0 0 .18rem rgba(45,168,92,.18); }
+
+  /* Search */
+  .top-search{
+    display:flex; align-items:center; gap:.5rem;
+    border:1px solid var(--search-bd);
+    border-radius:999px; padding:.42rem .7rem;
+    background: var(--search-bg);
+  }
+  .top-search input{ flex:1; border:0; outline:0; background:transparent; }
+  .top-search .hint{
+    color: var(--search-kbd);
+    font-size:.85rem; border:1px solid currentColor; border-radius:.4rem; padding:0 .3rem; opacity:.8;
+  }
+
+  /* Right actions */
+  .top-actions{ display:flex; align-items:center; gap:.35rem; }
+
+  /* Notification dropdown */
+  .notif-menu{
+    width:min(340px,92vw);
+    background: var(--menu-bg);
+    border:1px solid var(--menu-bd);
+    border-radius:.9rem; overflow:hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,.18);
+  }
+  .notif-menu .menu-head{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:.75rem .9rem; background: var(--menu-head-bg);
+    border-bottom:1px solid var(--menu-bd);
+  }
+  .notif-menu .menu-list{ padding:.6rem .6rem; }
+  .notif-menu .item{
+    display:flex; align-items:flex-start; gap:.6rem;
+    padding:.55rem .45rem; border-radius:.6rem;
+  }
+  .notif-menu .item:hover{ background: var(--hover-bg); }
+
+  /* Red dot badge */
+  .dot-badge{
+    position:absolute; top:2px; right:2px;
+    min-width:18px; height:18px; padding:0 .25rem;
+    border-radius:999px; background:#dc3545; color:#fff;
+    font-size:.72rem; line-height:18px; text-align:center;
+    box-shadow:0 0 0 2px var(--dot-outline);
+  }
+
+  /* Compact spacing on small screens */
+  @media (max-width:576px){
+    .topbar-glass{ gap:.5rem; padding:.4rem .6rem; }
+    .brand-badge{ width:30px; height:30px; }
+    .icon-btn{ --size:36px; border-radius:.6rem; }
+  }
+</style>

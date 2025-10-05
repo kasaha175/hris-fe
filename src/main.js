@@ -8,23 +8,33 @@ function titleCase(str = '') {
     .map(s => s.charAt(0).toUpperCase() + s.slice(1))
     .join(' ');
 }
+
+// READ ROUTE: take hash first, fallback to pathname (strip leading /)
+// -> returns raw route string (may be empty)
 function getRoute() {
-  const raw = (location.hash || '').replace(/^#\//, '').trim();
-  return raw || 'dashboard';
+  // prefer hash-based routing if present: #/dashboard or #dashboard
+  const hash = (location.hash || '').replace(/^#\/?/, '').trim();
+  if (hash) return hash;
+  // fallback: path-based routing, e.g. /custom-route => 'custom-route'
+  const path = (location.pathname || '').replace(/^\/+|\/+$/g, '').trim();
+  return path; // may be '' (empty)
 }
+
 function isAuthRoute(route) {
   return route === 'login' || route === 'otp';
 }
 function setAuthMode(on) {
   const html = document.documentElement;
-  html.classList.toggle('auth-mode', !!on);
+  const body = document.body;
+  html.classList.toggle('auth-mode', !!on);   // kompat lama
+  body.classList.toggle('login-page', !!on);  // trigger CSS di index.html
 }
 
-// daftar halaman valid (FE-only)
+// daftar halaman valid (FE-only) -- tetap ada sebagai referensi
 const VALID_ROUTES = new Set([
   'login', 'otp',
   'dashboard', 'recruitment', 'client', 'employee',
-  'reports', 'settings', 'leave-approval', 'fine-approval', 'leave-request',
+  'reports', 'settings', 'leave-approval', 'fine-approval', 'leave-request','profile'
 ]);
 
 // halaman yang butuh login (opsional guard)
@@ -35,7 +45,29 @@ function getAuth() { try { return JSON.parse(localStorage.getItem('auth') || 'nu
 function setAuth(obj) { localStorage.setItem('auth', JSON.stringify(obj)); }
 function clearAuth() { localStorage.removeItem('auth'); }
 
-// ====== Shell loader (header/sidebar/breadcrumb) ======
+// ====== Component Loader ======
+async function loadComponent(id, path) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const res = await fetch(path);
+  el.innerHTML = await res.text();
+}
+
+// ====== Footer init (karena <script> di innerHTML tidak otomatis jalan) ======
+function initFooter() {
+  const yearEl = document.querySelector('#footer-container #fy');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  const toTop = document.querySelector('#footer-container #toTop');
+  if (toTop) {
+    toTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+}
+
+// ====== Shell loader (header/sidebar/breadcrumb/footer) ======
 let shellLoaded = false;
 
 async function ensureShellLoaded() {
@@ -43,34 +75,31 @@ async function ensureShellLoaded() {
   await loadComponent('header-container', 'src/components/header.html');
   await loadComponent('sidebar-container', 'src/components/sidebar.html');
   await loadComponent('breadcrumb-container', 'src/components/breadcrumb.html');
+  await loadComponent('footer-container', 'src/components/footer.html');
+
   bindGlobalUI();
   renderAuthUI();
+  initFooter(); // penting: jalankan script footer
+
   shellLoaded = true;
 
   // tampilkan shell & nonaktifkan auth-mode
   document.getElementById('header-container')?.classList.remove('d-none');
   document.getElementById('sidebar-container')?.classList.remove('d-none');
   document.getElementById('breadcrumb-container')?.classList.remove('d-none');
+  document.getElementById('footer-container')?.classList.remove('d-none');
   setAuthMode(false);
 }
 
 function unloadShell() {
   shellLoaded = false;
-  // kosongkan + sembunyikan komponen shell
-  ['header-container','sidebar-container','breadcrumb-container'].forEach(id => {
+  // kosongkan + sembunyikan komponen shell (fix: footer-container)
+  ['header-container','sidebar-container','breadcrumb-container','footer-container'].forEach(id => {
     const el = document.getElementById(id);
     if (el) { el.innerHTML = ''; el.classList.add('d-none'); }
   });
-  // aktifkan auth-mode untuk hilangkan scroll & center
+  // aktifkan auth-mode (no scroll + hide shell via index.html)
   setAuthMode(true);
-}
-
-// ====== Component Loader ======
-async function loadComponent(id, path) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const res = await fetch(path);
-  el.innerHTML = await res.text();
 }
 
 // ====== Breadcrumb Bootstrap ======
@@ -83,11 +112,12 @@ function updateBreadcrumb(route) {
     return;
   }
   bcContainer.classList.remove('d-none');
+  const label = route ? titleCase(route) : 'Home';
   bcContainer.innerHTML = `
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb mb-3">
         <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item active" aria-current="page">${titleCase(route)}</li>
+        <li class="breadcrumb-item active" aria-current="page">${label}</li>
       </ol>
     </nav>`;
 }
@@ -153,7 +183,7 @@ function renderAuthUI() {
           <span class="d-none d-sm-inline">${auth.name || 'User'}</span>
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#/settings"><i class="bi bi-person-circle me-2"></i> Profil</a></li>
+          <li><a class="dropdown-item" href="#/profile"><i class="bi bi-person-circle me-2"></i> Profil</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><button class="dropdown-item text-danger" id="btnLogout"><i class="bi bi-box-arrow-right me-2"></i> Keluar</button></li>
         </ul>
@@ -165,50 +195,63 @@ function renderAuthUI() {
     clearAuth();
     unloadShell();
     renderAuthUI();
+    // don't force change hash; keep current location so developer can inject url
     location.hash = '#/login';
   });
 }
 
 // ====== Page Loader ======
 async function loadPage(route) {
-  const container = document.getElementById('page-container');
-  if (!container) return;
+  const pageContainer = document.getElementById('page-container');
+  const authRoot = document.getElementById('auth-root');
+  if (!pageContainer || !authRoot) return;
 
-  const safeRoute = VALID_ROUTES.has(route) ? route : 'dashboard';
+  // NOTE:
+  // we intentionally DO NOT coerce route into a safeRoute here so developer can inject arbitrary route
+  // If you want to enforce allowed routes again, uncomment the next line and use safeRoute:
+  // const safeRoute = VALID_ROUTES.has(route) ? route : 'login';
+  const safeRoute = route; // allow arbitrary
 
-  // Redirect awal: kalau belum login & bukan auth, pergi ke login
-  if (!getAuth() && !isAuthRoute(safeRoute)) {
-    location.hash = '#/login';
-    return;
-  }
+  // Optional auth guard (commented out so injected URL can load)
+  // if (!getAuth() && !isAuthRoute(safeRoute)) {
+  //   // If you want to block access when not authenticated, enable redirect here:
+  //   // location.hash = '#/login';
+  //   // return;
+  // }
 
-  // Guard halaman tertentu
-  if (RESTRICTED_ROUTES.has(safeRoute) && !getAuth()) {
-    location.hash = '#/login';
-    return;
-  }
+  const isAuth = isAuthRoute(safeRoute);
 
-  // Shell behavior + toggle .auth-mode
-  if (isAuthRoute(safeRoute)) {
-    unloadShell();          // juga setAuthMode(true)
+  // Atur shell/kelas & tentukan target container
+  if (isAuth) {
+    unloadShell();                       // hide shell & no-scroll
+    pageContainer.innerHTML = '';        // kosongkan shell container
   } else {
-    await ensureShellLoaded(); // juga setAuthMode(false)
+    await ensureShellLoaded();           // show shell
+    authRoot.innerHTML = '';             // kosongkan auth root
   }
+
+  const target = isAuth ? authRoot : pageContainer;
 
   // Fetch page
-  const path = `src/pages/${safeRoute}.html`;
+  // If route is empty string, we still attempt to load 'login' as fallback to preserve previous behavior.
+  const pageName = (safeRoute && safeRoute.length) ? safeRoute : 'login';
+  const path = `src/pages/${pageName}.html`;
   try {
     const res = await fetch(path);
-    container.innerHTML = await res.text();
+    if (!res.ok) throw new Error('not found');
+    target.innerHTML = await res.text();
   } catch {
-    container.innerHTML = `<div class="container py-5 text-center">
-      <h4 class="text-danger">Halaman tidak ditemukan</h4>
+    target.innerHTML = `<div class="container py-5 text-center">
+      <h4 class="text-danger">Halaman tidak ditemukan: ${pageName}</h4>
     </div>`;
   }
 
-  updateBreadcrumb(safeRoute);
-  setActiveNav(safeRoute);
-  bindPageUI();
+  // Breadcrumb hanya untuk non-auth
+  updateBreadcrumb(isAuth ? 'login' : pageName);
+  setActiveNav(pageName);
+
+  // Bind UI dalam scope yang tepat
+  bindPageUI(target);
 }
 
 // ====== Page-Specific UI ======
@@ -231,7 +274,7 @@ function bindPageUI(scope = document) {
   scope.querySelectorAll('[data-open]').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-open');
-      document.getElementById(id)?.classList.add('open');
+      scope.getElementById?.(id)?.classList.add('open');
     });
   });
   scope.querySelectorAll('[data-close]').forEach(btn => {
@@ -243,6 +286,7 @@ function bindPageUI(scope = document) {
 
   // Dummy action
   scope.querySelectorAll('[data-approve]').forEach(b => b.addEventListener('click', () => alert('Approved ✔')));
+
   scope.querySelectorAll('[data-reject]').forEach(b => b.addEventListener('click', () => alert('Rejected ✖')));
 
   // Dummy form submit (leave)
@@ -257,7 +301,6 @@ function bindPageUI(scope = document) {
   // ---- Login & OTP flow (mock) ----
   const loginForm = scope.getElementById?.('formLogin');
   if (loginForm) {
-    // toggle password
     const pass = scope.getElementById('loginPass');
     const toggle = scope.getElementById('togglePass');
     toggle?.addEventListener('click', () => {
@@ -300,7 +343,7 @@ function bindPageUI(scope = document) {
       const pending = JSON.parse(localStorage.getItem('pending_user') || '{}');
       if (pending?.name) setAuth({ name: pending.name });
       localStorage.removeItem('pending_user');
-      await ensureShellLoaded();   // setelah login baru muat komponen
+      await ensureShellLoaded();   // setelah login baru muat komponen (termasuk footer)
       renderAuthUI();
       location.hash = '#/dashboard';
     });
@@ -317,15 +360,8 @@ function bindPageUI(scope = document) {
 
 // ====== Init App ======
 window.addEventListener('DOMContentLoaded', async () => {
-  // jangan muat shell dulu; lihat rute & auth
-  const route = getRoute();
-  if (!getAuth() && !isAuthRoute(route)) {
-    // pastikan halaman auth benar-benar mode auth
-    unloadShell();              // juga setAuthMode(true)
-    location.hash = '#/login';
-    return;
-  }
-  // set kelas sesuai rute saat pertama kali load
+  const route = getRoute(); // now reads hash OR pathname
+  // NOTE: we do not force redirect to #/login here so developers can inject URL
   setAuthMode(isAuthRoute(route));
   loadPage(route);
 });

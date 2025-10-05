@@ -1,0 +1,242 @@
+<div class="container-fluid page-modern py-3">
+  <!-- Toolbar -->
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Permintaan Pemanggilan Pelamar Kerja</h4>
+    </div>
+    <div class="d-flex flex-wrap gap-2">
+      <button class="btn btn-primary btn-sm" data-open="mdlBuatPemanggilan">
+        <i class="bi bi-megaphone me-1"></i> Buat Pemanggilan
+      </button>
+      <button class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-envelope-check me-1"></i> Kirim Undangan
+      </button>
+    </div>
+  </div>
+
+  <!-- Filter pill -->
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form id="filterPemanggilan" class="row g-2 align-items-end">
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Jenis Pemanggilan</label>
+          <select class="form-select">
+            <option>Interview HR</option>
+            <option>Interview User</option>
+            <option>Psikotes</option>
+            <option>Offering</option>
+          </select>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+          <label class="form-label">Tanggal</label>
+          <div class="input-icon">
+            <i class="bi bi-calendar-event"></i>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4 d-grid">
+          <button class="btn btn-dark" type="submit"><i class="bi bi-search me-1"></i> Filter</button>
+        </div>
+      </form>
+      <div class="filter-chips mt-2 d-flex flex-wrap gap-2">
+        <!-- contoh chip (opsional): <span class="chip">Interview User <button class="btn-close btn-close-white ms-1" style="transform:scale(.6)"></button></span> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabel / responsive cards -->
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Kode</th>
+            <th>Jenis</th>
+            <th class="d-none d-lg-table-cell">Posisi</th>
+            <th>Tanggal</th>
+            <th class="text-center">Jumlah Pelamar</th>
+            <th>Status</th>
+            <th style="width:140px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Kode">CALL-2025-010</td>
+            <td data-label="Jenis"><span class="badge jenis-badge jenis-user">Interview User</span></td>
+            <td data-label="Posisi" class="d-none d-lg-table-cell">Backend Engineer</td>
+            <td data-label="Tanggal">09 Okt 2025</td>
+            <td data-label="Jumlah Pelamar" class="text-center"><span class="count-pill">12</span></td>
+            <td data-label="Status"><span class="badge status-badge status-draft">Draft</span></td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-success" title="Kirim Undangan"><i class="bi bi-send"></i></button>
+                <button class="btn btn-outline-secondary" title="Edit"><i class="bi bi-pencil"></i></button>
+              </div>
+            </td>
+          </tr>
+          <!-- baris dinamis -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Buat Pemanggilan -->
+<div class="modal" id="mdlBuatPemanggilan" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Buat Pemanggilan</h5><button class="btn-close" data-close></button></div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Jenis</label>
+            <select class="form-select">
+              <option>Interview HR</option>
+              <option>Interview User</option>
+              <option>Psikotes</option>
+              <option>Offering</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Posisi</label>
+            <input class="form-control" placeholder="Nama posisi">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Tanggal</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Waktu</label>
+            <input type="time" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Lokasi/Link</label>
+            <input class="form-control" placeholder="Ruang Rapat / Zoom link">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Catatan</label>
+            <textarea class="form-control" rows="3" placeholder="Informasi tambahan untuk kandidat"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-close>Batal</button>
+        <button class="btn btn-primary" data-close>Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+    --chip: #0f172a;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+    --chip: #e5e7eb;
+  }
+
+  /* Header vibe dashboard */
+  .page-modern .page-head .head-blob{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Glassy cards */
+  .card-glass, .card-filter{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  .card-filter .card-body{ padding:.9rem .9rem; }
+  .card-filter{ backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+  /* Input icon */
+  .input-icon{ position:relative; }
+  .input-icon > i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    pointer-events:none; opacity:.7;
+  }
+  .input-icon > .form-control{ padding-left:2rem; }
+
+  /* Chips */
+  .chip{
+    display:inline-flex; align-items:center; gap:.25rem;
+    padding:.25rem .5rem; border-radius:999px; font-size:.8rem;
+    background:var(--hover); color:var(--chip); border:1px solid var(--glass-bd);
+  }
+
+  /* Table modern */
+  .table-modern thead th{
+    background: var(--thead);
+    border-bottom: 1px solid var(--glass-bd);
+    position: sticky; top: 0; z-index: 1;
+  }
+  .table-modern tbody tr{ transition: background .12s ease; }
+  .table-modern tbody tr:hover{ background: var(--hover); }
+  .table-modern td, .table-modern th{ vertical-align: middle; }
+
+  /* Badges untuk Jenis */
+  .jenis-badge{ font-weight:700; }
+  .jenis-hr{ background: color-mix(in oklab, #f59e0b 16%, transparent); color:#92400e; }
+  .jenis-user{ background: color-mix(in oklab, #22c55e 16%, transparent); color:#166534; }
+  .jenis-psiko{ background: color-mix(in oklab, #a78bfa 16%, transparent); color:#6d28d9; }
+  .jenis-offer{ background: color-mix(in oklab, #10b981 16%, transparent); color:#065f46; }
+
+  /* Badges untuk Status */
+  .status-badge{ font-weight:700; }
+  .status-draft{
+    background: color-mix(in oklab, #60a5fa 16%, transparent);
+    color:#1d4ed8;
+  }
+  .status-sent{
+    background: color-mix(in oklab, #34d399 16%, transparent);
+    color:#065f46;
+  }
+  .status-done{
+    background: color-mix(in oklab, #f59e0b 16%, transparent);
+    color:#92400e;
+  }
+
+  /* Count pill */
+  .count-pill{
+    display:inline-block; min-width:36px; padding:.1rem .5rem; text-align:center;
+    border-radius:999px; border:1px solid var(--glass-bd);
+    background:var(--glass-bg); font-weight:700;
+  }
+
+  /* Mobile: table -> cards */
+  @media (max-width: 768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+  }
+</style>

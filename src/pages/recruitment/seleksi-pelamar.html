@@ -1,0 +1,184 @@
+<div class="container-fluid page-modern py-3">
+  <!-- Toolbar -->
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Seleksi Pelamar</h4>
+    </div>
+    <div class="d-flex flex-wrap gap-2">
+      <button class="btn btn-outline-primary btn-sm" id="btnBulkSchedule">
+        <i class="bi bi-calendar2-plus me-1"></i> Jadwal Interview (Bulk)
+      </button>
+      <button class="btn btn-outline-success btn-sm" id="btnBulkPass">
+        <i class="bi bi-check2-square me-1"></i> Loloskan
+      </button>
+      <button class="btn btn-outline-danger btn-sm" id="btnBulkReject">
+        <i class="bi bi-x-octagon me-1"></i> Tolak
+      </button>
+    </div>
+  </div>
+
+  <!-- Filter pill -->
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form id="filterSeleksi" class="row g-2 align-items-end">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Tahap</label>
+          <select class="form-select" name="tahap">
+            <option value="">Semua</option>
+            <option>Screening</option>
+            <option>Interview HR</option>
+            <option>Interview User</option>
+            <option>Psikotes</option>
+            <option>Offering</option>
+          </select>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Periode</label>
+          <input type="month" class="form-control" name="periode">
+        </div>
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Posisi</label>
+          <div class="input-icon">
+            <i class="bi bi-briefcase"></i>
+            <input type="text" class="form-control" name="posisi" placeholder="Nama posisi">
+          </div>
+        </div>
+        <div class="col-12 col-lg-2 d-grid d-lg-flex gap-2">
+          <button class="btn btn-dark flex-fill" type="submit"><i class="bi bi-search me-1"></i> Cari</button>
+          <button class="btn btn-outline-secondary flex-fill" type="reset">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tabel / responsive cards -->
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern align-middle mb-0">
+        <thead>
+          <tr>
+            <th style="width:42px"><input class="form-check-input" type="checkbox"></th>
+            <th>Nama</th>
+            <th class="d-none d-lg-table-cell">Posisi</th>
+            <th>Tahap</th>
+            <th class="d-none d-md-table-cell">Jadwal</th>
+            <th class="d-none d-xl-table-cell">Reviewer</th>
+            <th style="width:160px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Pilih"><input class="form-check-input" type="checkbox"></td>
+            <td data-label="Nama">Contoh Pelamar</td>
+            <td data-label="Posisi" class="d-none d-lg-table-cell">UI/UX Designer</td>
+            <td data-label="Tahap"><span class="badge tahap-badge tahap-hr">Interview HR</span></td>
+            <td data-label="Jadwal" class="d-none d-md-table-cell">08 Okt 2025 10:00</td>
+            <td data-label="Reviewer" class="d-none d-xl-table-cell">Ayu Lestari</td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Jadwalkan"><i class="bi bi-calendar2-event"></i></button>
+                <button class="btn btn-outline-success" title="Loloskan"><i class="bi bi-check2"></i></button>
+                <button class="btn btn-outline-danger" title="Tolak"><i class="bi bi-x"></i></button>
+              </div>
+            </td>
+          </tr>
+          <!-- rows dinamis -->
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer d-flex flex-wrap gap-2 justify-content-between align-items-center">
+      <small class="text-muted">Menampilkan 1–10 dari 40</small>
+      <nav>
+        <ul class="pagination pagination-sm mb-0">
+          <li class="page-item active"><span class="page-link">1</span></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+  }
+
+  /* Header vibe dashboard */
+  .page-modern .page-head .head-blob{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Glassy cards */
+  .card-glass, .card-filter{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  .card-filter .card-body{ padding:.9rem .9rem; }
+  .card-filter{
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Input icon */
+  .input-icon{ position:relative; }
+  .input-icon > i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    pointer-events:none; opacity:.7;
+  }
+  .input-icon > .form-control{ padding-left:2rem; }
+
+  /* Table modern */
+  .table-modern thead th{
+    background: var(--thead);
+    border-bottom: 1px solid var(--glass-bd);
+    position: sticky; top: 0; z-index: 1;
+  }
+  .table-modern tbody tr{ transition: background .12s ease; }
+  .table-modern tbody tr:hover{ background: var(--hover); }
+  .table-modern td, .table-modern th{ vertical-align: middle; }
+
+  /* Tahap badges */
+  .tahap-badge{ font-weight:700; }
+  .tahap-screen{ background: color-mix(in oklab, #60a5fa 18%, transparent); color:#1d4ed8; }
+  .tahap-hr{ background: color-mix(in oklab, #f59e0b 18%, transparent); color:#92400e; }
+  .tahap-user{ background: color-mix(in oklab, #22c55e 18%, transparent); color:#166534; }
+  .tahap-psiko{ background: color-mix(in oklab, #a78bfa 18%, transparent); color:#6d28d9; }
+  .tahap-offer{ background: color-mix(in oklab, #10b981 18%, transparent); color:#065f46; }
+
+  /* Mobile: table -> cards */
+  @media (max-width: 768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+  }
+</style>
