@@ -1,0 +1,90 @@
+<div class="container-fluid page-modern py-3">
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Seleksi Calon Pegawai Masa Tunggu</h4>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-outline-success btn-sm"><i class="bi bi-check2-square me-1"></i> Aktifkan</button>
+      <button class="btn btn-outline-danger btn-sm"><i class="bi bi-archive me-1"></i> Arsipkan</button>
+    </div>
+  </div>
+
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form class="row g-2 align-items-end">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Klien</label>
+          <div class="input-icon"><i class="bi bi-building"></i><input class="form-control" placeholder="Nama perusahaan"></div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Status Tunggu</label>
+          <select class="form-select">
+            <option value="">Semua</option><option>Aktif</option><option>Arsip</option>
+          </select>
+        </div>
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Posisi</label>
+          <input class="form-control" placeholder="Nama posisi">
+        </div>
+        <div class="col-12 col-lg-2 d-grid">
+          <button class="btn btn-dark"><i class="bi bi-search me-1"></i> Cari</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th class="d-none d-lg-table-cell">Klien</th>
+            <th>Posisi</th>
+            <th class="text-center">Skor</th>
+            <th>Status Tunggu</th>
+            <th style="width:140px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Nama">Rama Putra</td>
+            <td data-label="Klien" class="d-none d-lg-table-cell">PT Sandang Jaya</td>
+            <td data-label="Posisi">Operator Produksi</td>
+            <td data-label="Skor" class="text-center"><span class="score-pill score-avg">78</span></td>
+            <td data-label="Status Tunggu"><span class="badge tunggu-badge tunggu-aktif">Aktif</span></td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-success" title="Aktifkan"><i class="bi bi-check2"></i></button>
+                <button class="btn btn-outline-danger" title="Arsipkan"><i class="bi bi-archive"></i></button>
+                <button class="btn btn-outline-secondary" title="Detail"><i class="bi bi-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+          <!-- rows dinamis -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{ --glass-bg:rgba(255,255,255,.86);--glass-bd:#E5EAF1;--muted:#667085;--hover:rgba(45,168,92,.06);--shadow:0 18px 40px rgba(15,23,42,.10);--thead:#f8fafc; }
+  html[data-bs-theme="dark"]{ --glass-bg:rgba(13,17,23,.55);--glass-bd:rgba(255,255,255,.08);--muted:#9CA3AF;--hover:rgba(110,231,183,.08);--shadow:0 18px 40px rgba(0,0,0,.45);--thead:rgba(255,255,255,.06); }
+  .page-modern .page-head .head-blob{ width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 6px 16px rgba(45,168,92,.35); }
+  .card-glass,.card-filter{ background:var(--glass-bg);border:1px solid var(--glass-bd);box-shadow:var(--shadow);border-radius:14px; } .card-filter .card-body{ padding:.9rem .9rem; } .card-filter{ backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .input-icon{ position:relative; } .input-icon>i{ position:absolute;left:.65rem;top:50%;transform:translateY(-50%);opacity:.7; } .input-icon>.form-control{ padding-left:2rem; }
+  .table-modern thead th{ background:var(--thead);border-bottom:1px solid var(--glass-bd);position:sticky;top:0;z-index:1; }
+  .table-modern tbody tr{ transition:background .12s ease; } .table-modern tbody tr:hover{ background:var(--hover); }
+
+  .tunggu-badge{ font-weight:700; }
+  .tunggu-aktif{ background:color-mix(in oklab,#22c55e 16%,transparent); color:#166534; }
+  .tunggu-arsip{ background:color-mix(in oklab,#9ca3af 16%,transparent); color:#374151; }
+
+  .score-pill{ display:inline-block;min-width:40px;padding:.15rem .5rem;text-align:center;border-radius:999px;border:1px solid var(--glass-bd);background:var(--glass-bg);font-weight:700; }
+  .score-good{ color:#166534; } .score-avg{ color:#92400e; } .score-bad{ color:#991b1b; }
+
+  @media (max-width:768px){ .table-responsive{overflow:visible;} .table-modern thead{display:none;} .table-modern tbody tr{display:block;margin-bottom:.75rem;border:1px solid var(--glass-bd);border-radius:12px;background:var(--glass-bg);box-shadow:var(--shadow);padding:.5rem;} .table-modern tbody td{display:flex;justify-content:space-between;gap:1rem;border:0!important;padding:.35rem .25rem;} .table-modern tbody td::before{content:attr(data-label);font-weight:600;color:var(--muted);} }
+</style>
