@@ -6,133 +6,190 @@
     <title>HRIS Modern</title>
 
     <!-- Bootstrap 5.3 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- ✅ Shell + Login toggles -->
+    <!-- Font: Plus Jakarta Sans (global untuk seluruh halaman) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+
     <style>
-      :root{
-        --brand:#2da85c; --brand-2:#6ee7b7;
+      /* =====================================================
+         GLOBAL FONT & BASE THEME
+      ====================================================== */
+      :root {
+        --brand: #2da85c;
+        --brand-2: #6ee7b7;
+        --bs-body-font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       }
-      html,body{height:100%}
 
-      /* ===== App Shell (dashboard) ===== */
-      #app-shell{display:block}
-      body.login-page #app-shell{display:none}            /* sembunyikan shell saat login */
+      html,
+      body {
+        height: 100%;
+        font-family: var(--bs-body-font-family);
+        font-variant-numeric: tabular-nums;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #0f172a;
+        background-color: var(--bs-body-bg);
+      }
 
-      /* ===== Auth Root (login) ===== */
-      #auth-root{display:none}
-      body.login-page #auth-root{display:block}
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 700;
+        letter-spacing: 0.1px;
+      }
 
-      /* Fullscreen no-scroll khusus login */
-      body.login-page{
-        overflow:hidden;                  /* hilangkan scroll di login */
+      /* Semua elemen bawaan Bootstrap ikut font global */
+      .table,
+      .btn,
+      .form-control,
+      .badge,
+      .dropdown-menu,
+      .nav,
+      .breadcrumb,
+      .modal,
+      .card,
+      .input-group,
+      .form-label,
+      .form-select {
+        font-family: inherit;
+      }
+
+      /* =====================================================
+         SHELL & LOGIN CONFIG (kode asli kamu, tetap dipertahankan)
+      ====================================================== */
+      #app-shell {
+        display: block;
+      }
+      body.login-page #app-shell {
+        display: none;
+      }
+
+      #auth-root {
+        display: none;
+      }
+      body.login-page #auth-root {
+        display: block;
+      }
+
+      body.login-page {
+        overflow: hidden;
         background:
-          radial-gradient(1200px 600px at -10% -20%, rgba(45,168,92,.22), transparent 60%),
-          radial-gradient(1000px 600px at 110% 120%, rgba(110,231,183,.18), transparent 60%),
+          radial-gradient(1200px 600px at -10% -20%, rgba(45, 168, 92, 0.22), transparent 60%),
+          radial-gradient(1000px 600px at 110% 120%, rgba(110, 231, 183, 0.18), transparent 60%),
           linear-gradient(180deg, #0b0f14, #0f1117);
       }
-      body.login-page #auth-root{
-        height:100vh; min-height:100vh;
-        display:grid; place-items:center;
-        padding:0; margin:0;
+      body.login-page #auth-root {
+        height: 100vh;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        margin: 0;
       }
 
-      /* Opsional: kurangi lebar konten shell di layar besar */
-      @media (min-width:1400px){
-        main[role="main"]{ padding-right:3rem; padding-left:3rem; }
+      @media (min-width: 1400px) {
+        main[role='main'] {
+          padding-right: 3rem;
+          padding-left: 3rem;
+        }
       }
 
       /* ===== THEME TOKENS (ikon/teks topbar) ===== */
-      html[data-bs-theme="light"]{
-        /* sudah ada sebelumnya… tambahkan ini: */
-        --tb-fg:        #0F172A;   /* teks/ikon topbar */
-        --icon-fg:      #1F2937;   /* warna ikon normal */
-        --icon-fg-hover:#0B1220;   /* warna ikon saat hover */
-        --search-icon:  #8A94A6;   /* ikon & placeholder di search */
+      html[data-bs-theme='light'] {
+        --tb-fg: #0f172a;
+        --icon-fg: #1f2937;
+        --icon-fg-hover: #0b1220;
+        --search-icon: #8a94a6;
       }
 
-      html[data-bs-theme="dark"]{
-        /* sudah ada sebelumnya… tambahkan ini: */
-        --tb-fg:        #E6E8EC;
-        --icon-fg:      #D1D5DB;
-        --icon-fg-hover:#FFFFFF;
-        --search-icon:  #9CA3AF;
+      html[data-bs-theme='dark'] {
+        --tb-fg: #e6e8ec;
+        --icon-fg: #d1d5db;
+        --icon-fg-hover: #ffffff;
+        --search-icon: #9ca3af;
       }
 
-      /* ===== Terapkan token ke komponen ===== */
-      .topbar-glass{
-        color: var(--tb-fg); /* pastikan teks & ikon punya kontras */
+      .topbar-glass {
+        color: var(--tb-fg);
       }
 
-      /* Icon button (burger, tema, bell, dll.) */
-      .icon-btn{
-        color: var(--icon-fg);              /* <- ikon terlihat di light */
+      .icon-btn {
+        color: var(--icon-fg);
         border-color: var(--icon-bd);
       }
-      .icon-btn:hover{ 
+      .icon-btn:hover {
         background: var(--hover-bg);
-        color: var(--icon-fg-hover);        /* <- lebih tegas saat hover */
+        color: var(--icon-fg-hover);
       }
-      .icon-btn:focus-visible{
-        outline: none; box-shadow: 0 0 0 .18rem rgba(45,168,92,.18);
+      .icon-btn:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 0.18rem rgba(45, 168, 92, 0.18);
       }
 
-      /* Ikon & placeholder pada kotak search */
-      .top-search i{ color: var(--search-icon); }
-      .top-search input::placeholder{ color: var(--search-icon); opacity:.9; }
+      .top-search i {
+        color: var(--search-icon);
+      }
+      .top-search input::placeholder {
+        color: var(--search-icon);
+        opacity: 0.9;
+      }
 
-      /* Notif dot: outline mengikuti background topbar agar selalu ‘terpotong’ rapi */
-      .dot-badge{
+      .dot-badge {
         box-shadow: 0 0 0 2px var(--tb-bg);
       }
-
     </style>
   </head>
 
   <body class="d-flex flex-column min-vh-100">
-    <!-- ===== Root untuk halaman Login (render dari main.js) ===== -->
+    <!-- Login -->
     <div id="auth-root"></div>
 
-    <!-- ===== App Shell untuk halaman selain login ===== -->
+    <!-- Shell -->
     <div id="app-shell" class="d-flex flex-column min-vh-100">
-      <!-- Header -->
       <header id="header-container" class="border-bottom bg-body"></header>
 
-      <!-- Layout -->
       <div class="container-fluid flex-grow-1">
         <div class="row">
-          <!-- Sidebar -->
           <aside id="sidebar-container" class="col-12 col-md-3 col-lg-2 border-end p-0 bg-body-tertiary"></aside>
 
-          <!-- Main content -->
           <main role="main" class="col-12 col-md-9 col-lg-10 p-3 p-md-4">
             <nav id="breadcrumb-container" class="mb-3"></nav>
             <div id="page-container"></div>
           </main>
         </div>
       </div>
+
       <div id="footer-container" class="mt-auto"></div>
     </div>
-
-    
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Toggle helper: otomatis aktifkan mode login saat hash #/login -->
+    <!-- Toggle login/dashboard -->
     <script>
       const applyLoginMode = () => {
-        const isLogin = location.hash.startsWith('#/login') || location.pathname.endsWith('/login');
+        const isLogin =
+          location.hash.startsWith('#/login') || location.pathname.endsWith('/login');
         document.body.classList.toggle('login-page', isLogin);
       };
       window.addEventListener('hashchange', applyLoginMode);
       window.addEventListener('DOMContentLoaded', applyLoginMode);
     </script>
 
-    <!-- App -->
     <script type="module" src="src/main.js"></script>
   </body>
 </html>

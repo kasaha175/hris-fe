@@ -1,6 +1,134 @@
-<nav id="breadcrumb" aria-label="breadcrumb">
-  <ol class="breadcrumb mb-3">
-    <li class="breadcrumb-item"><a href="#/dashboard">Dashboard</a></li>
-    <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-current">Dashboard</li>
-  </ol>
+<nav id="breadcrumb" class="bc-nav" aria-label="breadcrumb">
+  <div class="bc-inner">
+    <a class="bc-back d-none d-md-inline-flex" href="javascript:history.back()" title="Kembali">
+      <i class="bi bi-arrow-left-short"></i>
+    </a>
+    <ol class="breadcrumb bc-breadcrumb mb-0">
+      <li class="breadcrumb-item">
+        <i class="bi bi-house-door me-1 opacity-75"></i>
+        <a href="#/dashboard">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-current">Dashboard</li>
+    </ol>
+  </div>
 </nav>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --bc-bg: rgba(255,255,255,.86);
+    --bc-bd: #E5EAF1;
+    --bc-shadow: 0 18px 40px rgba(15,23,42,.10);
+    --bc-sep: #9aa4b2;
+    --bc-muted:#667085;
+  }
+  html[data-bs-theme="dark"]{
+    --bc-bg: rgba(13,17,23,.55);
+    --bc-bd: rgba(255,255,255,.08);
+    --bc-shadow: 0 18px 40px rgba(0,0,0,.45);
+    --bc-sep: rgba(255,255,255,.35);
+    --bc-muted:#9CA3AF;
+  }
+
+  /* Wrapper sticky */
+  .bc-nav{
+    position: sticky;
+    top: calc(var(--tb-h,64px) + 6px);
+    z-index: 13;
+    padding: 0 .75rem;
+    margin-top: .25rem;
+    margin-bottom: .5rem;
+  }
+
+  /* Glassy container + scrollable row */
+  .bc-inner{
+    position: relative;
+    display: flex; align-items: center; gap:.5rem;
+    background: var(--bc-bg);
+    border: 1px solid var(--bc-bd);
+    box-shadow: var(--bc-shadow);
+    border-radius: 12px;
+    padding: .4rem .6rem;
+    overflow: hidden;
+  }
+  /* fade edges saat overflow */
+  .bc-inner::before, .bc-inner::after{
+    content:""; position:absolute; top:0; bottom:0; width:28px; pointer-events:none;
+    background: linear-gradient(90deg, var(--bc-bg), transparent);
+    opacity: 0; transition: opacity .15s ease;
+  }
+  .bc-inner::before{ left:0; }
+  .bc-inner::after{
+    right:0; transform: scaleX(-1);
+  }
+  .bc-inner.sc-left::before{ opacity:1; }
+  .bc-inner.sc-right::after{ opacity:1; }
+
+  /* Back button */
+  .bc-back{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:28px; height:28px; border-radius:8px;
+    border:1px solid var(--bc-bd); background:transparent; color:inherit;
+    text-decoration:none;
+  }
+  .bc-back:hover{ background: color-mix(in oklab, var(--brand-2) 10%, transparent); }
+
+  /* List */
+  .bc-breadcrumb{
+    display:flex; align-items:center; gap:.35rem;
+    overflow:auto; overscroll-behavior:contain; scrollbar-width:none;
+    margin:0; padding:0 .25rem 0 .15rem;
+  }
+  .bc-breadcrumb::-webkit-scrollbar{ display:none; }
+
+  /* Item & separator */
+  .bc-breadcrumb .breadcrumb-item{
+    white-space: nowrap;
+    font-size: .95rem;
+    display:flex; align-items:center; gap:.35rem;
+  }
+  .bc-breadcrumb .breadcrumb-item + .breadcrumb-item::before{
+    content:"›";
+    color: var(--bc-sep);
+    padding: 0 .2rem;
+  }
+  .bc-breadcrumb a{
+    text-decoration:none; color: inherit;
+    border-radius: 6px; padding: .15rem .25rem;
+  }
+  .bc-breadcrumb a:hover{
+    background: color-mix(in oklab, var(--brand) 10%, transparent);
+  }
+
+  /* Current */
+  #breadcrumb-current{
+    font-weight: 700;
+    max-width: 42vw;
+    overflow:hidden; text-overflow:ellipsis;
+  }
+
+  /* Compact mode di layar kecil: tampilkan HOME + item terakhir */
+  @media (max-width:576px){
+    .bc-breadcrumb .breadcrumb-item:not(:first-child):not(:last-child){ display:none; }
+    #breadcrumb-current{ max-width: 60vw; }
+  }
+</style>
+
+<script>
+  // efek fade kiri/kanan ketika list bisa di-scroll
+  (function(){
+    const nav = document.getElementById('breadcrumb');
+    const inner = nav?.querySelector('.bc-inner');
+    const track = nav?.querySelector('.bc-breadcrumb');
+    if(!inner || !track) return;
+    const update = () => {
+      const L = track.scrollLeft;
+      const canScrollR = track.scrollWidth - track.clientWidth - L > 1;
+      inner.classList.toggle('sc-left', L > 0);
+      inner.classList.toggle('sc-right', canScrollR);
+    };
+    track.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
