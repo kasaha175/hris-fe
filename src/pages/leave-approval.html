@@ -1,0 +1,98 @@
+<div class="container-fluid">
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+          <button class="nav-link active tab" type="button">Persetujuan Cuti (Manager LSP)</button>
+        </li>
+      </ul>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle" id="tblLeaveApproval">
+          <thead class="table-light">
+            <tr>
+              <th>Tanggal</th>
+              <th>Nama</th>
+              <th>Divisi</th>
+              <th>Jenis Cuti</th>
+              <th>Periode</th>
+              <th>Alasan</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-10-03</td>
+              <td>Rahmat Hidayat</td>
+              <td>IT Infrastructure</td>
+              <td>Tahunan</td>
+              <td>10-10-2025 s/d 12-10-2025</td>
+              <td>Acara keluarga</td>
+              <td><span class="badge text-bg-warning">Menunggu</span></td>
+              <td>
+                <button class="btn btn-outline-success btn-sm" data-approve>Approve</button>
+                <button class="btn btn-outline-danger btn-sm" data-reject>Reject</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2025-09-29</td>
+              <td>Siti Aisyah</td>
+              <td>Human Capital</td>
+              <td>Keagamaan</td>
+              <td>01-10-2025 s/d 03-10-2025</td>
+              <td>Umroh</td>
+              <td><span class="badge text-bg-success">Disetujui</span></td>
+              <td>
+                <button class="btn btn-secondary btn-sm" disabled>Approved</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+          <button class="nav-link active tab" type="button">Riwayat Persetujuan</button>
+        </li>
+      </ul>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle" id="tblLeaveHistory">
+          <thead class="table-light">
+            <tr>
+              <th>Tanggal Pengajuan</th>
+              <th>Nama</th>
+              <th>Jenis</th>
+              <th>Periode</th>
+              <th>Keputusan</th>
+              <th>Catatan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-09-12</td>
+              <td>Bagas Prakoso</td>
+              <td>Tahunan</td>
+              <td>15-09-2025 s/d 17-09-2025</td>
+              <td><span class="badge text-bg-success">Disetujui</span></td>
+              <td>Sudah diganti oleh staf lain</td>
+            </tr>
+            <tr>
+              <td>2025-09-10</td>
+              <td>Maria Yuliani</td>
+              <td>Tahunan</td>
+              <td>12-09-2025 s/d 13-09-2025</td>
+              <td><span class="badge text-bg-danger">Ditolak</span></td>
+              <td>Belum cukup masa kerja</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

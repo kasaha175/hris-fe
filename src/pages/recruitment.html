@@ -1,0 +1,174 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <!-- Tabs -->
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item"><button class="nav-link active tab" data-tab="pelamar" type="button">Data Pelamar</button></li>
+        <li class="nav-item"><button class="nav-link tab" data-tab="seleksi" type="button">Seleksi Pelamar</button></li>
+        <li class="nav-item"><button class="nav-link tab" data-tab="permintaan" type="button">Permintaan Posisi</button></li>
+        <li class="nav-item"><button class="nav-link tab" data-tab="pemanggilan" type="button">Pemanggilan Ulang</button></li>
+        <li class="nav-item"><button class="nav-link tab" data-tab="hasil" type="button">Hasil Seleksi</button></li>
+      </ul>
+
+      <!-- Data Pelamar -->
+      <section class="tabpanel" id="tab-pelamar">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tblPelamar">
+            <thead class="table-light">
+              <tr>
+                <th>No Registrasi</th>
+                <th>Nama</th>
+                <th>Pendidikan</th>
+                <th>Posisi</th>
+                <th>Kota</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>97928</td><td>USTMAN</td><td>S1</td><td>Sales Staff</td>
+                <td>Jakarta</td><td><span class="badge text-bg-success">Terverifikasi</span></td>
+                <td>
+                  <button class="btn btn-outline-primary btn-sm" data-open="modalPelamar">Detail</button>
+                </td>
+              </tr>
+              <tr>
+                <td>7660</td><td>GHALIB</td><td>S1</td><td>Sales Staff</td>
+                <td>Jakarta</td><td><span class="badge text-bg-warning">Menunggu</span></td>
+                <td>
+                  <button class="btn btn-outline-primary btn-sm" data-open="modalPelamar">Detail</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Seleksi Pelamar -->
+      <section class="tabpanel hidden" id="tab-seleksi">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tblSeleksi">
+            <thead class="table-light">
+              <tr>
+                <th>No Reg</th><th>Nama</th><th>Pendidikan</th>
+                <th>Posisi Dilamar</th><th>DISC</th><th>CAT</th><th>Kesimpulan</th><th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody><!-- diisi dinamis oleh main.js --></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Permintaan Posisi -->
+      <section class="tabpanel hidden" id="tab-permintaan">
+        <form class="row g-3">
+          <div class="col-12 col-md-4">
+            <label class="form-label">Posisi</label>
+            <input class="form-control" type="text" placeholder="Sales Staff" />
+          </div>
+          <div class="col-12 col-md-2">
+            <label class="form-label">Jumlah</label>
+            <input class="form-control" type="number" placeholder="2" />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Kualifikasi</label>
+            <textarea class="form-control"></textarea>
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label">Kota Penempatan</label>
+            <input class="form-control" type="text" placeholder="Jakarta" />
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label">Batas Waktu</label>
+            <input class="form-control" type="date" />
+          </div>
+        </form>
+
+        <div class="d-flex gap-2 justify-content-end mt-3">
+          <button class="btn btn-outline-secondary">Simpan Draft</button>
+          <button class="btn btn-primary">Ajukan Permintaan</button>
+        </div>
+
+        <hr class="hr" />
+        <h6 class="mb-2">Daftar Permintaan Posisi</h6>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tblPermintaan">
+            <thead class="table-light">
+              <tr><th>Tanggal</th><th>Posisi</th><th>Kota</th><th>Jumlah</th><th>Status</th></tr>
+            </thead>
+            <tbody><!-- diisi dinamis oleh main.js --></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Pemanggilan Ulang -->
+      <section class="tabpanel hidden" id="tab-pemanggilan">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tblPemanggilan">
+            <thead class="table-light">
+              <tr>
+                <th>Nama</th><th>Posisi</th><th>Tanggal Pemanggilan</th>
+                <th>Waktu</th><th>Lokasi</th><th>Catatan</th>
+              </tr>
+            </thead>
+            <tbody><!-- diisi dinamis oleh main.js --></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Hasil Seleksi -->
+      <section class="tabpanel hidden" id="tab-hasil">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tblHasilSeleksi">
+            <thead class="table-light">
+              <tr>
+                <th>Nama</th><th>Posisi</th><th>Nilai Psikotest</th>
+                <th>Nilai Wawancara</th><th>Keputusan</th><th>Tanggal</th>
+              </tr>
+            </thead>
+            <tbody><!-- diisi dinamis oleh main.js --></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Detail Pelamar (FE-only, bukan Bootstrap modal) -->
+<div class="modal" id="modalPelamar">
+  <div class="dialog">
+    <div class="head">
+      <strong>Detail Pelamar</strong>
+      <button class="btn btn-sm btn-outline-secondary" data-close>✕</button>
+    </div>
+    <div class="body">
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <label class="form-label">Nama</label>
+          <input class="form-control" type="text" value="USTMAN" readonly />
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="form-label">Posisi Dilamar</label>
+          <input class="form-control" type="text" value="Sales Staff" readonly />
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="form-label">Pendidikan</label>
+          <input class="form-control" type="text" value="S1 Ekonomi" readonly />
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="form-label">Kota</label>
+          <input class="form-control" type="text" value="Jakarta" readonly />
+        </div>
+        <div class="col-12">
+          <label class="form-label">Upload CV</label>
+          <input class="form-control" type="file" />
+        </div>
+      </div>
+      <div class="d-flex gap-2 justify-content-end mt-3">
+        <button class="btn btn-outline-primary" data-shortlist>Shortlist</button>
+        <button class="btn btn-primary" data-save>Save</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,255 @@
+<div class="container-fluid">
+  <!-- KPI Cards -->
+  <div class="row g-3">
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <div class="kpi">
+            <span class="title">Pegawai Aktif</span>
+            <span class="value" id="kpiActive">124</span>
+            <span class="trend text-secondary">+4 bulan ini</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <div class="kpi">
+            <span class="title">Pelamar Baru</span>
+            <span class="value" id="kpiApplicants">38</span>
+            <span class="trend text-secondary">+12 minggu ini</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <div class="kpi">
+            <span class="title">Cuti Menunggu</span>
+            <span class="value" id="kpiPendingLeave">3</span>
+            <span class="trend text-secondary">SLA 3 hari</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <div class="kpi">
+            <span class="title">Masa Probation</span>
+            <span class="value" id="kpiProbation">7</span>
+            <span class="trend text-secondary">Reminder otomatis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabel Pelamar & Aksi Cepat -->
+  <div class="row g-3 mt-1">
+    <!-- Pelamar Terbaru -->
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <ul class="nav nav-tabs mb-3">
+            <li class="nav-item">
+              <span class="nav-link active">Pelamar Terbaru</span>
+            </li>
+          </ul>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Tgl Reg</th><th>No Reg</th><th>Nama</th><th>Pendidikan</th>
+                  <th>Posisi</th><th>Kota</th><th>Status</th><th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tblApplicants">
+                <tr>
+                  <td>09-05-2016</td><td>97928</td><td>USTMAN</td><td>S1</td>
+                  <td>Sales Staff</td><td>Jakarta</td>
+                  <td><span class="badge text-bg-success">Terverifikasi</span></td>
+                  <td>
+                    <button class="btn btn-outline-primary btn-sm" data-open="modalPsikotest">
+                      Tes &amp; Persetujuan
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>09-05-2016</td><td>7660</td><td>GHALIB</td><td>S1</td>
+                  <td>Sales Staff</td><td>Jakarta</td>
+                  <td><span class="badge text-bg-warning">Menunggu</span></td>
+                  <td>
+                    <button class="btn btn-outline-primary btn-sm" data-open="modalPsikotest">
+                      Tes &amp; Persetujuan
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Aksi Cepat -->
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <ul class="nav nav-tabs mb-3">
+            <li class="nav-item"><span class="nav-link active">Aksi Cepat</span></li>
+          </ul>
+
+          <div class="row g-2">
+            <div class="col-6">
+              <a class="btn btn-success w-100" href="#/recruitment">+ Posisi Baru</a>
+            </div>
+            <div class="col-6">
+              <a class="btn btn-outline-secondary w-100" href="#/employee">Import Pegawai</a>
+            </div>
+            <div class="col-6">
+              <a class="btn btn-outline-primary w-100" href="#/leave-request">Ajukan Cuti</a>
+            </div>
+            <div class="col-6">
+              <a class="btn btn-outline-dark w-100" href="#/reports">Lihat Absensi</a>
+            </div>
+          </div>
+
+          <p class="text-secondary small mt-3 mb-0">
+            Approval via email. Autorelay ke Head Company bila &gt; 3 hari.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Permohonan Cuti -->
+  <div class="card shadow-sm mt-3">
+    <div class="card-body">
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item"><span class="nav-link active">Form Permohonan Cuti</span></li>
+      </ul>
+
+      <form id="formCuti">
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <label class="form-label">Tanggal Permohonan</label>
+            <input class="form-control" type="date" value="2025-10-05" />
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label">Nama Lengkap</label>
+            <input class="form-control" type="text" placeholder="Nama pegawai" value="HERIAWAN B" />
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label">Divisi</label>
+            <select class="form-select">
+              <option>Microvision Indonesia</option>
+              <option>Giantleap Studio</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label">Jenis Cuti</label>
+            <select class="form-select">
+              <option>Cuti Tahunan</option>
+              <option>Cuti Melahirkan</option>
+              <option>Cuti Keagamaan</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label">Periode Cuti</label>
+            <input class="form-control" type="text" placeholder="YYYY-MM-DD s/d YYYY-MM-DD" value="2025-10-10 s/d 2025-10-12" />
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="form-label">Keperluan</label>
+            <input class="form-control" type="text" placeholder="Keperluan cuti" />
+          </div>
+
+          <div class="col-12">
+            <label class="form-label">Keterangan Tambahan</label>
+            <textarea class="form-control" placeholder="Opsional"></textarea>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 justify-content-end mt-3">
+          <button type="button" class="btn btn-outline-secondary" id="btnDraft">Simpan Draft</button>
+          <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Persetujuan Cuti (Manager) -->
+  <div class="card shadow-sm mt-3">
+    <div class="card-body">
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item"><span class="nav-link active">Persetujuan Cuti</span></li>
+      </ul>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Tanggal</th><th>Nama</th><th>Divisi</th><th>Jenis</th>
+              <th>Periode</th><th>Status</th><th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12-05-2016</td><td>GERALD ANDY</td><td>Giantleap Studio</td>
+              <td>Tahunan</td><td>2016-05-24</td>
+              <td><span class="badge text-bg-warning">Menunggu</span></td>
+              <td class="text-nowrap">
+                <button class="btn btn-outline-success btn-sm" data-approve>Approve</button>
+                <button class="btn btn-outline-danger btn-sm" data-reject>Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Psikotest / Seleksi Pelamar (FE-only modal, bukan Bootstrap modal) -->
+<div class="modal" id="modalPsikotest">
+  <div class="dialog">
+    <div class="head">
+      <strong>Hasil Psikotest</strong>
+      <button class="btn btn-sm btn-outline-secondary" data-close>✕</button>
+    </div>
+    <div class="body">
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <label class="form-label">DISC</label>
+          <textarea class="form-control" placeholder="Contoh: Ramah, sosial, enjoy challenges"></textarea>
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="form-label">CAT</label>
+          <textarea class="form-control" placeholder="Catatan kemampuan analitis"></textarea>
+        </div>
+        <div class="col-12">
+          <label class="form-label">Kesimpulan</label>
+          <textarea class="form-control" placeholder="Ringkas & obyektif"></textarea>
+        </div>
+        <div class="col-12 col-md-6">
+          <label class="form-label">Posisi Alternatif</label>
+          <select class="form-select">
+            <option>Marketing Communication</option>
+            <option>Account Manager</option>
+            <option>Business Executive</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex gap-2 justify-content-end mt-3">
+        <button class="btn btn-outline-primary" data-shortlist>Shortlist</button>
+        <button class="btn btn-primary" data-save>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
