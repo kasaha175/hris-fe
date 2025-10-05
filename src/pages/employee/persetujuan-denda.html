@@ -1,0 +1,253 @@
+<div class="container-fluid page-modern py-3">
+  <!-- Toolbar -->
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Persetujuan Edit Denda Pegawai</h4>
+    </div>
+    <div class="d-flex gap-2 flex-wrap">
+      <button class="btn btn-outline-success btn-sm"><i class="bi bi-check2-square me-1"></i> Setujui Terpilih</button>
+      <button class="btn btn-outline-danger btn-sm"><i class="bi bi-x-octagon me-1"></i> Tolak Terpilih</button>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form class="row g-2 align-items-end">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Unit</label>
+          <div class="input-icon"><i class="bi bi-diagram-3"></i><input class="form-control" placeholder="Contoh: Finance"></div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Periode</label>
+          <div class="input-icon"><i class="bi bi-calendar2-month"></i><input type="month" class="form-control"></div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Cari</label>
+          <div class="input-icon"><i class="bi bi-search"></i><input class="form-control" placeholder="Nama / NIK"></div>
+        </div>
+        <div class="col-12 col-lg-2 d-grid">
+          <button class="btn btn-dark" type="submit"><i class="bi bi-search me-1"></i> Tampilkan</button>
+        </div>
+      </form>
+      <div class="filter-chips mt-2 d-flex flex-wrap gap-2">
+        <!-- <span class="chip">Periode: 2025-10 <button class="btn-close btn-close-white ms-1" style="transform:scale(.65)"></button></span> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI ringkas -->
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Total Pengajuan</div><div class="mini-kpi__value">12</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Penurunan Denda</div><div class="mini-kpi__value text-success">8</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Kenaikan Denda</div><div class="mini-kpi__value text-danger">3</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Rata2 Perubahan</div><div class="mini-kpi__value">-18%</div></div></div>
+  </div>
+
+  <!-- Bulk sticky bar -->
+  <div class="bulk-bar d-none" id="bulkBar">
+    <div><strong id="bulkCount">0</strong> dipilih</div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-success btn-sm"><i class="bi bi-check2-square me-1"></i> Setujui</button>
+      <button class="btn btn-danger btn-sm"><i class="bi bi-x-octagon me-1"></i> Tolak</button>
+      <button class="btn btn-outline-secondary btn-sm" id="bulkClear"><i class="bi bi-x-circle me-1"></i> Bersihkan</button>
+    </div>
+  </div>
+
+  <!-- Tabel -->
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern align-middle mb-0">
+        <thead>
+          <tr>
+            <th style="width:42px"><input type="checkbox" class="form-check-input" id="checkAll"></th>
+            <th>NIK</th>
+            <th>Nama</th>
+            <th>Pelanggaran</th>
+            <th class="text-end">Denda Lama</th>
+            <th class="text-end">Denda Baru</th>
+            <th class="text-center">Δ Perubahan</th>
+            <th>Alasan</th>
+            <th style="width:160px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyDenda">
+          <tr>
+            <td data-label="Pilih"><input type="checkbox" class="form-check-input row-check"></td>
+            <td data-label="NIK">EMP-00567</td>
+            <td data-label="Nama">Bagas Pratama</td>
+            <td data-label="Pelanggaran">Terlambat</td>
+            <td data-label="Denda Lama" class="text-end">Rp50.000</td>
+            <td data-label="Denda Baru" class="text-end">Rp25.000</td>
+            <td data-label="Δ Perubahan" class="text-center">
+              <span class="delta-pill neg"><i class="bi bi-arrow-down-short"></i> 50%</span>
+            </td>
+            <td data-label="Alasan">Kendala ban pecah</td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-success" title="Setujui"><i class="bi bi-check2"></i></button>
+                <button class="btn btn-outline-danger" title="Tolak"><i class="bi bi-x"></i></button>
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- contoh kenaikan -->
+          <tr>
+            <td data-label="Pilih"><input type="checkbox" class="form-check-input row-check"></td>
+            <td data-label="NIK">EMP-00245</td>
+            <td data-label="Nama">Rina Kurnia</td>
+            <td data-label="Pelanggaran">Tidak Absen</td>
+            <td data-label="Denda Lama" class="text-end">Rp75.000</td>
+            <td data-label="Denda Baru" class="text-end">Rp100.000</td>
+            <td data-label="Δ Perubahan" class="text-center">
+              <span class="delta-pill pos"><i class="bi bi-arrow-up-short"></i> 33%</span>
+            </td>
+            <td data-label="Alasan">Berulang 2x dalam sebulan</td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-success" title="Setujui"><i class="bi bi-check2"></i></button>
+                <button class="btn btn-outline-danger" title="Tolak"><i class="bi bi-x"></i></button>
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+          <!-- rows dinamis -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+  }
+
+  /* Header vibe */
+  .page-modern .page-head .head-blob{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Cards glassy */
+  .card-glass, .card-filter{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  .card-filter .card-body{ padding:.9rem .9rem; }
+  .card-filter{ backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+  /* Input icon */
+  .input-icon{ position:relative; }
+  .input-icon>i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    opacity:.7; pointer-events:none;
+  }
+  .input-icon>.form-control{ padding-left:2rem; }
+
+  /* Chips */
+  .chip{ display:inline-flex; align-items:center; gap:.25rem; padding:.25rem .55rem; border-radius:999px; font-size:.8rem; background:var(--hover); border:1px solid var(--glass-bd); }
+
+  /* KPI mini */
+  .mini-kpi{ background:var(--glass-bg); border:1px solid var(--glass-bd); border-radius:12px; padding:.6rem .75rem; box-shadow:var(--shadow); }
+  .mini-kpi__label{ font-size:.8rem; color:var(--muted); }
+  .mini-kpi__value{ font-size:1.2rem; font-weight:800; }
+
+  /* Bulk sticky bar */
+  .bulk-bar{
+    position: sticky; top: calc(var(--tb-h,64px) + 8px);
+    z-index: 11; display:flex; align-items:center; justify-content:space-between;
+    padding:.5rem .75rem; margin-bottom:.5rem;
+    background: var(--glass-bg); border:1px solid var(--glass-bd); border-radius:12px; box-shadow: var(--shadow);
+  }
+
+  /* Table */
+  .table-modern thead th{ background: var(--thead); border-bottom:1px solid var(--glass-bd); position:sticky; top:0; z-index:1; }
+  .table-modern tbody tr{ transition: background .12s ease; }
+  .table-modern tbody tr:hover{ background: var(--hover); }
+  .table-modern td, .table-modern th{ vertical-align: middle; }
+
+  /* Delta pill */
+  .delta-pill{
+    display:inline-flex; align-items:center; justify-content:center; gap:.15rem;
+    min-width:56px; padding:.15rem .45rem; border-radius:999px; font-weight:700;
+    border:1px solid var(--glass-bd); background:var(--glass-bg);
+  }
+  .delta-pill.pos{ color:#991b1b; }  /* naik */
+  .delta-pill.neg{ color:#166534; }  /* turun */
+
+  /* Mobile: table -> cards */
+  @media (max-width:768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+    .delta-pill{ min-width:auto; }
+  }
+
+  /* Print ringkas */
+  @media print{
+    .page-head, .card-filter, .bulk-bar { display:none !important; }
+    .card-glass{ box-shadow:none; border:0; }
+    .table-modern thead th{ position:static; }
+  }
+</style>
+
+<script>
+  // FE-only: interaksi bulk check
+  (function(){
+    const root = document.currentScript?.closest('.container') || document;
+    const checkAll = root.querySelector('#checkAll');
+    const checks = () => [...root.querySelectorAll('.row-check')];
+    const bulkBar = root.querySelector('#bulkBar');
+    const bulkCount = root.querySelector('#bulkCount');
+    const bulkClear = root.querySelector('#bulkClear');
+
+    function updateBulk(){
+      const n = checks().filter(c => c.checked).length;
+      if (!bulkBar) return;
+      bulkCount.textContent = n;
+      bulkBar.classList.toggle('d-none', n === 0);
+    }
+    checkAll?.addEventListener('change', e => {
+      checks().forEach(c => c.checked = e.target.checked);
+      updateBulk();
+    });
+    checks().forEach(c => c.addEventListener('change', updateBulk));
+    bulkClear?.addEventListener('click', () => {
+      if (checkAll) checkAll.checked = false;
+      checks().forEach(c => c.checked = false);
+      updateBulk();
+    });
+  })();
+</script>
