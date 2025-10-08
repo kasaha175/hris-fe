@@ -1,0 +1,233 @@
+<div class="container-fluid page-modern py-3">
+  <div class="card card-glass">
+    <div class="card-body">
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <div class="d-flex align-items-center gap-2">
+          <div class="head-blob"></div>
+          <h5 class="mb-0 fw-bold">Persetujuan Edit Denda (Atasan)</h5>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn btn-outline-success btn-sm" id="btnQuickApprove"><i class="bi bi-check2-square me-1"></i> Setujui Semua Pending</button>
+          <button class="btn btn-outline-danger btn-sm" id="btnQuickReject"><i class="bi bi-x-octagon me-1"></i> Tolak Semua Pending</button>
+        </div>
+      </div>
+
+      <!-- Filter ringan (opsional) -->
+      <form class="row g-2 align-items-end mb-3">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Tanggal</label>
+          <div class="d-flex gap-2">
+            <div class="input-icon flex-fill"><i class="bi bi-calendar-event"></i><input type="date" class="form-control"></div>
+            <div class="input-icon flex-fill"><i class="bi bi-calendar-event"></i><input type="date" class="form-control"></div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Departemen</label>
+          <div class="input-icon"><i class="bi bi-diagram-3"></i><input class="form-control" placeholder="Contoh: Finance"></div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Cari</label>
+          <div class="input-icon"><i class="bi bi-search"></i><input class="form-control" placeholder="Nama / NIK"></div>
+        </div>
+        <div class="col-12 col-lg-2 d-grid">
+          <button class="btn btn-dark" type="submit"><i class="bi bi-search me-1"></i> Tampilkan</button>
+        </div>
+      </form>
+
+      <div class="table-responsive">
+        <table class="table table-modern align-middle mb-0" id="tblFineApproval">
+          <thead class="sticky-thead">
+            <tr>
+              <th>Tanggal</th>
+              <th>Nama</th>
+              <th>Departemen</th>
+              <th class="text-center">Terlambat</th>
+              <th class="text-end">Denda</th>
+              <th class="text-center">Δ</th>
+              <th>Persetujuan</th>
+              <th style="width:160px">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- contoh baris (hapus jika diisi dinamis) -->
+            <tr>
+              <td data-label="Tanggal">2025-10-04</td>
+              <td data-label="Nama">Bagas Pratama</td>
+              <td data-label="Departemen">Operasional</td>
+              <td data-label="Terlambat" class="text-center"><span class="count-pill">17m</span></td>
+              <td data-label="Denda" class="text-end">
+                <div class="d-flex flex-column align-items-end">
+                  <span class="money-old">Rp50.000</span>
+                  <span class="money-new">Rp25.000</span>
+                </div>
+              </td>
+              <td data-label="Δ" class="text-center">
+                <span class="delta-pill neg"><i class="bi bi-arrow-down-short"></i> 50%</span>
+              </td>
+              <td data-label="Persetujuan">
+                <span class="badge st-badge st-wait">Menunggu</span>
+              </td>
+              <td data-label="Aksi">
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-success" data-approve title="Setujui"><i class="bi bi-check2"></i></button>
+                  <button class="btn btn-outline-danger" data-reject title="Tolak"><i class="bi bi-x"></i></button>
+                  <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                </div>
+              </td>
+            </tr>
+            <!-- /contoh -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+  }
+
+  /* Glassy card */
+  .card-glass{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+
+  /* Accent blob */
+  .head-blob{
+    width:28px;height:28px;border-radius:9px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Input icons */
+  .input-icon{ position:relative; }
+  .input-icon>i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    opacity:.7; pointer-events:none;
+  }
+  .input-icon>.form-control{ padding-left:2rem; }
+
+  /* Table */
+  .table-modern thead th{
+    background: var(--thead);
+    border-bottom:1px solid var(--glass-bd);
+  }
+  .sticky-thead th{ position: sticky; top: 0; z-index: 1; }
+  .table-modern tbody tr{ transition: background .12s ease; }
+  .table-modern tbody tr:hover{ background: var(--hover); }
+  .table-modern td, .table-modern th{ vertical-align: middle; }
+
+  /* Money pair */
+  .money-old{
+    font-size:.85rem; color: var(--muted); text-decoration: line-through;
+    line-height:1;
+  }
+  .money-new{
+    font-weight:800; line-height:1.1;
+  }
+
+  /* Delta pill */
+  .delta-pill{
+    display:inline-flex; align-items:center; justify-content:center; gap:.15rem;
+    min-width:56px; padding:.15rem .45rem; border-radius:999px; font-weight:700;
+    border:1px solid var(--glass-bd); background:var(--glass-bg);
+  }
+  .delta-pill.pos{ color:#991b1b; }  /* naik */
+  .delta-pill.neg{ color:#166534; }  /* turun */
+
+  /* Status badges */
+  .st-badge{ font-weight:700; }
+  .st-wait   { background:color-mix(in oklab,#f59e0b 16%,transparent); color:#92400e; }
+  .st-approve{ background:color-mix(in oklab,#22c55e 16%,transparent); color:#166534; }
+  .st-reject { background:color-mix(in oklab,#ef4444 16%,transparent); color:#991b1b; }
+
+  /* Count pill (terlambat) */
+  .count-pill{
+    display:inline-block; min-width:34px; padding:.1rem .5rem; text-align:center;
+    border-radius:999px; border:1px solid var(--glass-bd); background:var(--glass-bg); font-weight:700;
+  }
+
+  /* Mobile: table -> cards */
+  @media (max-width:768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+    .money-old{ order:2; }
+    .money-new{ order:1; }
+  }
+
+  /* Print */
+  @media print{
+    .card-glass{ box-shadow:none; border:0; }
+    .table-modern thead th{ position:static; }
+  }
+</style>
+
+<script>
+  // FE-only helper (opsional): tombol cepat setujui/ tolak semua yang statusnya "Menunggu"
+  (function(){
+    const root = document.currentScript?.closest('.container') || document;
+    const table = root.querySelector('#tblFineApproval');
+    const btnApproveAll = root.querySelector('#btnQuickApprove');
+    const btnRejectAll  = root.querySelector('#btnQuickReject');
+
+    function updateRowStatus(row, status){
+      const badge = row.querySelector('.st-badge');
+      if (!badge) return;
+      badge.classList.remove('st-wait','st-approve','st-reject');
+      if (status === 'approve') { badge.textContent = 'Disetujui'; badge.classList.add('st-approve'); }
+      else if (status === 'reject') { badge.textContent = 'Ditolak'; badge.classList.add('st-reject'); }
+      else { badge.textContent = 'Menunggu'; badge.classList.add('st-wait'); }
+    }
+
+    table?.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-approve],[data-reject]');
+      if (!btn) return;
+      const row = btn.closest('tr');
+      if (btn.hasAttribute('data-approve')) updateRowStatus(row,'approve');
+      if (btn.hasAttribute('data-reject'))  updateRowStatus(row,'reject');
+      // TODO: sambungkan ke API.
+    });
+
+    btnApproveAll?.addEventListener('click', () => {
+      table?.querySelectorAll('tbody tr').forEach(tr => {
+        if (tr.querySelector('.st-wait')) updateRowStatus(tr,'approve');
+      });
+    });
+    btnRejectAll?.addEventListener('click', () => {
+      table?.querySelectorAll('tbody tr').forEach(tr => {
+        if (tr.querySelector('.st-wait')) updateRowStatus(tr,'reject');
+      });
+    });
+  })();
+</script>

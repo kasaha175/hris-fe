@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id" style="color-scheme: light dark; supported-color-schemes: light dark;">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Kode OTP</title>
+<style>
+/* Mobile reset */
+@media (max-width:600px){ .container{width:100% !important; padding:0 16px !important;} }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#f2f4f7;">
+  <!-- Preheader (disembunyikan) -->
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0">
+    Kode OTP Anda adalah {{otp_code}}. Berlaku {{otp_ttl_minutes}} menit.
+  </div>
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f4f7;">
+    <tr><td align="center" style="padding:24px;">
+      <table role="presentation" class="container" width="600" cellspacing="0" cellpadding="0" style="width:600px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
+        <!-- Header -->
+        <tr><td style="padding:20px 24px;background:linear-gradient(135deg,#2DA85C,#6EE7B7);color:#0f1117;">
+          <div style="font-weight:800;font-size:18px;line-height:1;color:#0f1117;">{{app_name}}</div>
+          <div style="font-size:12px;opacity:.85;color:#0f1117;">Verifikasi Masuk</div>
+        </td></tr>
+
+        <!-- Body -->
+        <tr><td style="padding:28px 24px 8px 24px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; color:#111827;">
+          <h1 style="margin:0 0 6px 0;font-size:20px;">Hai {{user_name}},</h1>
+          <p style="margin:0 0 16px 0;font-size:14px;color:#374151;">Gunakan kode berikut untuk melanjutkan proses login. Kode berlaku <strong>{{otp_ttl_minutes}} menit</strong>.</p>
+
+          <!-- OTP boxes -->
+          <table role="presentation" cellspacing="0" cellpadding="0" style="margin:12px 0;">
+            <tr>
+              {{#each otp_code_array}}
+              <td style="width:46px;height:46px;border:1px solid #e5e7eb;border-radius:10px;text-align:center;font-weight:800;font-size:20px;letter-spacing:.5px;color:#111827;">{{this}}</td>
+              <td style="width:8px"></td>
+              {{/each}}
+            </tr>
+          </table>
+
+          <p style="margin:16px 0 0 0;font-size:12px;color:#6b7280;">Jika Anda tidak meminta kode ini, abaikan email ini.</p>
+        </td></tr>
+
+        <!-- Footer -->
+        <tr><td style="padding:16px 24px 24px 24px;font-size:12px;color:#6b7280;">
+          © {{year}} {{company_name}} • {{company_address}}
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>

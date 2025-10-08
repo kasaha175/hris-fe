@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Undangan Interview</title></head>
+<body style="margin:0;padding:0;background:#f2f4f7;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0">Jadwal {{stage_name}} pada {{schedule_date}} pukul {{schedule_time}} WIB</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f4f7;">
+    <tr><td align="center" style="padding:24px;">
+      <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+        <tr><td style="padding:20px 24px;background:linear-gradient(135deg,#2DA85C,#6EE7B7);">
+          <div style="font-weight:800;font-size:18px;color:#0f1117;">{{company_name}}</div>
+          <div style="font-size:12px;color:#0f1117;opacity:.85;">Undangan {{stage_name}}</div>
+        </td></tr>
+        <tr><td style="padding:24px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;color:#111827;">
+          <p>Yth. {{candidate_name}},</p>
+          <p>Anda diundang untuk mengikuti {{stage_name}} pada lowongan <strong>{{position_name}}</strong>.</p>
+
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:10px 0 12px;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+            <tr><td style="padding:10px 12px;background:#f9fafb;width:40%;font-size:12px;color:#6b7280;">Tanggal</td><td style="padding:10px 12px;font-size:14px;">{{schedule_date}} • {{schedule_time}} WIB</td></tr>
+            <tr><td style="padding:10px 12px;background:#f9fafb;font-size:12px;color:#6b7280;">Lokasi/Link</td><td style="padding:10px 12px;font-size:14px;"><a href="{{location_url}}" style="color:#16a34a;text-decoration:underline">{{location_label}}</a></td></tr>
+            <tr><td style="padding:10px 12px;background:#f9fafb;font-size:12px;color:#6b7280;">PIC</td><td style="padding:10px 12px;font-size:14px;">{{pic_name}} • {{pic_phone}}</td></tr>
+            {{#if notes}}<tr><td style="padding:10px 12px;background:#f9fafb;font-size:12px;color:#6b7280;">Catatan</td><td style="padding:10px 12px;font-size:14px;">{{notes}}</td></tr>{{/if}}
+          </table>
+
+          <table role="presentation" cellspacing="0" cellpadding="0" style="margin-top:8px;">
+            <tr>
+              <td align="center" bgcolor="#2DA85C" style="border-radius:10px;">
+                <a href="{{confirm_url}}" style="display:inline-block;padding:10px 16px;color:#0f1117;background:#2DA85C;border-radius:10px;text-decoration:none;font-weight:700;">Konfirmasi Kehadiran</a>
+              </td>
+              <td style="width:8px"></td>
+              <td align="center" bgcolor="#e5e7eb" style="border-radius:10px;">
+                <a href="{{reschedule_url}}" style="display:inline-block;padding:10px 16px;color:#111827;background:#e5e7eb;border-radius:10px;text-decoration:none;font-weight:700;">Ajukan Reschedule</a>
+              </td>
+            </tr>
+          </table>
+
+          <p style="font-size:12px;color:#6b7280;margin-top:12px;">Jika tidak dapat hadir, mohon beri kabar minimal H-1.</p>
+        </td></tr>
+        <tr><td style="padding:16px 24px 24px;font-size:12px;color:#6b7280;">© {{year}} {{company_name}}</td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>

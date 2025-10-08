@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Persetujuan Edit Denda</title></head>
+<body style="margin:0;padding:0;background:#f2f4f7;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0">Mohon persetujuan perubahan denda untuk {{employee_name}}</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f2f4f7;">
+    <tr><td align="center" style="padding:24px;">
+      <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+        <tr><td style="padding:20px 24px;background:linear-gradient(135deg,#2DA85C,#6EE7B7);">
+          <div style="font-weight:800;font-size:18px;color:#0f1117;">{{app_name}}</div>
+          <div style="font-size:12px;color:#0f1117;opacity:.85;">Persetujuan Edit Denda</div>
+        </td></tr>
+        <tr><td style="padding:24px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;color:#111827;">
+          <p>Halo {{approver_name}}, mohon tindak lanjuti permintaan berikut:</p>
+
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:10px 0 12px;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+            <tr><td style="padding:10px 12px;background:#f9fafb;width:40%;font-size:12px;color:#6b7280;">Nama</td><td style="padding:10px 12px;font-size:14px;">{{employee_name}} ({{employee_nik}})</td></tr>
+            <tr><td style="padding:10px 12px;background:#f9fafb;font-size:12px;color:#6b7280;">Pelanggaran</td><td style="padding:10px 12px;font-size:14px;">{{violation}}</td></tr>
+            <tr><td style="padding:10px 12px;background:#f9fafb;font-size:12px;color:#6b7280;">Denda</td><td style="padding:10px 12px;font-size:14px;"><s>{{old_amount}}</s> → <strong>{{new_amount}}</strong> (Δ {{delta_percent}}%)</td></tr>
+            <tr><td style="padding:10px 12px;background:#f9fafb;font-size:12px;color:#6b7280;">Alasan</td><td style="padding:10px 12px;font-size:14px;">{{reason}}</td></tr>
+          </table>
+
+          <table role="presentation" cellspacing="0" cellpadding="0">
+            <tr>
+              <td align="center" bgcolor="#2DA85C" style="border-radius:10px;">
+                <a href="{{approve_url}}" style="display:inline-block;padding:10px 16px;color:#0f1117;background:#2DA85C;border-radius:10px;text-decoration:none;font-weight:700;">Setujui</a>
+              </td>
+              <td style="width:8px"></td>
+              <td align="center" bgcolor="#ef4444" style="border-radius:10px;">
+                <a href="{{reject_url}}" style="display:inline-block;padding:10px 16px;color:#ffffff;background:#ef4444;border-radius:10px;text-decoration:none;font-weight:700;">Tolak</a>
+              </td>
+            </tr>
+          </table>
+        </td></tr>
+        <tr><td style="padding:16px 24px 24px;font-size:12px;color:#6b7280;">© {{year}} {{company_name}}</td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>

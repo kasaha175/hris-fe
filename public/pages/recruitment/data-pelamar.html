@@ -1,0 +1,220 @@
+<div class="container-fluid page-modern py-3">
+  <!-- Toolbar -->
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Data Pelamar</h4>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary btn-sm" data-open="mdlImportPelamar">
+        <i class="bi bi-file-earmark-arrow-up me-1"></i> Import
+      </button>
+      <button class="btn btn-success btn-sm" id="btnAddPelamar">
+        <i class="bi bi-person-plus me-1"></i> Tambah
+      </button>
+    </div>
+  </div>
+
+  <!-- Filter pill -->
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form id="filterPelamar" class="row g-2 align-items-end">
+        <div class="col-12 col-md-5">
+          <label class="form-label">Kata Kunci</label>
+          <div class="input-icon">
+            <i class="bi bi-search"></i>
+            <input type="text" class="form-control" placeholder="Nama / Email / No. HP" name="q">
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <label class="form-label">Posisi</label>
+          <input type="text" class="form-control" placeholder="UI/UX, Backend, ..." name="posisi">
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <label class="form-label">Status</label>
+          <select class="form-select" name="status">
+            <option value="">Semua</option>
+            <option>Baru</option>
+            <option>Screening</option>
+            <option>Interview</option>
+            <option>Ditolak</option>
+            <option>Diterima</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-1 d-grid d-md-flex gap-2">
+          <button class="btn btn-dark flex-fill" type="submit"><i class="bi bi-search me-1"></i> Cari</button>
+          <button class="btn btn-outline-secondary flex-fill" type="reset"><i class="bi bi-arrow-counterclockwise me-1"></i> Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern align-middle mb-0">
+        <thead>
+          <tr>
+            <th style="width:60px">#</th>
+            <th>Nama</th>
+            <th class="d-none d-lg-table-cell">Posisi</th>
+            <th>Status</th>
+            <th class="d-none d-md-table-cell">Email</th>
+            <th class="d-none d-xl-table-cell">Telepon</th>
+            <th style="width:140px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tblPelamar">
+          <tr>
+            <td data-label="#">1</td>
+            <td data-label="Nama">Contoh Pelamar</td>
+            <td data-label="Posisi" class="d-none d-lg-table-cell">Backend Engineer</td>
+            <td data-label="Status">
+              <span class="badge status-badge status-screening">Screening</span>
+            </td>
+            <td data-label="Email" class="d-none d-md-table-cell">pelamar@example.com</td>
+            <td data-label="Telepon" class="d-none d-xl-table-cell">0812xxxxxxx</td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-secondary" title="Edit"><i class="bi bi-pencil"></i></button>
+                <button class="btn btn-outline-danger" title="Hapus"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <!-- rows dinamis -->
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer d-flex flex-wrap gap-2 justify-content-between align-items-center">
+      <small class="text-muted">Menampilkan 1–10 dari 200</small>
+      <nav>
+        <ul class="pagination pagination-sm mb-0">
+          <li class="page-item disabled"><span class="page-link">Prev</span></li>
+          <li class="page-item active"><span class="page-link">1</span></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Import -->
+<div class="modal" id="mdlImportPelamar" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Import Pelamar (CSV/XLSX)</h5>
+        <button class="btn-close" data-close></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-icon mb-2">
+          <i class="bi bi-filetype-csv"></i>
+          <input type="file" class="form-control" accept=".csv,.xlsx">
+        </div>
+        <small class="text-muted">Kolom minimal: nama, email, telp, posisi.</small>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-close>Tutup</button>
+        <button class="btn btn-primary">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{
+    --brand:#2DA85C; --brand-2:#6EE7B7;
+  }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+  }
+
+  /* Header/toolbar vibe seperti dashboard */
+  .page-modern .page-head .head-blob{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Card glassy */
+  .card-glass, .card-filter{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  .card-filter .card-body{ padding: .9rem .9rem; }
+
+  /* Filter pill look */
+  .card-filter{
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .input-icon{ position:relative; }
+  .input-icon > i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    pointer-events:none; opacity:.7;
+  }
+  .input-icon > .form-control{ padding-left:2rem; }
+
+  /* Table modern */
+  .table-modern thead th{
+    background: var(--thead);
+    border-bottom: 1px solid var(--glass-bd);
+    position: sticky; top: 0; z-index: 1;
+  }
+  .table-modern tbody tr{
+    transition: background .12s ease;
+  }
+  .table-modern tbody tr:hover{
+    background: var(--hover);
+  }
+  .table-modern td, .table-modern th{
+    vertical-align: middle;
+  }
+
+  /* Status badges (map status -> warna brandy) */
+  .status-badge{ font-weight:700; }
+  .status-screening{
+    background: color-mix(in oklab, var(--brand) 18%, transparent);
+    color: color-mix(in oklab, var(--brand) 70%, #0f1117);
+  }
+
+  /* Pagination spacing on small */
+  @media (max-width: 576px){
+    .page-modern .page-head h4{ font-size:1.05rem; }
+  }
+
+  /* Mobile: table -> cards (stacked) */
+  @media (max-width: 768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+  }
+</style>

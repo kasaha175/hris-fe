@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+          <button class="nav-link active tab" type="button">Ajukan Permohonan Cuti</button>
+        </li>
+      </ul>
+
+      <form id="formLeaveRequest" class="row g-3">
+        <div class="col-12 col-md-3">
+          <label class="form-label">Tanggal Permohonan</label>
+          <input class="form-control" type="date" value="2025-10-05" />
+        </div>
+        <div class="col-12 col-md-3">
+          <label class="form-label">Nama Pegawai</label>
+          <input class="form-control" type="text" value="Kasahana Indra Pratama" />
+        </div>
+        <div class="col-12 col-md-3">
+          <label class="form-label">Divisi</label>
+          <input class="form-control" type="text" value="Technology & Development" />
+        </div>
+        <div class="col-12 col-md-3">
+          <label class="form-label">Jabatan</label>
+          <input class="form-control" type="text" value="Project Manager" />
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label">Jenis Cuti</label>
+          <select class="form-select">
+            <option selected>Cuti Tahunan</option>
+            <option>Cuti Melahirkan</option>
+            <option>Cuti Keagamaan</option>
+            <option>Cuti Tidak Dibayar</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label">Periode Cuti</label>
+          <input class="form-control" type="text" placeholder="YYYY-MM-DD s/d YYYY-MM-DD" />
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label">Keperluan</label>
+          <input class="form-control" type="text" placeholder="Tulis alasan pengajuan cuti" />
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label">Pengganti Selama Cuti</label>
+          <input class="form-control" type="text" placeholder="Nama rekan pengganti" />
+        </div>
+        <div class="col-12">
+          <label class="form-label">Keterangan Tambahan</label>
+          <textarea class="form-control" placeholder="Opsional, misalnya lokasi atau catatan penting"></textarea>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end gap-2 mt-2">
+          <button type="button" class="btn btn-outline-secondary" id="btnDraft">Simpan Draft</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmitLeave">Kirim Pengajuan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+          <button class="nav-link active tab" type="button">Riwayat Pengajuan Cuti Saya</button>
+        </li>
+      </ul>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle" id="tblMyLeaveRequests">
+          <thead class="table-light">
+            <tr>
+              <th>Tanggal Pengajuan</th>
+              <th>Jenis Cuti</th>
+              <th>Periode</th>
+              <th>Keperluan</th>
+              <th>Status</th>
+              <th>Tanggal Persetujuan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-09-10</td>
+              <td>Tahunan</td>
+              <td>2025-09-20 s/d 2025-09-22</td>
+              <td>Liburan keluarga</td>
+              <td><span class="badge text-bg-success">Disetujui</span></td>
+              <td>2025-09-12</td>
+            </tr>
+            <tr>
+              <td>2025-08-05</td>
+              <td>Keagamaan</td>
+              <td>2025-08-08 s/d 2025-08-10</td>
+              <td>Acara keagamaan</td>
+              <td><span class="badge text-bg-danger">Ditolak</span></td>
+              <td>2025-08-07</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,349 @@
+<div class="container-fluid page-modern py-3">
+  <!-- Toolbar -->
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Pengajuan Resign</h4>
+    </div>
+    <button class="btn btn-primary btn-sm" data-open="mdlAjukanResign">
+      <i class="bi bi-plus-lg me-1"></i> Ajukan
+    </button>
+  </div>
+
+  <!-- Filter -->
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form class="row g-2 align-items-end">
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Cari</label>
+          <div class="input-icon">
+            <i class="bi bi-search"></i>
+            <input class="form-control" placeholder="Nama / NIK">
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Status</label>
+          <select class="form-select">
+            <option value="">Semua</option>
+            <option>Diajukan</option>
+            <option>Proses</option>
+            <option>Selesai</option>
+          </select>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Periode</label>
+          <div class="input-icon">
+            <i class="bi bi-calendar2-month"></i>
+            <input type="month" class="form-control">
+          </div>
+        </div>
+        <div class="col-12 col-lg-2 d-grid">
+          <button class="btn btn-dark" type="submit">
+            <i class="bi bi-search me-1"></i> Tampilkan
+          </button>
+        </div>
+      </form>
+
+      <!-- Chips (opsional via JS) -->
+      <div class="filter-chips mt-2 d-flex flex-wrap gap-2">
+        <!-- <span class="chip">Status: Proses <button class="btn-close btn-close-white ms-1" style="transform:scale(.65)"></button></span> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI ringkas -->
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi"><div class="mini-kpi__label">Total Pengajuan</div><div class="mini-kpi__value">15</div></div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi"><div class="mini-kpi__label">Diajukan</div><div class="mini-kpi__value text-warning">6</div></div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi"><div class="mini-kpi__label">Proses</div><div class="mini-kpi__value">5</div></div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi"><div class="mini-kpi__label">Selesai</div><div class="mini-kpi__value text-success">4</div></div>
+    </div>
+  </div>
+
+  <!-- Legend status -->
+  <div class="legend row g-2 mb-2">
+    <div class="col-auto"><span class="legend-dot rsn-submit-dot"></span> Diajukan</div>
+    <div class="col-auto"><span class="legend-dot rsn-process-dot"></span> Proses</div>
+    <div class="col-auto"><span class="legend-dot rsn-done-dot"></span> Selesai</div>
+  </div>
+
+  <!-- Tabel -->
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Kode</th>
+            <th>NIK</th>
+            <th>Nama</th>
+            <th>Efektif</th>
+            <th class="text-center">Notice (hari)</th>
+            <th class="d-none d-xl-table-cell" style="width:180px">Handover Progress</th>
+            <th>Status</th>
+            <th style="width:160px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyResign">
+          <tr>
+            <td data-label="Kode">RES-2025-004</td>
+            <td data-label="NIK">EMP-00145</td>
+            <td data-label="Nama">Rina Kurnia</td>
+            <td data-label="Efektif">30 Okt 2025</td>
+            <td data-label="Notice (hari)" class="text-center">
+              <span class="notice-pill warn">25</span>
+            </td>
+            <td data-label="Handover" class="d-none d-xl-table-cell">
+              <div class="rsn-progress" title="60%">
+                <div class="rsn-progress__bar" style="--p:60%"></div>
+              </div>
+            </td>
+            <td data-label="Status"><span class="badge rsn-badge rsn-submit">Diajukan</span></td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-success" title="Proseskan"><i class="bi bi-check2"></i></button>
+                <button class="btn btn-outline-danger" title="Tolak"><i class="bi bi-x"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- contoh PROSES -->
+          <tr>
+            <td data-label="Kode">RES-2025-005</td>
+            <td data-label="NIK">EMP-00322</td>
+            <td data-label="Nama">Yoga Pradana</td>
+            <td data-label="Efektif">18 Okt 2025</td>
+            <td data-label="Notice (hari)" class="text-center">
+              <span class="notice-pill late">13</span>
+            </td>
+            <td class="d-none d-xl-table-cell">
+              <div class="rsn-progress" title="85%">
+                <div class="rsn-progress__bar" style="--p:85%"></div>
+              </div>
+            </td>
+            <td data-label="Status"><span class="badge rsn-badge rsn-process">Proses</span></td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-success" title="Selesaikan"><i class="bi bi-check2-circle"></i></button>
+                <button class="btn btn-outline-secondary" title="Cetak"><i class="bi bi-printer"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- contoh SELESAI -->
+          <tr>
+            <td data-label="Kode">RES-2025-006</td>
+            <td data-label="NIK">EMP-00078</td>
+            <td data-label="Nama">Alya Safitri</td>
+            <td data-label="Efektif">01 Okt 2025</td>
+            <td data-label="Notice (hari)" class="text-center">
+              <span class="notice-pill ok">0</span>
+            </td>
+            <td class="d-none d-xl-table-cell">
+              <div class="rsn-progress done" title="100%">
+                <div class="rsn-progress__bar" style="--p:100%"></div>
+              </div>
+            </td>
+            <td data-label="Status"><span class="badge rsn-badge rsn-done">Selesai</span></td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-secondary" title="Unduh Surat"><i class="bi bi-download"></i></button>
+              </div>
+            </td>
+          </tr>
+          <!-- rows dinamis -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Ajukan Resign -->
+<div class="modal" id="mdlAjukanResign" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Ajukan Resign</h5><button class="btn-close" data-close></button></div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">NIK</label>
+            <input class="form-control" required>
+          </div>
+          <div class="col-md-8">
+            <label class="form-label">Nama</label>
+            <input class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Tanggal Efektif</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Alasan</label>
+            <input class="form-control" placeholder="Alasan utama pengunduran diri">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Rencana Handover</label>
+            <textarea class="form-control" rows="3" placeholder="Ringkasan knowledge transfer, dokumen, dan PIC penerima"></textarea>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Lampiran (opsional)</label>
+            <input type="file" class="form-control" accept=".pdf,.jpg,.png">
+            <small class="text-muted">Contoh: surat pengunduran diri yang ditandatangani.</small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-close>Batal</button>
+        <button class="btn btn-primary" data-close>Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+  }
+
+  /* Header vibe */
+  .page-modern .page-head .head-blob{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Cards glassy */
+  .card-glass, .card-filter{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  .card-filter .card-body{ padding:.9rem .9rem; }
+  .card-filter{ backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+  /* Input icon */
+  .input-icon{ position:relative; }
+  .input-icon>i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    opacity:.7; pointer-events:none;
+  }
+  .input-icon>.form-control{ padding-left:2rem; }
+
+  /* Chips */
+  .chip{
+    display:inline-flex; align-items:center; gap:.25rem;
+    padding:.25rem .55rem; border-radius:999px; font-size:.8rem;
+    background:var(--hover); color:inherit; border:1px solid var(--glass-bd);
+  }
+
+  /* KPI mini */
+  .mini-kpi{ background:var(--glass-bg); border:1px solid var(--glass-bd); border-radius:12px; padding:.6rem .75rem; box-shadow: var(--shadow); }
+  .mini-kpi__label{ font-size:.8rem; color:var(--muted); }
+  .mini-kpi__value{ font-size:1.2rem; font-weight:800; }
+
+  /* Legend */
+  .legend-dot{
+    display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:.35rem;
+    border:1px solid var(--glass-bd);
+  }
+  .rsn-submit-dot  { background: color-mix(in oklab,#f59e0b 22%, transparent); }
+  .rsn-process-dot { background: color-mix(in oklab,#60a5fa 22%, transparent); }
+  .rsn-done-dot    { background: color-mix(in oklab,#22c55e 22%, transparent); }
+
+  /* Table modern */
+  .table-modern thead th{
+    background: var(--thead);
+    border-bottom: 1px solid var(--glass-bd);
+    position: sticky; top: 0; z-index: 1;
+  }
+  .table-modern tbody tr{ transition: background .12s ease; }
+  .table-modern tbody tr:hover{ background: var(--hover); }
+  .table-modern td, .table-modern th{ vertical-align: middle; }
+
+  /* Status badge */
+  .rsn-badge{ font-weight:700; }
+  .rsn-submit  { background:color-mix(in oklab,#f59e0b 16%,transparent); color:#92400e; }
+  .rsn-process { background:color-mix(in oklab,#60a5fa 16%,transparent); color:#1d4ed8; }
+  .rsn-done    { background:color-mix(in oklab,#22c55e 16%,transparent); color:#166534; }
+
+  /* Notice pill */
+  .notice-pill{
+    display:inline-block; min-width:38px; padding:.1rem .5rem; text-align:center;
+    border-radius:999px; border:1px solid var(--glass-bd);
+    background:var(--glass-bg); font-weight:700;
+  }
+  .notice-pill.ok   { color:#166534; }  /* ≥ 30 hari */
+  .notice-pill.warn { color:#b45309; }  /* 14–29 hari */
+  .notice-pill.late { color:#991b1b; }  /* < 14 hari */
+
+  /* Progress handover */
+  .rsn-progress{
+    --h: 8px;
+    width: 180px; max-width:100%;
+    height: var(--h); border-radius:999px;
+    background: color-mix(in oklab, var(--brand-2) 12%, transparent);
+    border: 1px solid var(--glass-bd);
+    overflow: hidden; position: relative;
+  }
+  .rsn-progress__bar{
+    position:absolute; inset:0 0 0 auto;
+    width: var(--p,0); height:100%;
+    background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    border-radius:999px; transition: width .25s ease;
+  }
+  .rsn-progress.done{
+    background: color-mix(in oklab,#22c55e 14%, transparent);
+    border-color: color-mix(in oklab,#22c55e 35%, var(--glass-bd));
+  }
+
+  /* Mobile: table -> cards */
+  @media (max-width:768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+    .rsn-progress{ width:100%; }
+  }
+
+  /* Print ringkas */
+  @media print{
+    .page-head, .card-filter, .legend { display:none !important; }
+    .card-glass{ box-shadow:none; border:0; }
+    .table-modern thead th{ position:static; }
+  }
+</style>

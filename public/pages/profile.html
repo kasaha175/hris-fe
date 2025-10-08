@@ -1,0 +1,320 @@
+<!-- PROFILE -->
+<section class="profile container-fluid">
+  <!-- Header / Identity -->
+  <div class="glass-card profile-head d-flex align-items-center gap-3">
+    <div class="avatar-wrap">
+      <img id="avatarImg" src="https://ui-avatars.com/api/?name=User&background=2DA85C&color=0F1117" alt="Avatar">
+      <label class="avatar-edit" title="Ubah foto">
+        <input type="file" id="avatarInput" accept="image/*" hidden>
+        <i class="bi bi-camera"></i>
+      </label>
+    </div>
+
+    <div class="flex-grow-1">
+      <h5 class="mb-1" id="pfName">Nama Pengguna</h5>
+      <div class="muted small">Senior HR Specialist • Microvision Indonesia</div>
+
+      <div class="d-flex flex-wrap gap-2 mt-2">
+        <button class="btn btn-ghost btn-sm" id="btnEditName"><i class="bi bi-pencil-square me-1"></i>Edit nama</button>
+        <a class="btn btn-ghost btn-sm" href="#/settings"><i class="bi bi-sliders me-1"></i>Preferensi</a>
+      </div>
+    </div>
+
+    <div class="text-end d-none d-md-block">
+      <div class="small muted">Employee ID</div>
+      <div class="fw-bold">EMP-00123</div>
+    </div>
+  </div>
+
+  <div class="row g-3 g-md-4 mt-1">
+    <!-- LEFT: Summary + Preferences -->
+    <div class="col-12 col-lg-4">
+      <div class="glass-card">
+        <div class="section-head">
+          <h6 class="title mb-0">Ringkasan</h6>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat-icon"><i class="bi bi-calendar-check"></i></div>
+            <div>
+              <div class="stat-label">Cuti tersedia</div>
+              <div class="stat-value">8 Hari</div>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><i class="bi bi-award"></i></div>
+            <div>
+              <div class="stat-label">Masa kerja</div>
+              <div class="stat-value">3 thn 2 bln</div>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-icon"><i class="bi bi-clock-history"></i></div>
+            <div>
+              <div class="stat-label">Terakhir login</div>
+              <div class="stat-value">Hari ini, 09:42</div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="hr">
+
+        <ul class="info-list">
+          <li><span class="muted">Email</span><span id="pfEmail">user@company.com</span></li>
+          <li><span class="muted">Telepon</span><span>+62 812-3456-7890</span></li>
+          <li><span class="muted">Lokasi</span><span>Jakarta, ID</span></li>
+          <li><span class="muted">Bergabung</span><span>12 Jan 2022</span></li>
+        </ul>
+      </div>
+
+      <div class="glass-card mt-3">
+        <div class="section-head"><h6 class="title mb-0">Preferensi</h6></div>
+        <div class="pref-list">
+          <label class="pref">
+            <input type="checkbox" checked>
+            <span>Notifikasi email</span>
+          </label>
+          <label class="pref">
+            <input type="checkbox" checked>
+            <span>Notifikasi desktop</span>
+          </label>
+          <label class="pref">
+            <input type="checkbox">
+            <span>Ringkasan mingguan</span>
+          </label>
+        </div>
+        <div class="small muted mt-2">Tema tampilan bisa diubah lewat tombol di navbar.</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Account & Security -->
+    <div class="col-12 col-lg-8">
+      <div class="glass-card">
+        <div class="section-head"><h6 class="title mb-0">Informasi Akun</h6></div>
+        <form id="formProfile" class="form-grid">
+          <div>
+            <label class="form-label">Nama Lengkap</label>
+            <input class="form-control" type="text" id="inpName" placeholder="Nama" value="Nama Pengguna">
+          </div>
+          <div>
+            <label class="form-label">Email</label>
+            <input class="form-control" type="email" id="inpEmail" placeholder="email" value="user@company.com">
+          </div>
+          <div>
+            <label class="form-label">Jabatan</label>
+            <input class="form-control" type="text" placeholder="Jabatan" value="Senior HR Specialist">
+          </div>
+          <div>
+            <label class="form-label">Divisi</label>
+            <select class="form-select">
+              <option selected>Human Resources</option>
+              <option>Finance</option>
+              <option>Engineering</option>
+            </select>
+          </div>
+          <div class="span-2">
+            <label class="form-label">Bio</label>
+            <textarea class="form-control" rows="3" placeholder="Ceritakan secara singkat…"></textarea>
+          </div>
+
+          <div class="form-actions span-2">
+            <button type="button" class="btn btn-ghost" id="btnCancel">Batal</button>
+            <button type="submit" class="btn btn-primary brand-btn"><i class="bi bi-save me-1"></i>Simpan Perubahan</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="glass-card mt-3">
+        <div class="section-head"><h6 class="title mb-0">Keamanan</h6></div>
+        <form id="formSecurity" class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label">Password Baru</label>
+            <input class="form-control" type="password" id="newPass" placeholder="••••••••">
+            <div class="pass-meter mt-1"><div id="pmBar"></div></div>
+            <small class="muted">Gunakan min. 8 karakter, kombinasikan huruf/angka/simbol.</small>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Konfirmasi Password</label>
+            <input class="form-control" type="password" id="newPass2" placeholder="••••••••">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label">Two-Factor Authentication (2FA)</label><br>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="tfaSwitch" checked>
+              <label class="form-check-label" for="tfaSwitch">Aktifkan 2FA</label>
+            </div>
+          </div>
+
+          <div class="col-12 d-flex gap-2 justify-content-end">
+            <button type="button" class="btn btn-soft-danger" id="btnReset"><i class="bi bi-shield-x me-1"></i>Reset Password</button>
+            <button type="submit" class="btn btn-primary brand-btn"><i class="bi bi-shield-check me-1"></i>Perbarui Keamanan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Profile Styles (scoped) ========== -->
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; --radius:16px; }
+
+  /* Theme tokens — sinkron dengan header/dashboard */
+  html[data-bs-theme="light"]{
+    --pf-surface:#FFFFFF; --pf-surface-2:#FAFBFE; --pf-text:#0F172A; --pf-muted:#667085;
+    --pf-border:#E5EAF1; --pf-ring:rgba(45,168,92,.16); --pf-hover:rgba(45,168,92,.06);
+    --pf-shadow:0 8px 24px rgba(15,23,42,.07);
+  }
+  html[data-bs-theme="dark"]{
+    --pf-surface:#0F1520; --pf-surface-2:#161B26; --pf-text:#E6E8EC; --pf-muted:#9CA3AF;
+    --pf-border:rgba(255,255,255,.08); --pf-ring:rgba(110,231,183,.18); --pf-hover:rgba(110,231,183,.10);
+    --pf-shadow:0 8px 24px rgba(0,0,0,.35);
+  }
+
+  .muted{ color:var(--pf-muted); }
+
+  .glass-card{
+    background:var(--pf-surface);
+    border:1px solid var(--pf-border);
+    border-radius:var(--radius);
+    box-shadow:var(--pf-shadow);
+    padding:1rem;
+  }
+  .section-head{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; margin-bottom:.5rem; }
+  .section-head .title{ font-weight:700; }
+
+  /* Header */
+  .profile-head{ padding:1rem; }
+  .avatar-wrap{ position:relative; width:84px; height:84px; border-radius:20px; overflow:hidden; flex:none; }
+  .avatar-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .avatar-edit{
+    position:absolute; right:6px; bottom:6px;
+    width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0f1117;
+    box-shadow:0 8px 16px rgba(45,168,92,.35); cursor:pointer;
+  }
+
+  /* Summary */
+  .stat-grid{ display:grid; grid-template-columns:1fr; gap:.6rem; }
+  .stat{
+    display:flex; align-items:center; gap:.7rem; padding:.7rem .8rem;
+    border:1px solid var(--pf-border); border-radius:14px; background:var(--pf-surface-2);
+  }
+  .stat-icon{
+    width:40px; height:40px; border-radius:12px; display:grid; place-items:center; color:#0f1117;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 8px 18px rgba(45,168,92,.35);
+  }
+  .stat-label{ font-size:.9rem; color:var(--pf-muted); }
+  .stat-value{ font-weight:800; font-size:1.1rem; }
+
+  .hr{ border:0; border-top:1px solid var(--pf-border); margin:.9rem 0; }
+
+  .info-list{ list-style:none; padding:0; margin:0; display:grid; gap:.5rem; }
+  .info-list li{ display:flex; justify-content:space-between; gap:1rem; }
+
+  .pref-list{ display:grid; gap:.45rem; }
+  .pref{ display:flex; align-items:center; gap:.6rem; padding:.5rem .6rem; border:1px solid var(--pf-border); border-radius:12px; background:var(--pf-surface-2); }
+
+  /* Forms */
+  .form-grid{ display:grid; gap:.8rem; grid-template-columns:repeat(2, minmax(220px,1fr)); }
+  .form-grid .span-2{ grid-column:1 / -1; }
+  .form-actions{ display:flex; gap:.6rem; justify-content:flex-end; }
+
+  /* Buttons re-use brand look */
+  .btn-ghost{
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--pf-border);
+    --bs-btn-hover-bg: var(--pf-hover);
+    --bs-btn-hover-border-color: color-mix(in oklab, var(--brand) 20%, var(--pf-border));
+  }
+  .brand-btn{
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    color:#0f1117; border:0; font-weight:700;
+    box-shadow:0 14px 36px rgba(45,168,92,.35);
+  }
+
+  .form-control:focus, .form-select:focus, .btn:focus{
+    box-shadow:0 0 0 .22rem var(--pf-ring); border-color:color-mix(in oklab, var(--brand) 30%, var(--pf-border));
+    outline:0;
+  }
+
+  /* Security */
+  .pass-meter{ height:8px; background:var(--pf-surface-2); border-radius:999px; border:1px solid var(--pf-border); overflow:hidden; }
+  .pass-meter #pmBar{ height:100%; width:0%; background:linear-gradient(90deg,#ef4444,#f59e0b,#22c55e); transition:width .25s ease; border-radius:999px; }
+
+  @media (max-width: 992px){
+    .form-grid{ grid-template-columns:1fr; }
+  }
+</style>
+
+<!-- ========== Profile Scripts (scoped) ========== -->
+<script>
+  // Prefill dari auth (mock); jika ada di localStorage
+  try {
+    const auth = JSON.parse(localStorage.getItem('auth') || 'null');
+    if (auth?.name) {
+      document.getElementById('pfName').textContent = auth.name;
+      document.getElementById('inpName').value = auth.name;
+      // email contoh saja
+    }
+  } catch {}
+
+  // Preview avatar
+  document.getElementById('avatarInput')?.addEventListener('change', (e) => {
+    const f = e.target.files?.[0]; if (!f) return;
+    const url = URL.createObjectURL(f);
+    document.getElementById('avatarImg').src = url;
+  });
+
+  // Edit nama cepat
+  document.getElementById('btnEditName')?.addEventListener('click', () => {
+    document.getElementById('inpName')?.focus();
+  });
+
+  // Simpan profil (mock): simpan ke localStorage auth.name agar persist
+  document.getElementById('formProfile')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('inpName').value.trim();
+    const email = document.getElementById('inpEmail').value.trim();
+    document.getElementById('pfName').textContent = name || 'Nama Pengguna';
+    document.getElementById('pfEmail').textContent = email || 'user@company.com';
+    // update auth (tanpa memanggil fungsi di main.js)
+    try {
+      const curr = JSON.parse(localStorage.getItem('auth') || '{}');
+      localStorage.setItem('auth', JSON.stringify({ ...curr, name }));
+    } catch {}
+    alert('Profil diperbarui (mock).');
+  });
+
+  // Meter password sederhana
+  function scorePass(s=''){
+    let n = 0;
+    if (s.length >= 8) n++;
+    if (/[A-Z]/.test(s)) n++;
+    if (/[a-z]/.test(s)) n++;
+    if (/\d/.test(s)) n++;
+    if (/[^\w\s]/.test(s)) n++;
+    return Math.min(n,5);
+  }
+  const np = document.getElementById('newPass');
+  const bar = document.getElementById('pmBar');
+  np?.addEventListener('input', () => {
+    const w = [0,20,40,60,80,100][scorePass(np.value)];
+    bar.style.width = w + '%';
+  });
+
+  document.getElementById('formSecurity')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const p1 = document.getElementById('newPass').value;
+    const p2 = document.getElementById('newPass2').value;
+    if (!p1 || p1 !== p2) { alert('Konfirmasi password tidak cocok.'); return; }
+    alert('Pengaturan keamanan diperbarui (mock).');
+  });
+
+  document.getElementById('btnReset')?.addEventListener('click', () => {
+    alert('Link reset password telah dikirim ke email Anda (mock).');
+  });
+</script>

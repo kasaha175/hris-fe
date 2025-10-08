@@ -1,0 +1,140 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <!-- Tabs (Bootstrap look, tetap pakai .tab untuk main.js) -->
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item"><button class="nav-link active tab" data-tab="plan" type="button">Perencanaan Posisi</button></li>
+        <li class="nav-item"><button class="nav-link tab" data-tab="req-calon" type="button">Permintaan Calon Pegawai</button></li>
+        <li class="nav-item"><button class="nav-link tab" data-tab="seleksi" type="button">Seleksi Calon Pegawai</button></li>
+        <li class="nav-item"><button class="nav-link tab" data-tab="masa-tunggu" type="button">Seleksi Masa Tunggu</button></li>
+      </ul>
+
+      <!-- Perencanaan Posisi -->
+      <section class="tabpanel" id="tab-plan">
+        <form class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label">Posisi</label>
+            <input class="form-control" type="text" placeholder="Account Manager"/>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Level Karir</label>
+            <select class="form-select">
+              <option>FRESH GRADUATE</option>
+              <option>INTERMEDIATE</option>
+              <option>SENIOR/MASTER</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Pendidikan</label>
+            <select class="form-select">
+              <option>SMK/SMA</option>
+              <option>Diploma</option>
+              <option>S1</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Pengalaman</label>
+            <select class="form-select">
+              <option>&lt; 1 TAHUN</option>
+              <option>1-2 TAHUN</option>
+              <option>&gt; 2 TAHUN</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Kota Penempatan</label>
+            <input class="form-control" type="text" placeholder="Jakarta"/>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Jumlah Kebutuhan</label>
+            <input class="form-control" type="text" placeholder="Mis. 3"/>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Persyaratan Umum</label>
+            <textarea class="form-control" placeholder="Hard/soft skill, sertifikasi, dll"></textarea>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Format Lamaran / Catatan Khusus</label>
+            <textarea class="form-control"></textarea>
+          </div>
+        </form>
+
+        <div class="d-flex gap-2 justify-content-end mt-3">
+          <button class="btn btn-outline-secondary" type="button">Simpan Draft</button>
+          <button class="btn btn-primary" type="button">Ajukan Perencanaan</button>
+        </div>
+
+        <hr class="hr" />
+        <h6 class="mb-2">List Perencanaan Posisi</h6>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tblPlan">
+            <thead class="table-light">
+              <tr>
+                <th>Tanggal</th>
+                <th>No Loker</th>
+                <th>Perusahaan</th>
+                <th>Posisi</th>
+                <th>Level</th>
+                <th>Pendidikan</th>
+                <th>Lead Time</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- diisi dinamis oleh main.js (mock data) -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Permintaan Calon Pegawai -->
+      <section class="tabpanel hidden" id="tab-req-calon">
+        <p class="text-secondary">Permintaan interview ulang calon pegawai yang pernah melamar.</p>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tblReqCalon">
+            <thead class="table-light">
+              <tr>
+                <th>Tgl</th><th>No Pelamar</th><th>Nama</th><th>Posisi</th><th>Divisi</th><th>Status</th><th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- diisi dinamis oleh main.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Seleksi Calon Pegawai -->
+      <section class="tabpanel hidden" id="tab-seleksi">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tblSeleksiUser">
+            <thead class="table-light">
+              <tr>
+                <th>Tanggal</th><th>Nama</th><th>Pendidikan</th><th>Posisi</th><th>Kota</th><th>Status</th><th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- diisi dinamis oleh main.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Seleksi Masa Tunggu -->
+      <section class="tabpanel hidden" id="tab-masa-tunggu">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle" id="tblMasaTunggu">
+            <thead class="table-light">
+              <tr>
+                <th>Nama</th><th>Posisi</th><th>Mulai</th><th>Selesai</th><th>Mentor</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- diisi dinamis oleh main.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

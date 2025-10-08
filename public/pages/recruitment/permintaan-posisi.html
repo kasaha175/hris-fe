@@ -1,0 +1,259 @@
+<div class="container-fluid page-modern py-3">
+  <!-- Toolbar -->
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Permintaan Posisi Calon Pegawai</h4>
+    </div>
+    <button class="btn btn-primary btn-sm" data-open="mdlNewReqPosisi">
+      <i class="bi bi-plus-lg me-1"></i> Buat Permintaan
+    </button>
+  </div>
+
+  <!-- Filter pill -->
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form id="filterReqPosisi" class="row g-2 align-items-end">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Unit/Divisi</label>
+          <div class="input-icon">
+            <i class="bi bi-diagram-3"></i>
+            <input class="form-control" name="divisi" placeholder="Nama divisi">
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Status</label>
+          <select class="form-select" name="status">
+            <option value="">Semua</option>
+            <option>Draft</option>
+            <option>Menunggu Persetujuan</option>
+            <option>Disetujui</option>
+            <option>Ditolak</option>
+          </select>
+        </div>
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Periode</label>
+          <div class="d-flex gap-2">
+            <input type="date" class="form-control" name="start">
+            <input type="date" class="form-control" name="end">
+          </div>
+        </div>
+        <div class="col-12 col-lg-2 d-grid">
+          <button class="btn btn-dark" type="submit"><i class="bi bi-search me-1"></i> Cari</button>
+        </div>
+      </form>
+      <div class="filter-chips mt-2 d-flex flex-wrap gap-2">
+        <!-- contoh chip opsional:
+        <span class="chip">Unit: IT & Data <button class="btn-close btn-close-white ms-1" style="transform:scale(.6)"></button></span>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI ringkas -->
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi">
+        <div class="mini-kpi__label">Total Permintaan</div>
+        <div class="mini-kpi__value">24</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi">
+        <div class="mini-kpi__label">Menunggu Persetujuan</div>
+        <div class="mini-kpi__value text-warning">7</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi">
+        <div class="mini-kpi__label">Disetujui</div>
+        <div class="mini-kpi__value text-success">11</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="mini-kpi">
+        <div class="mini-kpi__label">Ditolak</div>
+        <div class="mini-kpi__value text-danger">6</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabel / responsive cards -->
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Kode</th>
+            <th>Posisi</th>
+            <th class="d-none d-lg-table-cell">Unit</th>
+            <th class="text-center">Kebutuhan</th>
+            <th>Status</th>
+            <th class="d-none d-md-table-cell">Dibuat</th>
+            <th style="width:140px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Kode">REQ-2025-001</td>
+            <td data-label="Posisi">Data Engineer</td>
+            <td data-label="Unit" class="d-none d-lg-table-cell">IT & Data</td>
+            <td data-label="Kebutuhan" class="text-center"><span class="count-pill">3</span> Orang</td>
+            <td data-label="Status"><span class="badge status-badge status-wait">Menunggu Persetujuan</span></td>
+            <td data-label="Dibuat" class="d-none d-md-table-cell">05 Okt 2025</td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-secondary" title="Edit"><i class="bi bi-pencil"></i></button>
+                <button class="btn btn-outline-danger" title="Hapus"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <!-- baris dinamis -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Buat Permintaan -->
+<div class="modal" id="mdlNewReqPosisi" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Buat Permintaan Posisi</h5><button class="btn-close" data-close></button></div>
+      <div class="modal-body">
+        <form id="formNewReqPosisi" class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Posisi</label>
+            <input class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Unit/Divisi</label>
+            <input class="form-control" required>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Jumlah</label>
+            <input type="number" class="form-control" min="1" value="1" required>
+          </div>
+          <div class="col-md-9">
+            <label class="form-label">Kualifikasi Ringkas</label>
+            <input class="form-control" placeholder="Contoh: Min. 2 tahun, SQL kuat, Python">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Deskripsi / Alasan Kebutuhan</label>
+            <textarea class="form-control" rows="3" placeholder="Detail alasan kebutuhan, timeline, dsb."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-close>Batal</button>
+        <button class="btn btn-primary" data-close>Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+    --chip: #0f172a;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+    --chip: #e5e7eb;
+  }
+
+  /* Header vibe dashboard */
+  .page-modern .page-head .head-blob{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Glassy cards */
+  .card-glass, .card-filter{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  .card-filter .card-body{ padding:.9rem .9rem; }
+  .card-filter{ backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+  /* Input icon */
+  .input-icon{ position:relative; }
+  .input-icon > i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    pointer-events:none; opacity:.7;
+  }
+  .input-icon > .form-control{ padding-left:2rem; }
+
+  /* Chips */
+  .chip{
+    display:inline-flex; align-items:center; gap:.25rem;
+    padding:.25rem .5rem; border-radius:999px; font-size:.8rem;
+    background:var(--hover); color:var(--chip); border:1px solid var(--glass-bd);
+  }
+
+  /* KPI mini */
+  .mini-kpi{
+    background:var(--glass-bg); border:1px solid var(--glass-bd);
+    border-radius:12px; padding:.6rem .75rem; box-shadow: var(--shadow);
+  }
+  .mini-kpi__label{ font-size:.8rem; color:var(--muted); }
+  .mini-kpi__value{ font-size:1.2rem; font-weight:800; }
+
+  /* Table modern */
+  .table-modern thead th{
+    background: var(--thead);
+    border-bottom: 1px solid var(--glass-bd);
+    position: sticky; top: 0; z-index: 1;
+  }
+  .table-modern tbody tr{ transition: background .12s ease; }
+  .table-modern tbody tr:hover{ background: var(--hover); }
+  .table-modern td, .table-modern th{ vertical-align: middle; }
+
+  /* Status badges */
+  .status-badge{ font-weight:700; }
+  .status-draft{ background: color-mix(in oklab, #60a5fa 16%, transparent); color:#1d4ed8; }
+  .status-wait{  background: color-mix(in oklab, #f59e0b 16%, transparent); color:#92400e; }
+  .status-approve{ background: color-mix(in oklab, #22c55e 16%, transparent); color:#166534; }
+  .status-reject{  background: color-mix(in oklab, #ef4444 16%, transparent); color:#991b1b; }
+
+  /* Count pill */
+  .count-pill{
+    display:inline-block; min-width:34px; padding:.1rem .5rem; text-align:center;
+    border-radius:999px; border:1px solid var(--glass-bd);
+    background:var(--glass-bg); font-weight:700;
+  }
+
+  /* Mobile: table -> cards */
+  @media (max-width: 768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+  }
+</style>

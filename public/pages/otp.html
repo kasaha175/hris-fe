@@ -1,0 +1,229 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+
+<style>
+  :root{
+    --brand:#2da85c; --brand-2:#6ee7b7;
+    --radius:16px; --blur:16px;
+    --border-light:rgba(0,0,0,.1); --border-dark:rgba(255,255,255,.12);
+    --muted-light:#6b7280; --muted-dark:#9ca3af;
+  }
+
+  html,body{height:100%; margin:0;}
+  body{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:#111827;
+    background:
+      radial-gradient(1000px 600px at -10% -20%, rgba(45,168,92,.25), transparent 60%),
+      radial-gradient(1000px 600px at 110% 120%, rgba(110,231,183,.20), transparent 60%),
+      linear-gradient(180deg,#f8fafc,#eef2f7);
+  }
+  @media (prefers-color-scheme:dark){
+    body{
+      color:#e5e7eb;
+      background:
+        radial-gradient(1200px 600px at -10% -20%, rgba(45,168,92,.22), transparent 60%),
+        radial-gradient(1000px 600px at 110% 120%, rgba(110,231,183,.18), transparent 60%),
+        linear-gradient(180deg,#0b0f14,#0f1117);
+    }
+  }
+
+  /* ===== Centered layout anti-scroll ===== */
+  .auth-wrap{
+    min-height:100dvh; height:100svh;
+    display:grid; place-items:center;
+    padding:24px; overflow:visible;
+  }
+  @media (max-width:480px){ .auth-wrap{ padding:12px; } }
+
+  .auth-card{
+    width:min(740px,100%);
+    border-radius:var(--radius);
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(var(--blur)); -webkit-backdrop-filter:blur(var(--blur));
+    border:1px solid rgba(0,0,0,.06);
+    box-shadow:0 25px 60px rgba(0,0,0,.15);
+    overflow:hidden;
+  }
+  @media (prefers-color-scheme:dark){
+    .auth-card{ background:rgba(20,24,32,.62); border-color:rgba(255,255,255,.06); }
+  }
+
+  .auth-body{ padding:clamp(18px,2.5vw,36px); }
+
+  .head{ display:flex; align-items:center; gap:.8rem; margin-bottom:1rem; }
+  .brand-logo{
+    width:44px; height:44px; border-radius:12px;
+    display:grid; place-items:center;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    color:#0f1117; font-weight:800;
+    box-shadow:0 6px 18px rgba(45,168,92,.35);
+  }
+  .head small{ color:var(--muted-light); }
+  @media (prefers-color-scheme:dark){ .head small{ color:var(--muted-dark); } }
+
+  .hint{ color:var(--muted-light); }
+  @media (prefers-color-scheme:dark){ .hint{ color:var(--muted-dark); } }
+
+  /* ===== OTP boxes ===== */
+  .otp-wrap{
+    display:grid; grid-template-columns:repeat(6, 64px);
+    justify-content:center; gap:.6rem; margin:1rem 0 .5rem;
+    max-width:100%;
+  }
+  .otp-input{
+    width:64px; height:58px; text-align:center;
+    font-size:1.25rem; font-weight:700; letter-spacing:.02em;
+    border-radius:.75rem; border:1px solid var(--border-light);
+    background:#fff; outline:0; padding:0;
+    transition:border .2s, box-shadow .2s, background .2s, transform .12s ease;
+    caret-color: transparent; /* hilangkan caret */
+  }
+  .otp-input:focus{
+    border-color:var(--brand);
+    box-shadow:0 0 0 .2rem rgba(45,168,92,.16);
+  }
+  .otp-input.is-invalid{
+    border-color:#dc2626;
+    box-shadow:0 0 0 .2rem rgba(220,38,38,.15);
+    animation:shake .28s linear;
+  }
+  @keyframes shake{
+    0%,100%{ transform:translateX(0) }
+    25%{ transform:translateX(-3px) }
+    75%{ transform:translateX(3px) }
+  }
+  @media (prefers-color-scheme:dark){
+    .otp-input{ background:#0f1520; color:#e5e7eb; border-color:var(--border-dark); }
+  }
+
+  /* Mobile tweaks */
+  @media (max-width:480px){
+    .otp-wrap{ grid-template-columns:repeat(6, minmax(44px,1fr)); gap:.5rem; }
+    .otp-input{ width:100%; height:52px; font-size:1.1rem; }
+  }
+
+  /* ===== Actions ===== */
+  .actions{ display:grid; gap:.6rem; margin-top:1.2rem; }
+  .btn-primary-hris{
+    border:0; border-radius:.75rem;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    color:#0f1117; font-weight:700; padding:.85rem 1rem; width:100%;
+    box-shadow:0 10px 25px rgba(45,168,92,.35);
+    transition:transform .08s ease, filter .2s ease, opacity .2s ease;
+  }
+  .btn-primary-hris[disabled]{ opacity:.7; cursor:not-allowed; }
+  .btn-primary-hris:hover{ filter:brightness(1.05); }
+  .btn-primary-hris:active{ transform:translateY(1px); }
+  .btn-ghost{
+    border:1px solid rgba(0,0,0,.12); border-radius:.75rem; padding:.8rem 1rem;
+    background:transparent; color:inherit;
+  }
+  @media (prefers-color-scheme:dark){ .btn-ghost{ border-color:rgba(255,255,255,.14); } }
+
+  .resend{ display:flex; justify-content:space-between; align-items:center; gap:.75rem; }
+  .resend small{ color:var(--muted-light); }
+  @media (prefers-color-scheme:dark){ .resend small{ color:var(--muted-dark); } }
+  .link{ color:var(--brand); text-decoration:none; }
+  .link:hover{ text-decoration:underline; }
+
+  .divider{ height:1px; background:rgba(0,0,0,.08); margin:.25rem 0 1rem; }
+  @media (prefers-color-scheme:dark){ .divider{ background:rgba(255,255,255,.08); } }
+</style>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-body">
+      <div class="head">
+        <div class="brand-logo">HR</div>
+        <div>
+          <h5 class="mb-0">Verifikasi OTP</h5>
+          <small>Masukkan 6 digit kode yang kami kirim ke <span id="otpTarget">email Anda</span></small>
+        </div>
+      </div>
+
+      <!-- autocomplete one-time-code membantu autofill iOS/Android -->
+      <form id="formOTP" novalidate autocomplete="one-time-code">
+        <input type="hidden" id="otpValue" name="otp" />
+        <div class="otp-wrap" id="otpWrap">
+          <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code" autofocus />
+          <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 2" />
+          <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 3" />
+          <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 4" />
+          <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 5" />
+          <input class="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 6" />
+        </div>
+
+        <div class="resend">
+          <small class="hint">Tidak menerima kode?
+            <a href="#" id="resendOTP" class="link">Kirim ulang</a>
+            <span id="cd" class="ms-1" aria-live="polite"></span>
+          </small>
+          <small class="hint">Kode contoh: <code>123456</code></small>
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary-hris" type="submit" id="btnVerify" disabled aria-disabled="true">
+            <i class="bi bi-unlock me-1"></i> Verifikasi &amp; Masuk
+          </button>
+          <a href="#/login" class="btn-ghost text-decoration-none text-center">
+            <i class="bi bi-arrow-left me-1"></i> Kembali ke Login
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ====== Setup elemen ======
+  const form      = document.getElementById('formOTP');
+  const wrap      = document.getElementById('otpWrap');
+  const inputs    = Array.from(document.querySelectorAll('.otp-input'));
+  const btnVerify = document.getElementById('btnVerify');
+  const cdEl      = document.getElementById('cd');
+
+  // 1) Selalu aktifkan tombol (tanpa menunggu 6 digit)
+  btnVerify.disabled = false;
+  btnVerify.setAttribute('aria-disabled', 'false');
+
+  // (opsional) UX input OTP tetap jalan, tapi tanpa validasi apa pun
+  inputs[0]?.focus();
+  wrap.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('otp-input')) (inputs.find(i => !i.value) || inputs.at(-1)).focus();
+  });
+  inputs.forEach((inp, idx) => {
+    inp.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !inp.value && idx > 0) inputs[idx-1].focus();
+      if (e.key === 'ArrowLeft'  && idx > 0) inputs[idx-1].focus();
+      if (e.key === 'ArrowRight' && idx < inputs.length-1) inputs[idx+1].focus();
+      if (e.key.length === 1 && !/\d/.test(e.key)) e.preventDefault();
+      if (/\d/.test(e.key)) {
+        e.preventDefault();
+        inp.value = e.key;
+        (inputs[idx+1] || inp).focus();
+      }
+    });
+    inp.addEventListener('input', () => {
+      inp.value = (inp.value.match(/\d/) || [''])[0] || '';
+      if (inp.value && idx < inputs.length-1) inputs[idx+1].focus();
+    });
+  });
+
+  // 2) Matikan countdown & validasi demo (biar sederhana)
+  cdEl.textContent = ''; // kosongkan info countdown
+  document.getElementById('resendOTP')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('OTP dikirim ulang (mock).'); // opsional
+  });
+
+  // 3) Langsung redirect ke dashboard pada submit/click
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    btnVerify.disabled = true;
+    btnVerify.innerHTML = '<i class="bi bi-hourglass-split me-1"></i> Mengalihkan…';
+    // Gunakan hash agar router SPA memuat dashboard
+    setTimeout(() => { location.hash = '#/dashboard'; }, 200);
+  });
+</script>
+

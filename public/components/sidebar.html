@@ -1,0 +1,230 @@
+<!-- wrapper .sidebar dipertahankan agar kompatibel dengan styles.css -->
+<div class="sidebar">
+  <div class="brand">
+    <div class="brand-logo">HR</div>
+    <h1 class="m-0 fs-6">HRIS Modern</h1>
+  </div>
+
+  <nav class="nav flex-column">
+    <div class="label">Main</div>
+
+    <!-- Top-level -->
+    <a class="nav-link" href="#/dashboard" data-route="dashboard">🏠 Dashboard</a>
+
+    <!-- Perekrutan (submenu) -->
+    <div class="nav-item">
+      <a class="nav-link d-flex align-items-center justify-content-between toggle"
+         data-bs-toggle="collapse" href="#menuRecruitment" role="button"
+         aria-expanded="false" aria-controls="menuRecruitment">
+        <span>🧲 Perekrutan</span>
+        <i class="bi bi-chevron-down chev"></i>
+      </a>
+      <div class="collapse subnav" id="menuRecruitment">
+        <a class="nav-link" href="#/recruitment/data-pelamar" data-route="recruitment/data-pelamar">Data Pelamar</a>
+        <a class="nav-link" href="#/recruitment/seleksi-pelamar" data-route="recruitment/seleksi-pelamar">Seleksi Pelamar</a>
+        <a class="nav-link" href="#/recruitment/permintaan-posisi" data-route="recruitment/permintaan-posisi">Permintaan Posisi Calon Pegawai</a>
+        <a class="nav-link" href="#/recruitment/pemanggilan-pelamar" data-route="recruitment/pemanggilan-pelamar">Permintaan Pemanggilan Pelamar Kerja</a>
+        <a class="nav-link" href="#/recruitment/hasil-seleksi" data-route="recruitment/hasil-seleksi">Hasil Seleksi Calon Pegawai</a>
+      </div>
+    </div>
+
+    <!-- Klien (submenu) -->
+    <div class="nav-item">
+      <a class="nav-link d-flex align-items-center justify-content-between toggle"
+         data-bs-toggle="collapse" href="#menuClient" role="button"
+         aria-expanded="false" aria-controls="menuClient">
+        <span>🤝 Klien</span>
+        <i class="bi bi-chevron-down chev"></i>
+      </a>
+      <div class="collapse subnav" id="menuClient">
+        <a class="nav-link" href="#/client/perencanaan-posisi" data-route="client/perencanaan-posisi">Form Perencanaan Posisi</a>
+        <a class="nav-link" href="#/client/permintaan-calon" data-route="client/permintaan-calon">Form Permintaan Calon Pegawai</a>
+        <a class="nav-link" href="#/client/seleksi-calon" data-route="client/seleksi-calon">Seleksi Calon Pegawai</a>
+        <a class="nav-link" href="#/client/seleksi-masa-tunggu" data-route="client/seleksi-masa-tunggu">Seleksi Calon Pegawai Masa Tunggu</a>
+      </div>
+    </div>
+
+    <!-- Pegawai (submenu) -->
+    <div class="nav-item">
+      <a class="nav-link d-flex align-items-center justify-content-between toggle"
+         data-bs-toggle="collapse" href="#menuEmployee" role="button"
+         aria-expanded="false" aria-controls="menuEmployee">
+        <span>👤 Pegawai</span>
+        <i class="bi bi-chevron-down chev"></i>
+      </a>
+      <div class="collapse subnav" id="menuEmployee">
+        <a class="nav-link" href="#/employee/riwayat-pegawai" data-route="employee/riwayat-pegawai">Daftar Riwayat Pegawai (Khusus HRD)</a>
+        <a class="nav-link" href="#/employee/reminder-probation" data-route="employee/reminder-probation">Reminder Masa Percobaan</a>
+        <a class="nav-link" href="#/employee/absensi" data-route="employee/absensi">Data Absensi Pegawai</a>
+        <a class="nav-link" href="#/employee/persetujuan-denda" data-route="employee/persetujuan-denda">Persetujuan Edit Denda Pegawai</a>
+        <a class="nav-link" href="#/employee/permohonan-cuti" data-route="employee/permohonan-cuti">Permohonan Cuti Pegawai</a>
+        <a class="nav-link" href="#/employee/persetujuan-cuti" data-route="employee/persetujuan-cuti">Persetujuan Cuti Pegawai</a>
+        <a class="nav-link" href="#/employee/resign" data-route="employee/resign">Pengajuan Resign</a>
+        <a class="nav-link" href="#/employee/mutasi" data-route="employee/mutasi">Pengajuan Mutasi</a>
+        <a class="nav-link" href="#/employee/clearance-exit" data-route="employee/clearance-exit">Clearance Exit Karyawan</a>
+        <a class="nav-link" href="#/employee/informasi-cuti" data-route="employee/informasi-cuti">Informasi Cuti Pegawai</a>
+      </div>
+    </div>
+
+    <!-- Laporan (submenu) -->
+    <div class="nav-item">
+      <a class="nav-link d-flex align-items-center justify-content-between toggle"
+         data-bs-toggle="collapse" href="#menuReports" role="button"
+         aria-expanded="false" aria-controls="menuReports">
+        <span>📈 Laporan</span>
+        <i class="bi bi-chevron-down chev"></i>
+      </a>
+      <div class="collapse subnav" id="menuReports">
+        <a class="nav-link" href="#/reports/absensi" data-route="reports/absensi">Laporan Absensi</a>
+        <a class="nav-link" href="#/reports/daftar-pegawai" data-route="reports/daftar-pegawai">Daftar Pegawai (HRD)</a>
+      </div>
+    </div>
+
+    <!-- Konfigurasi -->
+    <a class="nav-link" href="#/settings" data-route="settings">⚙️ Konfigurasi</a>
+
+    <div class="label">Approval</div>
+    <a class="nav-link d-flex align-items-center justify-content-between" href="#/leave-approval" data-route="leave-approval">
+      <span>🗓️ Persetujuan Cuti</span>
+      <span class="badge text-bg-warning" id="badgeCuti">3</span>
+    </a>
+    <a class="nav-link" href="#/fine-approval" data-route="fine-approval">⏰ Edit Denda</a>
+  </nav>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; --sd-radius:14px; }
+
+/* ====== THEME-TOKENS sinkron dgn Bootstrap 5.3 ======
+   Pakai --bs-* supaya ikut data-bs-theme (light/dark) */
+  :root, html[data-bs-theme="light"]{
+    --sd-bg:           color-mix(in srgb, var(--bs-body-bg) 92%, #fff);
+    --sd-border:       var(--bs-border-color);
+    --sd-muted:        var(--bs-secondary-color);
+    --sd-hover:        color-mix(in srgb, var(--brand) 8%, transparent);
+    --sd-active-bg:    color-mix(in srgb, var(--brand) 12%, transparent);
+    --sd-active-bd:    color-mix(in srgb, var(--brand) 35%, var(--sd-border));
+    --sd-scroll:       color-mix(in srgb, var(--bs-border-color) 80%, transparent);
+    --sd-shadow:       0 18px 40px rgba(15,23,42,.12);
+    --sd-link:         var(--bs-body-color);
+  }
+  html[data-bs-theme="dark"]{
+    --sd-bg:           color-mix(in srgb, var(--bs-body-bg) 75%, transparent);
+    --sd-border:       var(--bs-border-color);
+    --sd-muted:        var(--bs-secondary-color);
+    --sd-hover:        color-mix(in srgb, var(--brand-2) 10%, transparent);
+    --sd-active-bg:    color-mix(in srgb, var(--brand-2) 14%, transparent);
+    --sd-active-bd:    color-mix(in srgb, var(--brand-2) 35%, var(--sd-border));
+    --sd-scroll:       color-mix(in srgb, var(--bs-border-color) 60%, transparent);
+    --sd-shadow:       0 18px 40px rgba(0,0,0,.40);
+    --sd-link:         var(--bs-body-color);
+  }
+
+/* ====== Sidebar glassy ====== */
+  .sidebar{
+    color: var(--sd-link);
+    height:100%;
+    min-height:calc(100dvh - var(--tb-h,64px));
+    display:flex; flex-direction:column;
+    padding:.75rem .75rem 1rem;
+    background:
+      radial-gradient(800px 140px at -8% -40%, color-mix(in srgb, var(--brand) 12%, transparent), transparent 60%),
+      var(--sd-bg);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-right:1px solid var(--sd-border);
+  }
+
+/* Brand */
+  .sidebar .brand{
+    display:flex; align-items:center; gap:.6rem;
+    padding:.5rem .5rem .75rem; margin-bottom:.25rem;
+    border-bottom:1px dashed var(--sd-border);
+  }
+  .sidebar .brand h1{ color:inherit; font-weight:700; }
+  .sidebar .brand-logo{
+    width:38px; height:38px; border-radius:.8rem; flex:none;
+    display:grid; place-items:center; font-weight:800;
+    color:#0f1117; /* tetap kontras di gradien */
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px color-mix(in srgb, var(--brand) 35%, transparent);
+  }
+
+/* Labels */
+  .sidebar .nav .label{
+    margin:.85rem .35rem .35rem;
+    text-transform:uppercase; letter-spacing:.08em;
+    font-size:.72rem; color:var(--sd-muted);
+  }
+
+/* Links */
+  .sidebar .nav .nav-link{
+    display:flex; align-items:center; gap:.5rem;
+    padding:.55rem .7rem; margin:.1rem .15rem;
+    border:1px solid transparent; border-radius:.7rem;
+    color: inherit; text-decoration:none;
+    transition:background .15s ease, border-color .15s ease, transform .05s ease;
+  }
+  .sidebar .nav .nav-link:hover{
+    background:var(--sd-hover);
+    border-color:color-mix(in srgb, var(--brand) 24%, var(--sd-border));
+  }
+  .sidebar .nav .nav-link:active{ transform:translateY(1px); }
+
+/* Active (di-set oleh main.js) */
+  .sidebar .nav .nav-link.active{
+    background:var(--sd-active-bg);
+    border-color:var(--sd-active-bd);
+    position:relative; font-weight:700;
+  }
+  .sidebar .nav .nav-link.active::before{
+    content:""; position:absolute; left:-2px; top:10px; bottom:10px;
+    width:4px; border-radius:4px;
+    background:linear-gradient(180deg,var(--brand),var(--brand-2));
+  }
+
+/* Saat parent aktif (punya child yg aktif) */
+  .sidebar .nav .nav-link.active-parent{
+    background:var(--sd-hover);
+    border-color:var(--sd-active-bd);
+    font-weight:700;
+  }
+
+/* Badge kecil di kanan link */
+  .sidebar .nav .badge{ font-weight:700; }
+
+/* Scroll area */
+  .sidebar .nav{
+    overflow:auto; overscroll-behavior:contain; padding-right:.25rem;
+  }
+  .sidebar .nav::-webkit-scrollbar{ width:8px; }
+  .sidebar .nav::-webkit-scrollbar-thumb{
+    background:var(--sd-scroll); border-radius:999px;
+  }
+
+/* Submenu (indent + garis panduan) */
+  .sidebar .subnav{
+    padding:.15rem 0 .35rem .25rem;
+    border-left:1px dashed var(--sd-border);
+    margin:.15rem 0 .35rem .45rem;
+  }
+  .sidebar .subnav .nav-link{
+    margin:.08rem .15rem;
+    border-radius:.55rem;
+    padding:.45rem .6rem;
+    font-size:.95rem;
+  }
+
+/* Chevron rotation: gunakan aria-expanded dari BO5 */
+  .sidebar .toggle .chev{ transition: transform .15s ease; }
+  .sidebar .toggle[aria-expanded="true"] .chev{ transform: rotate(180deg); }
+
+/* Mobile */
+  @media (max-width:992px){
+    .sidebar{
+      position:sticky; top:var(--tb-h,64px);
+      min-height:calc(100dvh - var(--tb-h,64px));
+      box-shadow:var(--sd-shadow);
+    }
+  }
+</style>
+

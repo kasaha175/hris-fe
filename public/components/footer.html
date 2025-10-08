@@ -1,0 +1,115 @@
+<footer class="app-footer">
+  <div class="container-fluid">
+    <div class="row gy-2 align-items-center">
+      <!-- Brand + status -->
+      <div class="col-12 col-md d-flex align-items-center gap-2">
+        <span class="brand-badge" aria-hidden="true">HR</span>
+        <span class="app-name">HRIS Modern</span>
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="status-text">Sistem normal</span>
+      </div>
+
+      <!-- Links -->
+      <div class="col-12 col-md-auto">
+        <nav class="footer-links">
+          <a href="#/reports">Laporan</a>
+          <a href="#/settings">Pengaturan</a>
+          <a href="#" id="toTop" class="to-top">Ke atas</a>
+        </nav>
+      </div>
+
+      <!-- Copyright -->
+      <div class="col-12 col-md-auto text-md-end">
+        <span class="copy">© <span id="fy"></span> HRIS • v1.0</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+
+  /* ========= THEME TOKENS ========= */
+  html[data-bs-theme="light"]{
+    --ft-bg:       rgba(255,255,255,.86);
+    --ft-border:   #E5EAF1;
+    --ft-fg:       #0F172A;
+    --ft-muted:    #667085;
+    --ft-link:     #0F172A;
+    --ft-hover:    rgba(45,168,92,.06);
+    --ft-outline:  rgba(45,168,92,.18);
+    --ft-shadow:   0 -8px 24px rgba(15,23,42,.08);
+
+    --ft-dot:      #22C55E;
+    --ft-dot-ring: rgba(34,197,94,.20);
+  }
+  html[data-bs-theme="dark"]{
+    --ft-bg:       rgba(13,17,23,.55);
+    --ft-border:   rgba(255,255,255,.08);
+    --ft-fg:       #E6E8EC;
+    --ft-muted:    #9CA3AF;
+    --ft-link:     #E6E8EC;
+    --ft-hover:    rgba(110,231,183,.10);
+    --ft-outline:  rgba(110,231,183,.22);
+    --ft-shadow:   0 -8px 24px rgba(0,0,0,.45);
+
+    --ft-dot:      #22C55E;
+    --ft-dot-ring: rgba(34,197,94,.28);
+  }
+
+  /* ========= Footer ========= */
+  .app-footer{
+    position:relative; z-index:1020;
+    padding:.65rem 1rem;
+    border-top:1px solid var(--ft-border);
+    color:var(--ft-fg);
+    background:
+      radial-gradient(900px 120px at -8% -50%, rgba(45,168,92,.08), transparent 60%),
+      var(--ft-bg);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    font-size:.95rem;
+    box-shadow: var(--ft-shadow);
+  }
+  @media (max-width:576px){ .app-footer{ padding:.6rem .75rem; } }
+
+  .app-footer .brand-badge{
+    width:30px; height:30px; border-radius:.6rem;
+    display:grid; place-items:center; font-weight:800; color:#0f1117;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 14px rgba(45,168,92,.35);
+  }
+  .app-footer .app-name{ font-weight:700; }
+
+  .app-footer .status-dot{
+    width:10px; height:10px; border-radius:999px; margin-left:.25rem;
+    background:var(--ft-dot); box-shadow:0 0 0 3px var(--ft-dot-ring);
+  }
+  .app-footer .status-text{ color:var(--ft-muted); }
+
+  .app-footer .footer-links{ display:flex; gap:.9rem; align-items:center; }
+  .app-footer .footer-links a{
+    color:var(--ft-link); text-decoration:none; opacity:.9;
+    border-radius:.4rem; padding:.1rem .2rem;
+    transition:background .15s ease, opacity .15s ease;
+  }
+  .app-footer .footer-links a:hover{ background:var(--ft-hover); opacity:1; }
+  .app-footer .footer-links a:focus-visible{
+    outline:none; box-shadow:0 0 0 .18rem var(--ft-outline);
+  }
+
+  .app-footer .copy{ color:var(--ft-muted); }
+
+  /* “Ke atas” subtle arrow */
+  .to-top::after{ content:" ↥"; font-weight:700; }
+</style>
+
+<script>
+  // Tahun berjalan
+  document.getElementById('fy').textContent = new Date().getFullYear();
+
+  // Ke atas (smooth)
+  document.getElementById('toTop')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

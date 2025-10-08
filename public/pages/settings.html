@@ -1,0 +1,276 @@
+<div class="container-fluid page-modern py-3">
+  <div class="card card-glass">
+    <div class="card-body">
+      <!-- Tabs -->
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+        <ul class="nav nav-tabs border-0">
+          <li class="nav-item">
+            <span class="nav-link active fw-semibold">Ubah Password</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Form -->
+      <form id="formChangePassword" class="mx-auto" style="max-width: 760px;" novalidate>
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label">Nama Pengguna</label>
+            <div class="input-icon">
+              <i class="bi bi-person-badge"></i>
+              <input class="form-control" type="text" placeholder="0602040579" value="0602040579" readonly>
+            </div>
+            <small class="text-muted">Tidak dapat diubah</small>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label">Nama Asli</label>
+            <div class="input-icon">
+              <i class="bi bi-person"></i>
+              <input class="form-control" type="text" placeholder="ANNISA OKTAMI" value="ANNISA OKTAMI" readonly>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label">Password Lama</label>
+            <div class="pass-group">
+              <i class="bi bi-lock"></i>
+              <input class="form-control" id="oldPass" type="password" autocomplete="current-password" required>
+              <button class="btn btn-ghost toggle" type="button" data-target="oldPass" aria-label="Tampil/Sembunyi">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div class="form-text" id="capsOld" hidden><i class="bi bi-exclamation-triangle me-1"></i> Caps Lock aktif</div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label d-flex align-items-center gap-2">
+              Password Baru
+              <span class="badge rounded-pill bg-secondary-subtle text-body-secondary fw-normal" data-bs-toggle="tooltip" title="Min. 8 karakter, huruf besar & kecil, angka, dan simbol">
+                Syarat
+              </span>
+            </label>
+            <div class="pass-group">
+              <i class="bi bi-shield-lock"></i>
+              <input class="form-control" id="newPass" type="password" autocomplete="new-password" required aria-describedby="passHelp">
+              <button class="btn btn-ghost toggle" type="button" data-target="newPass" aria-label="Tampil/Sembunyi">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+
+            <!-- Meter kekuatan -->
+            <div class="pw-meter mt-2" aria-hidden="true">
+              <div class="pw-bar" id="pwBar" style="--p:0%"></div>
+            </div>
+            <small id="passHelp" class="text-muted">Gunakan frasa sandi yang kuat & unik.</small>
+
+            <!-- Checklist syarat -->
+            <ul class="pw-req mt-2 mb-0">
+              <li data-req="len">Min. 8 karakter</li>
+              <li data-req="lc">Huruf kecil (a-z)</li>
+              <li data-req="uc">Huruf besar (A-Z)</li>
+              <li data-req="num">Angka (0-9)</li>
+              <li data-req="sym">Simbol (!@#$…)</li>
+            </ul>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label">Ulangi Password Baru</label>
+            <div class="pass-group">
+              <i class="bi bi-shield-check"></i>
+              <input class="form-control" id="rePass" type="password" autocomplete="new-password" required>
+              <button class="btn btn-ghost toggle" type="button" data-target="rePass" aria-label="Tampil/Sembunyi">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div class="mt-2">
+              <span id="matchHint" class="badge rounded-pill bg-secondary-subtle text-body-secondary">Belum cocok</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 justify-content-end mt-4">
+          <button class="btn btn-outline-secondary" type="button" id="btnSuggest"><i class="bi bi-magic me-1"></i> Saran Password</button>
+          <button class="btn btn-primary" type="submit" id="btnSave" disabled><i class="bi bi-check2-circle me-1"></i> Simpan</button>
+        </div>
+      </form>
+
+      <p class="text-secondary small mt-3 mb-0">
+        Group: RECRUITMENT STAFF • Perusahaan/Divisi: Branch Multi Kreas!
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+    --ok:#16a34a; --warn:#d97706; --bad:#dc2626;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+    --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444;
+  }
+
+  .card-glass{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+
+  /* Input berikon & pass-group */
+  .input-icon, .pass-group{ position:relative; }
+  .input-icon>i, .pass-group>i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%); opacity:.7; pointer-events:none;
+  }
+  .input-icon>.form-control, .pass-group>.form-control{ padding-left:2rem; }
+  .pass-group .toggle{
+    position:absolute; right:.35rem; top:50%; transform:translateY(-50%);
+    border:1px solid var(--glass-bd); border-radius:8px; padding:.2rem .45rem;
+  }
+  .btn-ghost{ background:transparent; }
+  .btn-ghost:hover{ background: var(--hover); }
+
+  /* Meter kekuatan */
+  .pw-meter{ position:relative; height:8px; border-radius:999px; background:color-mix(in oklab, var(--brand-2) 12%, transparent); border:1px solid var(--glass-bd); overflow:hidden; }
+  .pw-bar{ position:absolute; inset:0 auto 0 0; width:var(--p,0%); background:linear-gradient(90deg,#ef4444,#f59e0b,#22c55e); }
+
+  /* Checklist syarat */
+  .pw-req{ list-style:none; padding-left:0; columns:2; column-gap:1rem; }
+  .pw-req li{
+    break-inside: avoid; padding-left:1.3rem; position:relative; margin:.25rem 0; color:var(--muted);
+  }
+  .pw-req li::before{
+    content:"•"; position:absolute; left:.35rem; top:0; opacity:.5;
+  }
+  .pw-req li.ok{ color:var(--ok); font-weight:600; }
+  .pw-req li.ok::before{ content:"✓"; opacity:1; }
+
+  /* Badge hint */
+  #matchHint.bg-success-subtle{ color: var(--ok) !important; }
+  #matchHint.bg-danger-subtle{ color: var(--bad) !important; }
+
+  @media (max-width:576px){
+    .pw-req{ columns:1; }
+  }
+</style>
+
+<script>
+(function(){
+  const root = document.currentScript?.closest('.container') || document;
+  const form = root.querySelector('#formChangePassword');
+  const newPass = root.querySelector('#newPass');
+  const rePass  = root.querySelector('#rePass');
+  const oldPass = root.querySelector('#oldPass');
+  const bar = root.querySelector('#pwBar');
+  const reqs = {
+    len:  root.querySelector('[data-req="len"]'),
+    lc:   root.querySelector('[data-req="lc"]'),
+    uc:   root.querySelector('[data-req="uc"]'),
+    num:  root.querySelector('[data-req="num"]'),
+    sym:  root.querySelector('[data-req="sym"]'),
+  };
+  const matchHint = root.querySelector('#matchHint');
+  const btnSave = root.querySelector('#btnSave');
+  const btnSuggest = root.querySelector('#btnSuggest');
+  const capsOld = root.querySelector('#capsOld');
+
+  // Toggle show/hide
+  root.querySelectorAll('.toggle').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.getAttribute('data-target');
+      const input = root.querySelector('#'+id);
+      if(!input) return;
+      const t = input.type === 'password' ? 'text' : 'password';
+      input.type = t;
+      btn.querySelector('i').className = 'bi ' + (t==='password'?'bi-eye':'bi-eye-slash');
+    });
+  });
+
+  // Tooltip
+  [...root.querySelectorAll('[data-bs-toggle="tooltip"]')]
+    .forEach(el => new bootstrap.Tooltip(el));
+
+  // CapsLock indicator (old)
+  oldPass.addEventListener('keydown', (e)=>{
+    if (e.getModifierState && typeof e.getModifierState === 'function') {
+      capsOld.hidden = !e.getModifierState('CapsLock');
+    }
+  });
+  oldPass.addEventListener('blur', ()=> capsOld.hidden = true);
+
+  // Strength & requirements
+  function evaluate(pass){
+    const tests = {
+      len: pass.length >= 8,
+      lc: /[a-z]/.test(pass),
+      uc: /[A-Z]/.test(pass),
+      num: /[0-9]/.test(pass),
+      sym: /[^A-Za-z0-9]/.test(pass),
+    };
+    // Update checklist
+    Object.entries(tests).forEach(([k,v])=>{
+      reqs[k]?.classList.toggle('ok', !!v);
+    });
+    // Score sederhana
+    const score = Object.values(tests).reduce((a,b)=>a+(b?1:0), 0);
+    const pct = Math.round((score/5)*100);
+    bar.style.setProperty('--p', pct + '%');
+    return score >= 4; // minimal 4 dari 5
+  }
+
+  function syncState(){
+    const strong = evaluate(newPass.value || '');
+    const match = (newPass.value || '') && newPass.value === (rePass.value || '');
+    matchHint.className = 'badge rounded-pill ' + (match ? 'bg-success-subtle' : 'bg-danger-subtle');
+    matchHint.textContent = match ? 'Cocok' : 'Belum cocok';
+    btnSave.disabled = !(oldPass.value && strong && match);
+  }
+
+  newPass.addEventListener('input', syncState);
+  rePass.addEventListener('input', syncState);
+  oldPass.addEventListener('input', syncState);
+
+  // Saran password (FE-only, non-kripto)
+  btnSuggest?.addEventListener('click', ()=>{
+    // generator frasa sederhana: 3 kata + angka + simbol
+    const words = ['hijau','galaksi','senja','meteor','bambu','kopi','harmoni','aurora','semesta','merpati','onyx','vortex'];
+    const pick = () => words[Math.floor(Math.random()*words.length)];
+    const num = Math.floor(Math.random()*90 + 10); // 10-99
+    const sym = ['!','@','#','$','%','&','*'][Math.floor(Math.random()*7)];
+    const suggestion = (pick()+pick()+pick()[0].toUpperCase()+num+sym)
+      .replace(/^./, c => c.toUpperCase());
+    newPass.value = suggestion;
+    rePass.value = '';
+    syncState();
+    newPass.focus();
+    new bootstrap.Tooltip(btnSuggest, {title: 'Gunakan atau modifikasi saran ini.', trigger: 'manual'}).show();
+    setTimeout(()=>{ try{ bootstrap.Tooltip.getInstance(btnSuggest)?.hide(); }catch(e){} }, 1200);
+  });
+
+  // Submit FE-only
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    if(btnSave.disabled) return;
+    // TODO: sambungkan ke API backend ubah password.
+    alert('Password berhasil diperbarui (FE-only).');
+    form.reset();
+    // reset state
+    bar.style.setProperty('--p','0%');
+    Object.values(reqs).forEach(li=>li?.classList.remove('ok'));
+    matchHint.className = 'badge rounded-pill bg-secondary-subtle text-body-secondary';
+    matchHint.textContent = 'Belum cocok';
+    btnSave.disabled = true;
+  });
+})();
+</script>

@@ -1,0 +1,19 @@
+# ============================
+# HRIS FE (Vite SPA - Hash Router)
+# ============================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /dev_indra/hris-fe/
+
+  # Izinkan file/folder statis diakses langsung
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Fallback semua ke index.html (per-dir, cukup 'index.html' saja)
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Default dokumen
+DirectoryIndex index.html

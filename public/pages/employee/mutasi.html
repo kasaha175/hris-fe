@@ -1,0 +1,318 @@
+<div class="container-fluid page-modern py-3">
+  <!-- Toolbar -->
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Pengajuan Mutasi</h4>
+    </div>
+    <button class="btn btn-primary btn-sm" data-open="mdlAjukanMutasi">
+      <i class="bi bi-plus-lg me-1"></i> Ajukan
+    </button>
+  </div>
+
+  <!-- Filter -->
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form class="row g-2 align-items-end">
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Cari</label>
+          <div class="input-icon"><i class="bi bi-search"></i>
+            <input class="form-control" placeholder="Nama / NIK">
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Dari Unit</label>
+          <div class="input-icon"><i class="bi bi-diagram-3"></i>
+            <input class="form-control" placeholder="Mis. Finance">
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Ke Unit</label>
+          <div class="input-icon"><i class="bi bi-diagram-3"></i>
+            <input class="form-control" placeholder="Mis. Audit Internal">
+          </div>
+        </div>
+        <div class="col-12 col-lg-2 d-grid">
+          <button class="btn btn-dark" type="submit"><i class="bi bi-search me-1"></i> Tampilkan</button>
+        </div>
+      </form>
+
+      <!-- Chips (opsional, bisa diisi via JS) -->
+      <div class="filter-chips mt-2 d-flex flex-wrap gap-2">
+        <!-- <span class="chip">Ke: Audit Internal <button class="btn-close btn-close-white ms-1" style="transform:scale(.65)"></button></span> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI ringkas -->
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Total Pengajuan</div><div class="mini-kpi__value">24</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Menunggu Persetujuan</div><div class="mini-kpi__value text-warning">7</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Disetujui</div><div class="mini-kpi__value text-success">14</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Ditolak</div><div class="mini-kpi__value text-danger">3</div></div></div>
+  </div>
+
+  <!-- Legend status -->
+  <div class="legend row g-2 mb-2">
+    <div class="col-auto"><span class="legend-dot lg-wait"></span> Menunggu</div>
+    <div class="col-auto"><span class="legend-dot lg-approve"></span> Disetujui</div>
+    <div class="col-auto"><span class="legend-dot lg-reject"></span> Ditolak</div>
+  </div>
+
+  <!-- Tabel -->
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Kode</th>
+            <th>NIK</th>
+            <th>Nama</th>
+            <th>Dari</th>
+            <th>Ke</th>
+            <th>Status</th>
+            <th class="d-none d-xl-table-cell">Progress Persetujuan</th>
+            <th style="width:160px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Kode">MTS-2025-007</td>
+            <td data-label="NIK">EMP-00412</td>
+            <td data-label="Nama">Dewi Anggraini</td>
+            <td data-label="Dari">Finance</td>
+            <td data-label="Ke">Audit Internal</td>
+            <td data-label="Status">
+              <span class="badge mt-badge mt-wait">Menunggu Persetujuan</span>
+            </td>
+            <td data-label="Progress" class="d-none d-xl-table-cell">
+              <div class="mt-progress" title="2/3 Approver">
+                <div class="mt-progress__bar" style="--p:66%"></div>
+              </div>
+              <small class="text-muted">2/3</small>
+            </td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-success" title="Setujui"><i class="bi bi-check2"></i></button>
+                <button class="btn btn-outline-danger" title="Tolak"><i class="bi bi-x"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- contoh approved -->
+          <tr>
+            <td data-label="Kode">MTS-2025-008</td>
+            <td data-label="NIK">EMP-00088</td>
+            <td data-label="Nama">Rizky Ramadhan</td>
+            <td data-label="Dari">Operasional</td>
+            <td data-label="Ke">Operasional - Gudang A</td>
+            <td data-label="Status"><span class="badge mt-badge mt-approve">Disetujui</span></td>
+            <td data-label="Progress" class="d-none d-xl-table-cell">
+              <div class="mt-progress done" title="3/3 Approver">
+                <div class="mt-progress__bar" style="--p:100%"></div>
+              </div>
+              <small class="text-muted">3/3</small>
+            </td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-secondary" title="Cetak"><i class="bi bi-printer"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- contoh rejected -->
+          <tr>
+            <td data-label="Kode">MTS-2025-009</td>
+            <td data-label="NIK">EMP-00301</td>
+            <td data-label="Nama">Alya Safitri</td>
+            <td data-label="Dari">Marketing</td>
+            <td data-label="Ke">Sales</td>
+            <td data-label="Status"><span class="badge mt-badge mt-reject">Ditolak</span></td>
+            <td data-label="Progress" class="d-none d-xl-table-cell">
+              <div class="mt-progress" title="Ditolak pada 1/3">
+                <div class="mt-progress__bar" style="--p:33%"></div>
+              </div>
+              <small class="text-muted">1/3</small>
+            </td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Detail"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-outline-secondary" title="Ajukan Ulang"><i class="bi bi-arrow-repeat"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- rows dinamis -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Ajukan Mutasi -->
+<div class="modal" id="mdlAjukanMutasi" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Ajukan Mutasi</h5><button class="btn-close" data-close></button></div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">NIK</label>
+            <input class="form-control" required>
+          </div>
+          <div class="col-md-8">
+            <label class="form-label">Nama</label>
+            <input class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Dari Unit</label>
+            <input class="form-control" placeholder="Unit saat ini">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Ke Unit</label>
+            <input class="form-control" placeholder="Unit tujuan">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Alasan</label>
+            <textarea class="form-control" rows="3" placeholder="Tuliskan pertimbangan mutasi"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-close>Batal</button>
+        <button class="btn btn-primary" data-close>Simpan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+  }
+
+  /* Header vibe */
+  .page-modern .page-head .head-blob{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Cards glassy */
+  .card-glass, .card-filter{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  .card-filter .card-body{ padding:.9rem .9rem; }
+  .card-filter{ backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+  /* Input icon */
+  .input-icon{ position:relative; }
+  .input-icon>i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    opacity:.7; pointer-events:none;
+  }
+  .input-icon>.form-control{ padding-left:2rem; }
+
+  /* Chips */
+  .chip{
+    display:inline-flex; align-items:center; gap:.25rem;
+    padding:.25rem .55rem; border-radius:999px; font-size:.8rem;
+    background:var(--hover); color:inherit; border:1px solid var(--glass-bd);
+  }
+
+  /* KPI mini */
+  .mini-kpi{ background:var(--glass-bg); border:1px solid var(--glass-bd); border-radius:12px; padding:.6rem .75rem; box-shadow:var(--shadow); }
+  .mini-kpi__label{ font-size:.8rem; color:var(--muted); }
+  .mini-kpi__value{ font-size:1.2rem; font-weight:800; }
+
+  /* Legend */
+  .legend-dot{
+    display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:.35rem;
+    border:1px solid var(--glass-bd);
+  }
+  .lg-wait   { background: color-mix(in oklab,#f59e0b 22%, transparent); }
+  .lg-approve{ background: color-mix(in oklab,#22c55e 22%, transparent); }
+  .lg-reject { background: color-mix(in oklab,#ef4444 22%, transparent); }
+
+  /* Table modern */
+  .table-modern thead th{
+    background: var(--thead);
+    border-bottom: 1px solid var(--glass-bd);
+    position: sticky; top: 0; z-index: 1;
+  }
+  .table-modern tbody tr{ transition: background .12s ease; }
+  .table-modern tbody tr:hover{ background: var(--hover); }
+  .table-modern td, .table-modern th{ vertical-align: middle; }
+
+  /* Status badges */
+  .mt-badge{ font-weight:700; }
+  .mt-wait   { background:color-mix(in oklab,#f59e0b 16%,transparent); color:#92400e; }
+  .mt-approve{ background:color-mix(in oklab,#22c55e 16%,transparent); color:#166534; }
+  .mt-reject { background:color-mix(in oklab,#ef4444 16%,transparent); color:#991b1b; }
+
+  /* Progress approve */
+  .mt-progress{
+    --h: 8px;
+    width: 140px; max-width:100%;
+    height: var(--h); border-radius: 999px;
+    background: color-mix(in oklab, var(--brand-2) 12%, transparent);
+    border: 1px solid var(--glass-bd);
+    overflow: hidden; position: relative;
+  }
+  .mt-progress__bar{
+    position:absolute; inset:0 0 0 auto;
+    width: var(--p,0); height: 100%;
+    background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    border-radius: 999px; transition: width .25s ease;
+  }
+  .mt-progress.done{
+    background: color-mix(in oklab,#22c55e 14%, transparent);
+    border-color: color-mix(in oklab,#22c55e 35%, var(--glass-bd));
+  }
+
+  /* Mobile: table -> cards */
+  @media (max-width:768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+    .mt-progress{ width:100%; }
+  }
+
+  /* Print ringkas (opsional) */
+  @media print{
+    .page-head, .card-filter, .legend { display:none !important; }
+    .card-glass{ box-shadow:none; border:0; }
+    .table-modern thead th{ position:static; }
+  }
+</style>

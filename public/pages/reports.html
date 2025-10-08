@@ -1,0 +1,67 @@
+<div class="content">
+  <div id="breadcrumb-slot"></div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="tabs">
+        <button class="tab active" data-tab="absensi">Laporan Absensi</button>
+        <button class="tab" data-tab="pegawai">Daftar Pegawai (HRD)</button>
+      </div>
+
+      <!-- Laporan Absensi -->
+      <section class="tabpanel" id="tab-absensi">
+        <div class="form-grid" style="grid-template-columns:repeat(5, minmax(160px,1fr)); margin-bottom:10px">
+          <div>
+            <label>Bulan</label>
+            <input id="lapBulan" type="text" placeholder="01-2016"/>
+          </div>
+          <div>
+            <label>Nama</label>
+            <input id="lapNama" type="text" placeholder="Nama"/>
+          </div>
+          <div>
+            <label>Divisi</label>
+            <input id="lapDiv" type="text" placeholder="Divisi"/>
+          </div>
+          <div>
+            <label>Tampilkan</label>
+            <select id="lapShow">
+              <option>Semua</option>
+              <option>Hadir</option>
+              <option>Telat</option>
+              <option>Libur</option>
+            </select>
+          </div>
+          <div style="align-self:end">
+            <button class="btn" id="btnLapAbs">Proses</button>
+          </div>
+        </div>
+
+        <table class="table" id="tblLapAbsensi">
+          <thead>
+            <tr>
+              <th>Tanggal</th><th>Hari</th><th>Check-In</th><th>Check-Out</th><th>Telat</th><th>Denda</th><th>Keterangan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- diisi dinamis oleh main.js (mock.laporanAbsensi) -->
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Daftar Pegawai (HRD) -->
+      <section class="tabpanel hidden" id="tab-pegawai">
+        <table class="table" id="tblDaftarPegawai">
+          <thead>
+            <tr>
+              <th>No</th><th>No Pegawai</th><th>Nama</th><th>Divisi</th><th>Jabatan</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- diisi dinamis oleh main.js (mock.daftarPegawai) -->
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,229 @@
+<div class="container-fluid page-modern py-3">
+  <!-- Toolbar -->
+  <div class="page-head d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="head-blob"></div>
+      <h4 class="mb-0 fw-bold">Reminder Masa Percobaan</h4>
+    </div>
+    <div class="d-flex gap-2 flex-wrap">
+      <button class="btn btn-outline-primary btn-sm"><i class="bi bi-bell me-1"></i> Kirim Notif</button>
+      <button class="btn btn-outline-success btn-sm"><i class="bi bi-download me-1"></i> Export</button>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="card card-filter mb-3">
+    <div class="card-body">
+      <form class="row g-2 align-items-end">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Jatuh Tempo ≤</label>
+          <div class="input-icon"><i class="bi bi-calendar-event"></i><input type="date" class="form-control"></div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label class="form-label">Unit</label>
+          <div class="input-icon"><i class="bi bi-diagram-3"></i><input class="form-control" placeholder="Unit/Divisi"></div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <label class="form-label">Cari</label>
+          <div class="input-icon"><i class="bi bi-search"></i><input class="form-control" placeholder="Nama / NIK"></div>
+        </div>
+        <div class="col-12 col-lg-2 d-grid">
+          <button class="btn btn-dark" type="submit"><i class="bi bi-search me-1"></i> Tampilkan</button>
+        </div>
+      </form>
+
+      <!-- Chips (opsional via JS) -->
+      <div class="filter-chips mt-2 d-flex flex-wrap gap-2">
+        <!-- <span class="chip">≤ 2025-10-14 <button class="btn-close btn-close-white ms-1" style="transform:scale(.65)"></button></span> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI ringkas -->
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Total Probation</div><div class="mini-kpi__value">54</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Jatuh Tempo ≤ 7h</div><div class="mini-kpi__value text-danger">6</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">≤ 14h</div><div class="mini-kpi__value text-warning">12</div></div></div>
+    <div class="col-6 col-md-3"><div class="mini-kpi"><div class="mini-kpi__label">Siap Konversi</div><div class="mini-kpi__value text-success">21</div></div></div>
+  </div>
+
+  <!-- Legend urgensi -->
+  <div class="legend row g-2 mb-2">
+    <div class="col-auto"><span class="legend-dot prb-ok"></span> > 14 hari</div>
+    <div class="col-auto"><span class="legend-dot prb-warn"></span> 7–14 hari</div>
+    <div class="col-auto"><span class="legend-dot prb-late"></span> ≤ 7 hari</div>
+  </div>
+
+  <!-- Tabel -->
+  <div class="card card-glass">
+    <div class="table-responsive">
+      <table class="table table-modern mb-0 align-middle">
+        <thead>
+          <tr>
+            <th>NIK</th>
+            <th>Nama</th>
+            <th>Tgl Mulai</th>
+            <th>Jatuh Tempo</th>
+            <th class="text-center">Sisa Hari</th>
+            <th class="d-none d-xl-table-cell" style="width:200px">Progress Probation</th>
+            <th style="width:180px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyProbation">
+          <tr>
+            <td data-label="NIK">EMP-00412</td>
+            <td data-label="Nama">Dewi Anggraini</td>
+            <td data-label="Tgl Mulai">15 Jul 2025</td>
+            <td data-label="Jatuh Tempo">14 Okt 2025</td>
+            <td data-label="Sisa Hari" class="text-center">
+              <span class="count-pill prb-warn">9</span>
+            </td>
+            <td data-label="Progress" class="d-none d-xl-table-cell">
+              <div class="prg-line" title="81%">
+                <div class="prg-line__bar" style="--p:81%"></div>
+              </div>
+            </td>
+            <td data-label="Aksi">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" title="Ingatkan"><i class="bi bi-envelope"></i></button>
+                <button class="btn btn-outline-success" title="Luluskan"><i class="bi bi-check2"></i></button>
+                <button class="btn btn-outline-danger" title="Perpanjang"><i class="bi bi-arrow-repeat"></i></button>
+              </div>
+            </td>
+          </tr>
+          <!-- rows dinamis -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --brand:#2DA85C; --brand-2:#6EE7B7; }
+  html[data-bs-theme="light"]{
+    --glass-bg: rgba(255,255,255,.86);
+    --glass-bd: #E5EAF1;
+    --muted:#667085;
+    --hover: rgba(45,168,92,.06);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --thead: #f8fafc;
+  }
+  html[data-bs-theme="dark"]{
+    --glass-bg: rgba(13,17,23,.55);
+    --glass-bd: rgba(255,255,255,.08);
+    --muted:#9CA3AF;
+    --hover: rgba(110,231,183,.08);
+    --shadow: 0 18px 40px rgba(0,0,0,.45);
+    --thead: rgba(255,255,255,.06);
+  }
+
+  /* Header vibe */
+  .page-modern .page-head .head-blob{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 6px 16px rgba(45,168,92,.35);
+  }
+
+  /* Cards glassy */
+  .card-glass, .card-filter{
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-bd);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  .card-filter .card-body{ padding:.9rem .9rem; }
+  .card-filter{ backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+  /* Input icon */
+  .input-icon{ position:relative; }
+  .input-icon>i{
+    position:absolute; left:.65rem; top:50%; transform:translateY(-50%);
+    opacity:.7; pointer-events:none;
+  }
+  .input-icon>.form-control{ padding-left:2rem; }
+
+  /* Chips */
+  .chip{
+    display:inline-flex; align-items:center; gap:.25rem;
+    padding:.25rem .55rem; border-radius:999px; font-size:.8rem;
+    background:var(--hover); color:inherit; border:1px solid var(--glass-bd);
+  }
+
+  /* KPI mini */
+  .mini-kpi{ background:var(--glass-bg); border:1px solid var(--glass-bd); border-radius:12px; padding:.6rem .75rem; box-shadow: var(--shadow); }
+  .mini-kpi__label{ font-size:.8rem; color:var(--muted); }
+  .mini-kpi__value{ font-size:1.2rem; font-weight:800; }
+
+  /* Legend */
+  .legend-dot{
+    display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:.35rem;
+    border:1px solid var(--glass-bd);
+  }
+  .prb-ok   { background: color-mix(in oklab,#22c55e 22%, transparent); }
+  .prb-warn { background: color-mix(in oklab,#f59e0b 22%, transparent); }
+  .prb-late { background: color-mix(in oklab,#ef4444 22%, transparent); }
+
+  /* Tabel modern */
+  .table-modern thead th{
+    background: var(--thead);
+    border-bottom: 1px solid var(--glass-bd);
+    position: sticky; top: 0; z-index: 1;
+  }
+  .table-modern tbody tr{ transition: background .12s ease; }
+  .table-modern tbody tr:hover{ background: var(--hover); }
+  .table-modern td, .table-modern th{ vertical-align: middle; }
+
+  /* Pill sisa hari */
+  .count-pill{
+    display:inline-block; min-width:38px; padding:.1rem .5rem; text-align:center;
+    border-radius:999px; border:1px solid var(--glass-bd);
+    background:var(--glass-bg); font-weight:700;
+  }
+  .count-pill.prb-ok{ color:#166534; }
+  .count-pill.prb-warn{ color:#b45309; }
+  .count-pill.prb-late{ color:#991b1b; }
+
+  /* Progress probation */
+  .prg-line{
+    --h: 8px;
+    width: 200px; max-width:100%;
+    height: var(--h); border-radius: 999px;
+    background: color-mix(in oklab, var(--brand-2) 12%, transparent);
+    border: 1px solid var(--glass-bd);
+    overflow: hidden; position: relative;
+  }
+  .prg-line__bar{
+    position:absolute; inset:0 0 0 auto;
+    width: var(--p,0); height: 100%;
+    background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    border-radius: 999px;
+    transition: width .25s ease;
+  }
+
+  /* Mobile: table -> cards */
+  @media (max-width:768px){
+    .table-responsive{ overflow:visible; }
+    .table-modern thead{ display:none; }
+    .table-modern tbody tr{
+      display:block; margin-bottom:.75rem; border:1px solid var(--glass-bd);
+      border-radius:12px; background:var(--glass-bg); box-shadow: var(--shadow);
+      padding:.5rem .5rem;
+    }
+    .table-modern tbody td{
+      display:flex; justify-content:space-between; gap:1rem;
+      border:0 !important; padding:.35rem .25rem;
+    }
+    .table-modern tbody td::before{
+      content: attr(data-label);
+      font-weight:600; color: var(--muted);
+    }
+    .prg-line{ width:100%; }
+  }
+
+  /* Print ringkas */
+  @media print{
+    .page-head, .card-filter, .legend { display:none !important; }
+    .card-glass{ box-shadow:none; border:0; }
+    .table-modern thead th{ position:static; }
+  }
+</style>

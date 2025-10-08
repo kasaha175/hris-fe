@@ -152,6 +152,7 @@
         box-shadow: 0 0 0 2px var(--tb-bg);
       }
     </style>
+    <script type="module" crossorigin src="/dev_indra/hris-fe/assets/index-Bj6Ya3wg.js"></script>
   </head>
 
   <body class="d-flex flex-column min-vh-100">
@@ -177,18 +178,18 @@
     </div>
 
     <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-  const applyLoginMode = () => {
-    const isAuth = location.hash.startsWith('#/login') || location.hash.startsWith('#/otp');
-    document.body.classList.toggle('login-page', isAuth);
-  };
-  window.addEventListener('hashchange', applyLoginMode);
-  window.addEventListener('DOMContentLoaded', applyLoginMode);
-</script>
-
-<!-- ⚠️ PENTING: gunakan path absolut supaya Vite dev menemukan file -->
-<script type="module" src="/src/main.js"></script>
+    <!-- Toggle login/dashboard -->
+    <script>
+      const applyLoginMode = () => {
+        const isLogin =
+          location.hash.startsWith('#/login') || location.pathname.endsWith('/login');
+        document.body.classList.toggle('login-page', isLogin);
+      };
+      window.addEventListener('hashchange', applyLoginMode);
+      window.addEventListener('DOMContentLoaded', applyLoginMode);
+    </script>
+
   </body>
 </html>
